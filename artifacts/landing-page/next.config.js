@@ -5,6 +5,7 @@ const nextConfig = {
     unoptimized: true,
   },
   allowedDevOrigins: ['*.pike.replit.dev', '127.0.0.1', 'localhost'],
+  devIndicators: false,
   agentRules: false,
 };
 

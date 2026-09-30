@@ -1,1 +1,44 @@
 @import 'tailwindcss';
+
+:root {
+  --ink: #2e202a;
+  --pink: #e75396;
+  --pink-deep: #c52f76;
+  --blush: #fff7fb;
+  --blush-strong: #f6e8f0;
+  --mint: #eaf8f1;
+  --green: #008b59;
+  --blue: #eaf5fa;
+  --yellow: #ffc948;
+}
+
+@theme inline {
+  --font-sans: var(--font-nunito);
+  --font-display: var(--font-fredoka);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--font-nunito), sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-fredoka), sans-serif;
+}
+
+::selection {
+  background: #f7c5dc;
+  color: var(--ink);
+}

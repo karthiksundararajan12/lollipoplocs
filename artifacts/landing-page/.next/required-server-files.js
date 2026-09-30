@@ -71,9 +71,7 @@ self.__SERVER_FILES_MANIFEST={
       "unoptimized": true,
       "customCacheHandler": false
     },
-    "devIndicators": {
-      "position": "bottom-left"
-    },
+    "devIndicators": false,
     "onDemandEntries": {
       "maxInactiveAge": 60000,
       "pagesBufferLength": 5
@@ -107,6 +105,11 @@ self.__SERVER_FILES_MANIFEST={
       }
     },
     "outputFileTracingRoot": "/home/runner/workspace",
+    "allowedDevOrigins": [
+      "*.pike.replit.dev",
+      "127.0.0.1",
+      "localhost"
+    ],
     "enablePrerenderSourceMaps": true,
     "cacheComponents": false,
     "cacheLife": {
@@ -321,6 +324,7 @@ self.__SERVER_FILES_MANIFEST={
     "htmlLimitedBots": "[\\w-]+-Google|Google-[\\w-]+|Chrome-Lighthouse|Slurp|DuckDuckBot|baiduspider|yandex|sogou|bitlybot|tumblr|vkShare|quora link preview|redditbot|ia_archiver|Bingbot|BingPreview|applebot|facebookexternalhit|facebookcatalog|Twitterbot|LinkedInBot|Slackbot|Discordbot|WhatsApp|SkypeUriPreview|Yeti|googleweblight",
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.js",
+    "agentRules": false,
     "repoRoot": "/home/runner/workspace",
     "turbopack": {
       "root": "/home/runner/workspace"

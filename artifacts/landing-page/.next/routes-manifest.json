@@ -40,6 +40,12 @@
       "regex": "^/_not\\-found(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/kids-haircut-electronic-city",
+      "regex": "^/kids\\-haircut\\-electronic\\-city(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/kids\\-haircut\\-electronic\\-city(?:/)?$"
     }
   ],
   "dataRoutes": [],

@@ -1,13 +1,26 @@
 [
   {
     "route": "/",
-    "firstLoadUncompressedJsBytes": 452621,
+    "firstLoadUncompressedJsBytes": 468181,
     "firstLoadChunkPaths": [
       ".next/static/chunks/35zqbe0u1r81b.js",
-      ".next/static/chunks/0yvzeensp8p8x.js",
-      ".next/static/chunks/2qyv5ge2mgkge.js",
-      ".next/static/chunks/2fe5k3m5w-8an.js",
-      ".next/static/chunks/turbopack-120eb-dfrc06-.js"
+      ".next/static/chunks/16k8ukaujwq18.js",
+      ".next/static/chunks/1s8rub9z8a4r9.js",
+      ".next/static/chunks/33thq07h0b-wo.js",
+      ".next/static/chunks/2scbzlevo1z95.js",
+      ".next/static/chunks/turbopack-28yg220alp7_u.js"
+    ]
+  },
+  {
+    "route": "/kids-haircut-electronic-city",
+    "firstLoadUncompressedJsBytes": 468181,
+    "firstLoadChunkPaths": [
+      ".next/static/chunks/35zqbe0u1r81b.js",
+      ".next/static/chunks/16k8ukaujwq18.js",
+      ".next/static/chunks/1s8rub9z8a4r9.js",
+      ".next/static/chunks/33thq07h0b-wo.js",
+      ".next/static/chunks/2scbzlevo1z95.js",
+      ".next/static/chunks/turbopack-28yg220alp7_u.js"
     ]
   },
   {
@@ -15,10 +28,10 @@
     "firstLoadUncompressedJsBytes": 452621,
     "firstLoadChunkPaths": [
       ".next/static/chunks/35zqbe0u1r81b.js",
-      ".next/static/chunks/0yvzeensp8p8x.js",
-      ".next/static/chunks/2qyv5ge2mgkge.js",
-      ".next/static/chunks/2fe5k3m5w-8an.js",
-      ".next/static/chunks/turbopack-120eb-dfrc06-.js"
+      ".next/static/chunks/1s8rub9z8a4r9.js",
+      ".next/static/chunks/33thq07h0b-wo.js",
+      ".next/static/chunks/2scbzlevo1z95.js",
+      ".next/static/chunks/turbopack-28yg220alp7_u.js"
     ]
   }
 ]

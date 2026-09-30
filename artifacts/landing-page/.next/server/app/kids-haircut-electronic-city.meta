@@ -1,0 +1,26 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/kids-haircut-electronic-city/layout,_N_T_/kids-haircut-electronic-city/page,_N_T_/kids-haircut-electronic-city"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/kids-haircut-electronic-city/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 64,
+    "slots": {
+      "children": {
+        "hints": 96,
+        "slots": {
+          "children": {
+            "hints": 160,
+            "slots": null
+          }
+        }
+      }
+    }
+  }
+}
