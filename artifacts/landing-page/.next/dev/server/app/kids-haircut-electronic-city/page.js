@@ -1,6 +1,6 @@
 var R=require("../../chunks/ssr/[turbopack]_runtime.js")("server/app/kids-haircut-electronic-city/page.js")
+R.c("server/chunks/ssr/[root-of-the-server]__06e1kdo._.js")
 R.c("server/chunks/ssr/node_modules__pnpm_17ajw_x._.js")
-R.c("server/chunks/ssr/[root-of-the-server]__1zfwus2._.js")
 R.c("server/chunks/ssr/0949_next_dist_esm_server_1fz36tu._.js")
 R.c("server/chunks/ssr/0949_next_dist_esm_lib_1_a_72u._.js")
 R.c("server/chunks/ssr/0949_next_dist_esm_18twt5o._.js")

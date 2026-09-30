@@ -1,4 +1,9 @@
 import Image from 'next/image';
+import {
+  BeforeAfterSlider,
+  ExperienceVideo,
+  SalonGallery,
+} from './section-interactions';
 
 const heroImage =
   '/images/9_e041d01a-9b54-4e65-a423-b91cf3493d86_1790778166822.jpeg';
@@ -354,6 +359,209 @@ function MobileBookingBar() {
   );
 }
 
+function CallToBook({ className = '' }) {
+  return (
+    <a
+      href="tel:+91XXXXXXXXXX"
+      className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#c52f76] px-6 py-3 text-sm font-bold leading-none text-white shadow-[0_8px_18px_rgba(46,32,42,0.12)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#ad2868] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a] ${className}`}
+    >
+      <PhoneIcon />
+      Call to Book
+    </a>
+  );
+}
+
+function ExperienceSection() {
+  return (
+    <section
+      id="experience"
+      aria-labelledby="experience-title"
+      className="bg-[#fffafd] px-5 py-12 sm:px-8 sm:py-16"
+    >
+      <div className="mx-auto grid max-w-[1120px] items-center gap-7 rounded-[2rem] border border-[#f1dce7] bg-white p-4 shadow-[0_18px_50px_rgba(82,42,64,0.08)] sm:p-7 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10 lg:p-9">
+        <div className="px-1 sm:px-3">
+          <h2 id="experience-title" className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-[#2e202a]">
+            See the Lollipop Locs Experience 🍭
+          </h2>
+          <p className="mt-4 text-[1.0625rem] leading-[1.6] text-[#5f4d58]">
+            See how haircut time can feel different—from exploring our colourful salon and play area to choosing a themed chair and meeting our stylists.
+          </p>
+        </div>
+        <ExperienceVideo />
+      </div>
+    </section>
+  );
+}
+
+function ParentsSection() {
+  const reasons = [
+    {
+      icon: '✂️',
+      title: 'Patient Stylists',
+      detail: 'Experienced with little ones.',
+      tone: 'bg-[#fff3f8]',
+    },
+    {
+      icon: '🚗',
+      title: 'Themed Chairs',
+      detail: 'Car, Unicorn & Airplane.',
+      tone: 'bg-[#eff9fc]',
+    },
+    {
+      icon: '🧸',
+      title: 'Toys & Distractions',
+      detail: 'Keeps little minds engaged.',
+      tone: 'bg-[#fff9e9]',
+    },
+    {
+      icon: '🛝',
+      title: 'Play Area',
+      detail: 'Let them settle in first.',
+      tone: 'bg-[#eef9f3]',
+    },
+    {
+      icon: '🫧',
+      title: 'Kid-Friendly Products',
+      detail: 'Gentle care for little hair.',
+      tone: 'bg-[#f4f2fb]',
+    },
+  ];
+
+  return (
+    <section
+      aria-labelledby="parents-title"
+      className="bg-[#fff4f9] px-5 py-12 sm:px-8 sm:py-16"
+    >
+      <div className="mx-auto max-w-[1240px]">
+        <h2
+          id="parents-title"
+          className="mx-auto max-w-[22ch] text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-[#2e202a]"
+        >
+            Made for Kids. Easier for Parents. ❤️
+        </h2>
+        <div className="mt-7 grid grid-cols-2 gap-3 sm:mt-9 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
+          {reasons.map((reason) => (
+            <article
+              key={reason.title}
+              className={`rounded-[1.35rem] border border-white/80 ${reason.tone} px-3 py-4 text-center shadow-[0_8px_22px_rgba(82,42,64,0.06)] sm:px-4 sm:py-5`}
+            >
+              <span aria-hidden="true" className="text-3xl leading-none sm:text-4xl">
+                {reason.icon}
+              </span>
+              <p className="mt-3 text-sm font-extrabold leading-snug text-[#342330] sm:text-[0.98rem]">
+                {reason.title}
+              </p>
+              <p className="mt-1.5 text-xs leading-relaxed text-[#6b5963] sm:text-sm">
+                — {reason.detail}
+              </p>
+            </article>
+          ))}
+        </div>
+        <p className="mx-auto mt-8 max-w-[76ch] text-center text-[1.0625rem] leading-[1.7] text-[#5f4d58] sm:mt-10 sm:text-lg">
+          Searching for a kids salon near me for your child&apos;s next haircut? At Lollipop Locs Electronic City, the experience is designed around children—from patient stylists and playful surroundings to themed chairs and plenty of distraction.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function ComfortableSection() {
+  return (
+    <section
+      aria-labelledby="comfortable-title"
+      className="overflow-hidden bg-[#fffafd] px-5 py-12 sm:px-8 sm:py-16"
+    >
+      <div className="mx-auto w-full max-w-[1120px]">
+        <div className="grid min-w-0 grid-cols-1 gap-7 rounded-[2rem] bg-[#fcecf4] p-5 sm:p-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:gap-10 lg:p-10">
+          <div className="min-w-0">
+            <h2 id="comfortable-title" className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-[#2e202a]">
+              Worried They Won&apos;t Sit for a Haircut? ❤️
+            </h2>
+            <p className="mt-5 text-[1.0625rem] leading-[1.6] text-[#5f4d58]">
+              That&apos;s okay. Some children simply need a little more time.
+            </p>
+            <p className="mt-3 text-[1.0625rem] leading-[1.6] text-[#5f4d58]">
+              Let them look around, meet their stylist, play and get comfortable before we begin.
+            </p>
+            <p className="mt-5 font-[family-name:var(--font-fredoka)] text-xl font-semibold leading-snug text-[#c52f76] sm:text-2xl">
+              Let Them Explore. Let Them Play. Then Let Them Try.
+            </p>
+            <CallToBook className="mt-6" />
+          </div>
+          <div className="relative min-w-0">
+            <div aria-hidden="true" className="pointer-events-none absolute -inset-3 rotate-2 rounded-[1.8rem] bg-white/70" />
+            <SalonGallery />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PricingSection() {
+  return (
+    <section
+      id="pricing"
+      aria-labelledby="pricing-title"
+      className="bg-[#fff6fa] px-5 pb-16 pt-12 sm:px-8 sm:pb-20 sm:pt-16"
+    >
+      <div className="mx-auto max-w-[1000px]">
+        <div className="mx-auto max-w-[760px] text-center">
+          <h2 id="pricing-title" className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-[#2e202a]">
+            Cute Salon. Serious Haircuts. ✂️
+          </h2>
+          <p className="mt-4 text-left text-[1.0625rem] leading-[1.7] text-[#5f4d58] sm:text-center">
+            Whether you&apos;re searching for a kids haircut near me, planning your toddler&apos;s regular trim or choosing a new growing-up style, our stylists work with you to understand the haircut you want.
+          </p>
+          <p className="mt-3 font-semibold text-[#51424b]">
+            Have a style in mind? Bring us a reference photo.
+          </p>
+        </div>
+
+        <div className="mt-8 overflow-hidden rounded-[1.6rem] border border-[#f1d7e4] bg-white shadow-[0_16px_42px_rgba(82,42,64,0.08)]">
+          <div className="border-b border-[#f1dce7] bg-[#fffafd] px-4 py-5 text-center sm:px-7">
+            <h3 className="font-[family-name:var(--font-fredoka)] text-2xl font-semibold text-[#c52f76]">
+              Clear &amp; Transparent Pricing
+            </h3>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[480px] border-collapse text-left">
+              <thead>
+                <tr className="bg-[#fff4f9] text-[#5a4551]">
+                  <th scope="col" className="w-[27%] px-4 py-4 text-sm font-bold sm:px-7" />
+                  <th scope="col" className="px-4 py-4 text-sm font-bold sm:px-7">Haircut Only</th>
+                  <th scope="col" className="px-4 py-4 text-sm font-bold sm:px-7">Haircut + Hair Wash</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#f2e3eb] text-[#342330]">
+                <tr>
+                  <th scope="row" className="px-4 py-5 font-bold sm:px-7">👦 Boys</th>
+                  <td className="px-4 py-5 font-[family-name:var(--font-fredoka)] text-xl font-semibold text-[#c52f76] sm:px-7">₹899</td>
+                  <td className="px-4 py-5 font-[family-name:var(--font-fredoka)] text-xl font-semibold text-[#c52f76] sm:px-7">₹1,099</td>
+                </tr>
+                <tr>
+                  <th scope="row" className="px-4 py-5 font-bold sm:px-7">👧 Girls</th>
+                  <td className="px-4 py-5 font-[family-name:var(--font-fredoka)] text-xl font-semibold text-[#c52f76] sm:px-7">₹999</td>
+                  <td className="px-4 py-5 font-[family-name:var(--font-fredoka)] text-xl font-semibold text-[#c52f76] sm:px-7">₹1,299</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="px-4 pb-5 pt-3 text-sm text-[#75616d] sm:px-7">
+            Haircut-only prices do not include hair wash.
+          </p>
+        </div>
+        <div className="mt-5 flex justify-center">
+          <CallToBook />
+        </div>
+        <div className="mt-10 sm:mt-12">
+          <BeforeAfterSlider />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function KidsHaircutElectronicCityPage() {
   return (
     <>
@@ -364,6 +572,10 @@ export default function KidsHaircutElectronicCityPage() {
       <SiteHeader />
       <main>
         <HeroSection />
+        <ExperienceSection />
+        <ParentsSection />
+        <ComfortableSection />
+        <PricingSection />
       </main>
       <MobileBookingBar />
     </>
