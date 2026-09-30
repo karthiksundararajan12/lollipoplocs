@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Static Landing Page"
+description = "A blank static landing page scaffold using Next.js App Router, JavaScript, and Tailwind CSS."
+version = "1.0.0"
+id = "artifacts/landing-page"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18083
+
+[services.development]
+run = "pnpm --filter @workspace/landing-page run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/landing-page", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/landing-page/out"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18083"
+BASE_PATH = "/"

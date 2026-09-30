@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///home/runner/workspace/artifacts/landing-page/app/page.js"],"sourcesContent":["export default function HomePage() {\n  return null;\n}"],"names":["HomePage"],"mappings":";;;;AAAe,SAASA;IACtB,OAAO;AACT"}}]
+}
