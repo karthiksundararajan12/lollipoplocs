@@ -1,0 +1,154 @@
+The project is scaffolded. All site images are already in /public/images/. Use those file names. Don't generate or download other images.
+
+Build the landing page for Lollipop Locs (kids salon, Electronic City, Bangalore) in this existing Next.js + JavaScript + Tailwind project. Keep it JavaScript only, static, no backend.
+
+PRIORITY 1: MATCH THE REFERENCE
+I've attached screenshots of the client's approved reference landing page. Replicate it as closely as possible: layout, section order, spacing, colours, button shapes, card styles, icon style and image placement. Do NOT invent your own design. Where the reference and my content differ, keep the reference's look and use my content's words. Before coding, list the colours and sections you extracted from the reference, then build.
+
+TYPOGRAPHY
+- Load fonts with next/font/google (display: 'swap'). No <link> tags.
+- Headings: Fredoka (500, 600, 700). Body: Nunito (400, 600, 700). If the reference clearly uses a different typeface, pick the closest Google Font and tell me which.
+- H1 clamp(2.25rem, 7vw, 3.75rem), H2 clamp(1.75rem, 4.5vw, 2.5rem), body 17-18px, line-height 1.6, max line length ~65 characters. Heading line-height 1.1. No all-caps labels.
+
+CONTACT DETAILS
+- Call: tel:+91XXXXXXXXXX
+- WhatsApp: https://wa.me/91XXXXXXXXXX
+- Every "Call to Book" button uses the tel: link. Every "WhatsApp" button uses the wa.me link.
+
+RULES FOR THE CONTENT BELOW
+- Use the copy verbatim. Do not rewrite, shorten or add copy. Keep the section order.
+- Text in [square brackets] that is an instruction (e.g. [VIDEO THUMBNAIL], [COMPACT GOOGLE MAP]) is a layout note, not copy to print.
+- Do NOT bold the SEO keywords ("kids salon near me", "kids haircut near me", "baby salon near me") on the live page.
+- For [FULL ADDRESS], [CONFIRMED STORE HOURS] and the reviews, show a clearly labelled TODO box. Do not invent details or reviews.
+
+CONTENT
+
+URL: /kids-haircut-electronic-city/
+Mobile sticky bar throughout page: 📞 CALL TO BOOK | 💬 WHATSAPP
+
+1. HERO
+Kids Haircut in Electronic City, Bangalore
+Haircut Time, Made Happier for Kids 🍭✂️
+Welcome to Lollipop Locs, a colourful kids salon in Electronic City with patient stylists, themed haircut chairs, toys and play—designed to make haircut time easier for little ones and parents.
+⭐ 4.9 on Google
+👦 Boys Haircut — ₹899
+Haircut only • Hair wash not included
+👧 Girls Haircut — ₹999
+Haircut only • Hair wash not included
+[ 📞 CALL TO BOOK ] [ 💬 WHATSAPP ]
+Patient Stylists • Themed Chairs • Play Area • Kid-Friendly Products
+
+2. EXPERIENCE VIDEO
+See the Lollipop Locs Experience 🍭
+[VIDEO THUMBNAIL]
+▶ Watch 20 Seconds
+See how haircut time can feel different—from exploring our colourful salon and play area to choosing a themed chair and meeting our stylists.
+(Layout note: the video loads only when tapped. No autoplay.)
+
+3. WHY PARENTS CHOOSE US
+Made for Kids. Easier for Parents. ❤️
+✂️ Patient Stylists — Experienced with little ones.
+🚗 Themed Chairs — Car, Unicorn & Airplane.
+🧸 Toys & Distractions — Keeps little minds engaged.
+🛝 Play Area — Let them settle in first.
+🫧 Kid-Friendly Products — Gentle care for little hair.
+Then this small paragraph:
+Searching for a kids salon near me for your child's next haircut? At Lollipop Locs Electronic City, the experience is designed around children—from patient stylists and playful surroundings to themed chairs and plenty of distraction.
+
+4. NERVOUS ABOUT HAIRCUTS?
+Worried They Won't Sit for a Haircut? ❤️
+That's okay. Some children simply need a little more time.
+Let them look around, meet their stylist, play and get comfortable before we begin.
+Let Them Explore. Let Them Play. Then Let Them Try.
+[ 📞 CALL TO BOOK ]
+Underneath: swipeable real-photo gallery (scroll-snap).
+Captions: Car Chair | Unicorn Chair | Airplane Chair | Play Area | Happy Haircuts
+
+5. HAIRCUTS + PRICING
+Cute Salon. Serious Haircuts. ✂️
+Whether you're searching for a kids haircut near me, planning your toddler's regular trim or choosing a new growing-up style, our stylists work with you to understand the haircut you want.
+Have a style in mind? Bring us a reference photo.
+Clear & Transparent Pricing
+Table:
+| | Haircut Only | Haircut + Hair Wash |
+| 👦 Boys | ₹899 | ₹1,099 |
+| 👧 Girls | ₹999 | ₹1,299 |
+Haircut-only prices do not include hair wash.
+[ 📞 CALL TO BOOK ]
+Below this: Before & After photo slider (draggable).
+
+6. FIRST-TIME HAIRCUT EXPERIENCES
+(Layout note: two cards side by side on desktop, compact cards on mobile.)
+Card 1:
+❤️ Let Them Watch You First
+Nervous about their haircut?
+Sometimes watching Mom or Dad comfortably get a haircut first can make the experience feel more familiar.
+Go First. Let Them Watch. Then Let Them Try.
+Parent + Child Combos from ₹1,199
+Expandable price list:
+Dad + Son — ₹1,199
+Mom + Son — ₹1,299
+Dad + Daughter — ₹1,299
+Mom + Daughter — ₹1,499
+[ 📞 CALL TO BOOK ]
+Card 2:
+✂️ Their First Haircut Happens Only Once
+Looking for a baby salon near me for your little one's first haircut? Give them time to explore, play and settle in while our patient stylists gently introduce them to the experience.
+Make the Milestone a Memory ❤️
+Personalised First Haircut Certificate — ₹699 extra
+Optional add-on. Haircut charged separately.
+[ 📞 CALL TO BOOK ]
+(Use the actual Lollipop Locs First Haircut Certificate photograph from /public/images/.)
+
+7. REVIEWS
+Parents Say It Best ⭐
+⭐ 4.9 on Google
+Three genuine Google reviews in a swipe carousel (TODO boxes for now):
+Review 1: parent mentioning patient stylist / nervous child.
+Review 2: parent mentioning haircut quality.
+Review 3: first haircut / baby experience.
+[ READ MORE GOOGLE REVIEWS ]
+
+8. QUICK QUESTIONS PARENTS ASK
+(Accordion, all collapsed until tapped.)
+Q: My child cries during haircuts. Can you manage?
+A: Our stylists regularly work with little ones who may be nervous or find it difficult to sit still. We take a patient approach and use toys and distractions to help them feel more comfortable.
+Q: Is Lollipop Locs suitable for my baby's first haircut?
+A: Yes. We give little ones time to become familiar with the salon and stylist before beginning.
+Q: Can I stay beside my child?
+A: Yes. Parents can stay close during the haircut.
+Q: Can my child choose a themed chair?
+A: Yes, subject to availability and suitability for your child's age and size.
+Q: Do I need an appointment?
+A: Appointments are recommended, particularly on weekends. Call us to book your child's haircut.
+
+9. LOCATION + CONTACT
+Visit Lollipop Locs – Electronic City 📍
+Lollipop Locs
+Premium Kids & Tweens Salon
+📍 [FULL ADDRESS]
+⭐ 4.9 on Google
+🕐 [CONFIRMED STORE HOURS]
+📞 [PHONE NUMBER]
+[ 📞 CALL TO BOOK ] [ 💬 WHATSAPP ] [ 📍 GET DIRECTIONS ]
+[COMPACT GOOGLE MAP]
+
+FINAL CTA
+Ready for Their Next Haircut? 🍭✂️
+A little play. A little patience. And a haircut they'll look great in.
+👦 Boys Haircut Only — ₹899
+👧 Girls Haircut Only — ₹999
+Hair wash not included. Haircut + hair wash options available.
+[ 📞 CALL TO BOOK ]
+[ 💬 WHATSAPP ]
+
+IMAGES
+Use the images in /public/images/ matched to sections by file name and the reference. Use next/image, lazy loading, correct aspect ratios, alt text. If an image is missing, show a clearly labelled TODO box.
+
+QUALITY
+- Mobile-first (most traffic is parents on phones), fully responsive.
+- Semantic HTML, one H1, visible focus states, good Lighthouse scores.
+- SEO: title "Kids Haircut in Electronic City, Bangalore | Lollipop Locs", meta description, LocalBusiness JSON-LD, Open Graph tags.
+- One component per section. No lorem ipsum.
+
+Build the hero (section 1) first, then stop and show me so I can check it against the reference.
