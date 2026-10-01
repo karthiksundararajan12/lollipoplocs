@@ -16,6 +16,7 @@ import {
   PHONE_NUMBER,
   WHATSAPP_HREF,
 } from './contact-details';
+import { SiteHeader } from './site-header';
 
 const heroImage =
   '/images/9_e041d01a-9b54-4e65-a423-b91cf3493d86_1790778166822.jpeg';
@@ -70,31 +71,6 @@ const trustPoints = [
   { icon: '🛝', label: 'Play Area' },
   { icon: '🫧', label: 'Kid-Friendly Products' },
 ];
-
-function CandyMark() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="h-10 w-10 shrink-0"
-      viewBox="0 0 48 48"
-      fill="none"
-    >
-      <path
-        d="M28 27.5 39 41"
-        stroke="#D98AAE"
-        strokeLinecap="round"
-        strokeWidth="4"
-      />
-      <circle cx="21" cy="18" r="13.5" fill="#E75396" stroke="white" strokeWidth="2" />
-      <path
-        d="M18.3 10.5c-3.8 1.2-5.6 5.2-4.3 8.7 1.2 3.4 5.2 5.1 8.6 3.9 3.1-1.1 4.5-4.4 3.4-7.1-.9-2.2-3.4-3.3-5.5-2.5-1.8.7-2.7 2.5-2 4.1.5 1.2 1.8 1.8 3 1.3"
-        stroke="white"
-        strokeLinecap="round"
-        strokeWidth="2"
-      />
-    </svg>
-  );
-}
 
 function PhoneIcon() {
   return (
@@ -154,69 +130,6 @@ function BookingLink({ children, href, tone, icon, className = '' }) {
       {icon}
       {children}
     </a>
-  );
-}
-
-function SiteHeader() {
-  return (
-    <header className="relative z-20 border-b border-[#f2e5ec] bg-white/95">
-      <div className="mx-auto flex min-h-[76px] max-w-[1240px] items-center justify-between gap-5 px-5 py-3 sm:px-8">
-        <a
-          href="#top"
-          className="flex min-w-0 items-center gap-2.5 rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]"
-        >
-          <CandyMark />
-          <span className="min-w-0">
-            <span className="block font-[family-name:var(--font-fredoka)] text-[1.35rem] font-semibold leading-none tracking-[-0.03em] text-[#c52f76]">
-              Lollipop Locs
-            </span>
-            <span className="mt-1 block text-[0.64rem] font-bold leading-none text-[#75616d]">
-              Premium Kids &amp; Tweens Salon
-            </span>
-          </span>
-        </a>
-
-        <nav
-          aria-label="Main navigation"
-          className="hidden items-center gap-5 text-[0.82rem] font-bold text-[#59434f] xl:flex"
-        >
-          <a className="rounded transition hover:text-[#c52f76] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]" href="#experience">
-            Our Experience
-          </a>
-          <a className="rounded transition hover:text-[#c52f76] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]" href="#pricing">
-            Pricing
-          </a>
-          <a className="rounded transition hover:text-[#c52f76] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]" href="#reviews">
-            Reviews
-          </a>
-          <a className="rounded transition hover:text-[#c52f76] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]" href="#questions">
-            FAQs
-          </a>
-          <a className="rounded transition hover:text-[#c52f76] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]" href="#location">
-            Visit Us
-          </a>
-        </nav>
-
-        <div className="hidden shrink-0 items-center gap-2 sm:flex">
-          <BookingLink
-            href={PHONE_HREF}
-            tone="bg-[#c52f76] hover:bg-[#ad2868]"
-            icon={<PhoneIcon />}
-            className="min-h-10 px-4 text-xs"
-          >
-            Call to Book
-          </BookingLink>
-          <BookingLink
-            href={WHATSAPP_HREF}
-            tone="bg-[#00764c] hover:bg-[#006b45]"
-            icon={<WhatsAppIcon />}
-            className="min-h-10 px-4 text-xs"
-          >
-            WhatsApp
-          </BookingLink>
-        </div>
-      </div>
-    </header>
   );
 }
 
