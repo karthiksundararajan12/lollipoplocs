@@ -1,19 +1,21 @@
 {
-  "name": "workspace",
+  "name": "lollipop-landing-page",
   "version": "0.0.0",
-  "license": "MIT",
-  "scripts": {
-    "preinstall": "sh -c 'rm -f package-lock.json yarn.lock; case \"$npm_config_user_agent\" in pnpm/*) ;; *) echo \"Use pnpm instead\" >&2; exit 1 ;; esac'",
-    "build": "pnpm run typecheck && pnpm -r --if-present run build",
-    "typecheck:libs": "tsc --build",
-    "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
-  },
   "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --hostname 0.0.0.0 --port ${PORT:-3000}",
+    "build": "next build",
+    "start": "next start --hostname 0.0.0.0 --port ${PORT:-3000}"
+  },
   "dependencies": {
-    "@replit/connectors-sdk": "^0.4.3"
+    "next": "^16.3.7",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "prettier": "^3.9.6",
-    "typescript": "~5.9.3"
+    "@tailwindcss/postcss": "^4.3.3",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.14"
   }
 }
