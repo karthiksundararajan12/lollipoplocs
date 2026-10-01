@@ -44,6 +44,7 @@ export function ExperienceVideo({ videoUrl = null }) {
           <Image
             src={photos.stylist}
             alt="A stylist helping a child enjoy a haircut in a themed salon chair"
+            loading="lazy"
             fill
             sizes="(max-width: 768px) 100vw, 1100px"
             className="object-cover object-[50%_45%] transition-transform duration-500 group-hover:scale-[1.025]"
@@ -69,8 +70,10 @@ const gallerySlides = [
 export function SalonGallery() {
   return (
     <div
+      role="region"
       aria-label="Lollipop Locs salon gallery"
-      className="flex w-full min-w-0 max-w-full snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4 [scrollbar-color:#e9afca_transparent] [scrollbar-width:thin]"
+      tabIndex={0}
+      className="flex w-full min-w-0 max-w-full snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4 [scrollbar-color:#e9afca_transparent] [scrollbar-width:thin] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c52f76]"
     >
       {gallerySlides.map((slide) => (
         <figure
@@ -87,6 +90,7 @@ export function SalonGallery() {
               <Image
                 src={slide.src}
                 alt={slide.alt}
+                loading="lazy"
                 fill
                 sizes="(max-width: 640px) 82vw, 300px"
                 className="object-cover"

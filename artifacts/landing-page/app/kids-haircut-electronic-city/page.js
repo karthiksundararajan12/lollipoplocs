@@ -4,12 +4,19 @@ import {
   ExperienceVideo,
   SalonGallery,
 } from './section-interactions';
+import {
+  FinalCallToAction,
+  FirstHaircutSection,
+  LocationSection,
+  QuestionsSection,
+  ReviewsSection,
+} from './support-sections';
 
 const heroImage =
   '/images/9_e041d01a-9b54-4e65-a423-b91cf3493d86_1790778166822.jpeg';
 
 const description =
-  'A colourful kids salon in Electronic City with patient stylists, themed haircut chairs, toys and play—designed to make haircut time easier for little ones and parents.';
+  'A colourful kids salon in Electronic City with patient stylists, themed chairs, toys and play—to make haircut time easier for little ones and parents.';
 
 export const metadata = {
   title: 'Kids Haircut in Electronic City, Bangalore | Lollipop Locs',
@@ -99,7 +106,7 @@ function WhatsAppIcon() {
 
 function RatingStars() {
   return (
-    <span aria-label="5 stars" className="flex items-center gap-0.5 text-[#F4B72F]">
+      <span aria-label="5 stars" className="flex items-center gap-0.5 text-[#946200]">
       {Array.from({ length: 5 }, (_, index) => (
         <svg
           aria-hidden="true"
@@ -130,10 +137,13 @@ function SiteHeader() {
   return (
     <header className="relative z-20 border-b border-[#f2e5ec] bg-white/95">
       <div className="mx-auto flex min-h-[76px] max-w-[1240px] items-center justify-between gap-5 px-5 py-3 sm:px-8">
-        <a href="#top" className="flex min-w-0 items-center gap-2.5">
+        <a
+          href="#top"
+          className="flex min-w-0 items-center gap-2.5 rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]"
+        >
           <CandyMark />
           <span className="min-w-0">
-            <span className="block font-[family-name:var(--font-fredoka)] text-[1.35rem] font-semibold leading-none tracking-[-0.03em] text-[#d94186]">
+            <span className="block font-[family-name:var(--font-fredoka)] text-[1.35rem] font-semibold leading-none tracking-[-0.03em] text-[#c52f76]">
               Lollipop Locs
             </span>
             <span className="mt-1 block text-[0.64rem] font-bold leading-none text-[#75616d]">
@@ -146,19 +156,19 @@ function SiteHeader() {
           aria-label="Main navigation"
           className="hidden items-center gap-5 text-[0.82rem] font-bold text-[#59434f] xl:flex"
         >
-          <a className="transition hover:text-[#c52f76]" href="#experience">
+          <a className="rounded transition hover:text-[#c52f76] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]" href="#experience">
             Our Experience
           </a>
-          <a className="transition hover:text-[#c52f76]" href="#pricing">
+          <a className="rounded transition hover:text-[#c52f76] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]" href="#pricing">
             Pricing
           </a>
-          <a className="transition hover:text-[#c52f76]" href="#reviews">
+          <a className="rounded transition hover:text-[#c52f76] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]" href="#reviews">
             Reviews
           </a>
-          <a className="transition hover:text-[#c52f76]" href="#questions">
+          <a className="rounded transition hover:text-[#c52f76] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]" href="#questions">
             FAQs
           </a>
-          <a className="transition hover:text-[#c52f76]" href="#location">
+          <a className="rounded transition hover:text-[#c52f76] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]" href="#location">
             Visit Us
           </a>
         </nav>
@@ -174,7 +184,7 @@ function SiteHeader() {
           </BookingLink>
           <BookingLink
             href="https://wa.me/91XXXXXXXXXX"
-            tone="bg-[#008b59] hover:bg-[#00764c]"
+            tone="bg-[#00764c] hover:bg-[#006b45]"
             icon={<WhatsAppIcon />}
             className="min-h-10 px-4 text-xs"
           >
@@ -283,7 +293,7 @@ function HeroSection() {
             </BookingLink>
             <BookingLink
               href="https://wa.me/91XXXXXXXXXX"
-              tone="bg-[#008b59] hover:bg-[#00764c]"
+              tone="bg-[#00764c] hover:bg-[#006b45]"
               icon={<WhatsAppIcon />}
             >
               WhatsApp
@@ -302,6 +312,7 @@ function HeroSection() {
               alt="A stylist giving a child a haircut in a themed salon chair at Lollipop Locs"
               fill
               priority
+              loading="eager"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 48vw"
               className="object-cover object-[50%_58%]"
             />
@@ -348,7 +359,7 @@ function MobileBookingBar() {
       </BookingLink>
       <BookingLink
         href="https://wa.me/91XXXXXXXXXX"
-        tone="bg-[#008b59] hover:bg-[#00764c]"
+        tone="bg-[#00764c] hover:bg-[#006b45]"
         icon={<WhatsAppIcon />}
         className="min-h-11 px-3 text-xs"
       >
@@ -576,6 +587,11 @@ export default function KidsHaircutElectronicCityPage() {
         <ParentsSection />
         <ComfortableSection />
         <PricingSection />
+        <FirstHaircutSection />
+        <ReviewsSection />
+        <QuestionsSection />
+        <LocationSection />
+        <FinalCallToAction />
       </main>
       <MobileBookingBar />
     </>
