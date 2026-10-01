@@ -11,9 +11,23 @@ import {
   QuestionsSection,
   ReviewsSection,
 } from './support-sections';
+import {
+  PHONE_HREF,
+  PHONE_NUMBER,
+  WHATSAPP_HREF,
+} from './contact-details';
 
 const heroImage =
   '/images/9_e041d01a-9b54-4e65-a423-b91cf3493d86_1790778166822.jpeg';
+const experienceVideoUrl = '/videos/lollipop-video.mp4';
+const experiencePosterUrl = '/videos/lollipop-poster.jpg';
+const experienceCopy = {
+  firstParagraph:
+    "Lollipop Locs Premium Kids Salon & Spa offers a fun and safe grooming experience for kids and tweens, including kids' haircuts, baby tonsure, anti-lice treatments, puberty spa, and birthday spa parties.",
+  secondParagraph:
+    'Pamper your little ones with expert care in a child-friendly environment where every visit is filled with comfort, care, and smiles!',
+};
+const experienceVideoDescription = `${experienceCopy.firstParagraph} ${experienceCopy.secondParagraph}`;
 
 const description =
   'A colourful kids salon in Electronic City with patient stylists, themed chairs, toys and play—to make haircut time easier for little ones and parents.';
@@ -38,6 +52,16 @@ const businessSchema = {
     name: 'Electronic City, Bangalore',
   },
   priceRange: '₹899–₹1,299',
+};
+
+const videoSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: 'See the Lollipop Locs Experience',
+  description: experienceVideoDescription,
+  thumbnailUrl: experiencePosterUrl,
+  contentUrl: experienceVideoUrl,
+  uploadDate: '2026-10-01',
 };
 
 const trustPoints = [
@@ -175,7 +199,7 @@ function SiteHeader() {
 
         <div className="hidden shrink-0 items-center gap-2 sm:flex">
           <BookingLink
-            href="tel:+91XXXXXXXXXX"
+            href={PHONE_HREF}
             tone="bg-[#c52f76] hover:bg-[#ad2868]"
             icon={<PhoneIcon />}
             className="min-h-10 px-4 text-xs"
@@ -183,7 +207,7 @@ function SiteHeader() {
             Call to Book
           </BookingLink>
           <BookingLink
-            href="https://wa.me/91XXXXXXXXXX"
+            href={WHATSAPP_HREF}
             tone="bg-[#00764c] hover:bg-[#006b45]"
             icon={<WhatsAppIcon />}
             className="min-h-10 px-4 text-xs"
@@ -285,14 +309,14 @@ function HeroSection() {
 
           <div className="mt-5 flex flex-wrap gap-3">
             <BookingLink
-              href="tel:+91XXXXXXXXXX"
+              href={PHONE_HREF}
               tone="bg-[#c52f76] hover:bg-[#ad2868]"
               icon={<PhoneIcon />}
             >
               Call to Book
             </BookingLink>
             <BookingLink
-              href="https://wa.me/91XXXXXXXXXX"
+              href={WHATSAPP_HREF}
               tone="bg-[#00764c] hover:bg-[#006b45]"
               icon={<WhatsAppIcon />}
             >
@@ -350,7 +374,7 @@ function MobileBookingBar() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 gap-2 border-t border-white/20 bg-[#fffafd]/95 px-3 pt-2 shadow-[0_-8px_24px_rgba(46,32,42,0.15)] backdrop-blur sm:hidden">
       <BookingLink
-        href="tel:+91XXXXXXXXXX"
+        href={PHONE_HREF}
         tone="bg-[#c52f76] hover:bg-[#ad2868]"
         icon={<PhoneIcon />}
         className="min-h-11 px-3 text-xs"
@@ -358,7 +382,7 @@ function MobileBookingBar() {
         Call to Book
       </BookingLink>
       <BookingLink
-        href="https://wa.me/91XXXXXXXXXX"
+        href={WHATSAPP_HREF}
         tone="bg-[#00764c] hover:bg-[#006b45]"
         icon={<WhatsAppIcon />}
         className="min-h-11 px-3 text-xs"
@@ -373,7 +397,7 @@ function MobileBookingBar() {
 function CallToBook({ className = '' }) {
   return (
     <a
-      href="tel:+91XXXXXXXXXX"
+      href={PHONE_HREF}
       className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#c52f76] px-6 py-3 text-sm font-bold leading-none text-white shadow-[0_8px_18px_rgba(46,32,42,0.12)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#ad2868] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a] ${className}`}
     >
       <PhoneIcon />
@@ -394,11 +418,33 @@ function ExperienceSection() {
           <h2 id="experience-title" className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-[#2e202a]">
             See the Lollipop Locs Experience 🍭
           </h2>
-          <p className="mt-4 text-[1.0625rem] leading-[1.6] text-[#5f4d58]">
-            See how haircut time can feel different—from exploring our colourful salon and play area to choosing a themed chair and meeting our stylists.
-          </p>
+          <div id="experience-copy" className="mt-4 space-y-3 text-[1.0625rem] leading-[1.6] text-[#5f4d58]">
+            <p>{experienceCopy.firstParagraph}</p>
+            <p>{experienceCopy.secondParagraph}</p>
+          </div>
+          <p className="mt-5 font-bold text-[#51424b]">For more details 📞</p>
+          <div className="mt-3 flex flex-wrap gap-3">
+            <BookingLink
+              href={PHONE_HREF}
+              tone="bg-[#c52f76] hover:bg-[#ad2868]"
+              icon={<PhoneIcon />}
+            >
+              {PHONE_NUMBER}
+            </BookingLink>
+            <BookingLink
+              href={WHATSAPP_HREF}
+              tone="bg-[#00764c] hover:bg-[#006b45]"
+              icon={<WhatsAppIcon />}
+            >
+              WhatsApp
+            </BookingLink>
+          </div>
         </div>
-        <ExperienceVideo />
+        <ExperienceVideo
+          videoUrl={experienceVideoUrl}
+          posterUrl={experiencePosterUrl}
+          descriptionId="experience-copy"
+        />
       </div>
     </section>
   );
@@ -579,6 +625,10 @@ export default function KidsHaircutElectronicCityPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
       />
       <SiteHeader />
       <main>

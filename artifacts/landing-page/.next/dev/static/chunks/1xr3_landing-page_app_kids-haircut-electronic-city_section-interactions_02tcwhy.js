@@ -24,69 +24,40 @@ const photos = {
     play: '/images/7_b2014115-9170-409b-b33a-588d04c6d1f1_1790778166815.jpeg',
     car: '/images/8_d5fe1812-bc0a-4c8b-838f-8a773055d4af_1790778166817.jpeg'
 };
-function ExperienceVideo({ videoUrl = null }) {
+function ExperienceVideo({ videoUrl, posterUrl, descriptionId }) {
     _s();
     const [activated, setActivated] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "relative aspect-[4/3] overflow-hidden rounded-[1.35rem] bg-[#f6e8f0] sm:aspect-video sm:rounded-[1.8rem]",
-        children: activated && videoUrl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("video", {
-            className: "absolute inset-0 h-full w-full object-cover",
+        className: "relative mx-auto aspect-video w-full max-w-4xl overflow-hidden rounded-2xl border border-[#f1dce7] bg-[#2e202a] shadow-[0_16px_38px_rgba(82,42,64,0.14)]",
+        children: activated ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("video", {
+            className: "absolute inset-0 h-full w-full bg-black object-contain",
+            src: videoUrl,
             controls: true,
-            preload: "none",
-            poster: photos.stylist,
-            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("source", {
-                src: videoUrl
-            }, void 0, false, {
-                fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                lineNumber: 25,
-                columnNumber: 11
-            }, this)
+            playsInline: true,
+            preload: "metadata",
+            poster: posterUrl,
+            "aria-label": "Lollipop Locs Premium Kids Salon and Spa video",
+            "aria-describedby": descriptionId
         }, void 0, false, {
             fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-            lineNumber: 19,
-            columnNumber: 9
-        }, this) : activated ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            role: "status",
-            className: "absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#fff4f9] p-6 text-center",
-            children: [
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                    "aria-hidden": "true",
-                    className: "text-4xl",
-                    children: "▶"
-                }, void 0, false, {
-                    fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                    lineNumber: 32,
-                    columnNumber: 11
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                    className: "font-[family-name:var(--font-fredoka)] text-xl font-semibold text-[#c52f76]",
-                    children: "TODO: Approved video source needed"
-                }, void 0, false, {
-                    fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                    lineNumber: 33,
-                    columnNumber: 11
-                }, this)
-            ]
-        }, void 0, true, {
-            fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-            lineNumber: 28,
+            lineNumber: 23,
             columnNumber: 9
         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
             type: "button",
             onClick: ()=>setActivated(true),
-            "aria-label": "▶ Watch 20 Seconds",
+            "aria-label": "Load the Lollipop Locs salon video. Use the player controls to play.",
             className: "group absolute inset-0 flex w-full items-center justify-center text-left focus-visible:outline-4 focus-visible:outline-offset-[-7px] focus-visible:outline-[#c52f76]",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                    src: photos.stylist,
-                    alt: "A stylist helping a child enjoy a haircut in a themed salon chair",
+                    src: posterUrl,
+                    alt: "A child and an adult in the colourful Lollipop Locs salon",
                     loading: "lazy",
                     fill: true,
-                    sizes: "(max-width: 768px) 100vw, 1100px",
-                    className: "object-cover object-[50%_45%] transition-transform duration-500 group-hover:scale-[1.025]"
+                    sizes: "(max-width: 768px) 100vw, 768px",
+                    className: "bg-black object-contain transition-transform duration-500 group-hover:scale-[1.025]"
                 }, void 0, false, {
                     fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                    lineNumber: 44,
+                    lineNumber: 40,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -94,26 +65,26 @@ function ExperienceVideo({ videoUrl = null }) {
                     className: "absolute inset-0 bg-[#2e202a]/20 transition-colors group-hover:bg-[#2e202a]/30"
                 }, void 0, false, {
                     fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                    lineNumber: 52,
+                    lineNumber: 48,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                     className: "relative inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-[#c52f76] px-6 text-base font-bold text-white shadow-[0_10px_25px_rgba(85,31,61,0.24)] transition-transform group-hover:scale-[1.03]",
-                    children: "▶ Watch 20 Seconds"
+                    children: "▶ Load Video"
                 }, void 0, false, {
                     fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                    lineNumber: 53,
+                    lineNumber: 49,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-            lineNumber: 38,
+            lineNumber: 34,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-        lineNumber: 17,
+        lineNumber: 21,
         columnNumber: 5
     }, this);
 }
@@ -165,7 +136,7 @@ function SalonGallery() {
                                     children: "✈"
                                 }, void 0, false, {
                                     fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                                    lineNumber: 86,
+                                    lineNumber: 82,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -173,13 +144,13 @@ function SalonGallery() {
                                     children: "TODO: Airplane chair photo needed"
                                 }, void 0, false, {
                                     fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                                    lineNumber: 87,
+                                    lineNumber: 83,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                            lineNumber: 85,
+                            lineNumber: 81,
                             columnNumber: 15
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                             src: slide.src,
@@ -190,12 +161,12 @@ function SalonGallery() {
                             className: "object-cover"
                         }, void 0, false, {
                             fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                            lineNumber: 90,
+                            lineNumber: 86,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                        lineNumber: 83,
+                        lineNumber: 79,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("figcaption", {
@@ -203,18 +174,18 @@ function SalonGallery() {
                         children: slide.caption
                     }, void 0, false, {
                         fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                        lineNumber: 100,
+                        lineNumber: 96,
                         columnNumber: 11
                     }, this)
                 ]
             }, slide.caption, true, {
                 fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                lineNumber: 79,
+                lineNumber: 75,
                 columnNumber: 9
             }, this))
     }, void 0, false, {
         fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-        lineNumber: 72,
+        lineNumber: 68,
         columnNumber: 5
     }, this);
 }
@@ -231,7 +202,7 @@ function ComparisonPanel({ title }) {
                     children: "＋"
                 }, void 0, false, {
                     fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                    lineNumber: 113,
+                    lineNumber: 109,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -243,18 +214,18 @@ function ComparisonPanel({ title }) {
                     ]
                 }, void 0, true, {
                     fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                    lineNumber: 114,
+                    lineNumber: 110,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-            lineNumber: 112,
+            lineNumber: 108,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-        lineNumber: 111,
+        lineNumber: 107,
         columnNumber: 5
     }, this);
 }
@@ -271,7 +242,7 @@ function BeforeAfterSlider() {
                     title: "After"
                 }, void 0, false, {
                     fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                    lineNumber: 128,
+                    lineNumber: 124,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -284,12 +255,12 @@ function BeforeAfterSlider() {
                         title: "Before"
                     }, void 0, false, {
                         fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                        lineNumber: 134,
+                        lineNumber: 130,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                    lineNumber: 129,
+                    lineNumber: 125,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -303,12 +274,12 @@ function BeforeAfterSlider() {
                         children: "↔"
                     }, void 0, false, {
                         fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                        lineNumber: 141,
+                        lineNumber: 137,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                    lineNumber: 136,
+                    lineNumber: 132,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$7_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -321,18 +292,18 @@ function BeforeAfterSlider() {
                     className: "absolute inset-0 z-20 h-full w-full cursor-ew-resize opacity-0 focus-visible:rounded-[1.25rem] focus-visible:outline-4 focus-visible:outline-[#c52f76]"
                 }, void 0, false, {
                     fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-                    lineNumber: 145,
+                    lineNumber: 141,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-            lineNumber: 127,
+            lineNumber: 123,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/artifacts/landing-page/app/kids-haircut-electronic-city/section-interactions.js",
-        lineNumber: 126,
+        lineNumber: 122,
         columnNumber: 5
     }, this);
 }

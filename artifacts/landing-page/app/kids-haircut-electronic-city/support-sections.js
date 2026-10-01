@@ -1,4 +1,9 @@
 import Image from 'next/image';
+import {
+  PHONE_HREF,
+  PHONE_NUMBER,
+  WHATSAPP_HREF,
+} from './contact-details';
 
 const certificateImage =
   '/images/2_5be3a031-428d-4e15-8d0f-d6b5ad78456e_1790778166801.jpeg';
@@ -66,7 +71,7 @@ function ContactButton({ href, tone, children, icon, className = '', ...props })
 function CallToBook({ className = '' }) {
   return (
     <ContactButton
-      href="tel:+91XXXXXXXXXX"
+      href={PHONE_HREF}
       tone="bg-[#c52f76] hover:bg-[#ad2868]"
       icon={<PhoneIcon />}
       className={className}
@@ -79,7 +84,7 @@ function CallToBook({ className = '' }) {
 function WhatsAppToBook({ className = '' }) {
   return (
     <ContactButton
-      href="https://wa.me/91XXXXXXXXXX"
+      href={WHATSAPP_HREF}
       tone="bg-[#00764c] hover:bg-[#006b45]"
       icon={<WhatsAppIcon />}
       className={className}
@@ -346,7 +351,7 @@ export function LocationSection() {
                 🕐 TODO: Confirmed store hours
               </p>
               <p className="rounded-xl bg-[#fff7fb] px-4 py-3 font-semibold">
-                📞 TODO: Phone number
+                📞 {PHONE_NUMBER}
               </p>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">

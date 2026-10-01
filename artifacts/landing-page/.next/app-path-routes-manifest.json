@@ -1,6 +1,7 @@
 {
   "/_global-error/page": "/_global-error",
   "/_not-found/page": "/_not-found",
+  "/icon.svg/route": "/icon.svg",
   "/kids-haircut-electronic-city/page": "/kids-haircut-electronic-city",
   "/page": "/"
 }

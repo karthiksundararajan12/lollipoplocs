@@ -1,0 +1,25 @@
+Add a video section to the existing Lollipop Locs landing page (/kids-haircut-electronic-city/). Don't change the existing layout, fonts, colors or other sections. Stack: Next.js + JavaScript (no TypeScript) + Tailwind, static export.
+
+VIDEO
+- File: /public/videos/lollipop-video.mp4 (I've uploaded it; if it's elsewhere, move it there).
+- Place the section directly below the hero, before the services section.
+- Use a native <video> element: controls, playsInline, preload="metadata", poster = first frame (generate poster at /public/videos/lollipop-poster.jpg with ffmpeg if available, otherwise use a hero image).
+- No autoplay with sound. Click-to-play is fine; optionally muted autoplay loop only if the video is silent/ambient.
+- Responsive: full-width on mobile, max-w-4xl centered on desktop, aspect-video, rounded-2xl, soft shadow, thin brand-color border. Lazy-load so it doesn't hurt page speed.
+- If the file is over ~15 MB, compress it with ffmpeg (H.264, CRF ~26, 720p, faststart) and use the compressed version.
+
+CONTENT (use exactly this copy in the section, with a heading like "See the Lollipop Locs Experience"):
+"Lollipop Locs Premium Kids Salon & Spa offers a fun and safe grooming experience for kids and tweens, including kids' haircuts, baby tonsure, anti-lice treatments, puberty spa, and birthday spa parties.
+
+Pamper your little ones with expert care in a child-friendly environment where every visit is filled with comfort, care, and smiles!"
+
+CONTACT
+- Below the copy add: "For more details 📞 +91 89043 13999"
+- Make the number a tel: link (tel:+918904313999) styled as a pill button, and add a WhatsApp button linking to https://wa.me/918904313999 with the prefilled text "Hi, I'd like to book a kids haircut at Lollipop Locs."
+- Also make sure any existing phone placeholder elsewhere on the page uses this number.
+
+SEO / A11y
+- Add VideoObject JSON-LD (name, description from the copy above, thumbnailUrl, contentUrl, uploadDate = today).
+- Add aria-label on the video and a visible text description for accessibility.
+
+Run the build, confirm static export works, and show me the section on mobile (375px) and desktop.

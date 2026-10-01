@@ -10,48 +10,44 @@ const photos = {
   car: '/images/8_d5fe1812-bc0a-4c8b-838f-8a773055d4af_1790778166817.jpeg',
 };
 
-export function ExperienceVideo({ videoUrl = null }) {
+export function ExperienceVideo({
+  videoUrl,
+  posterUrl,
+  descriptionId,
+}) {
   const [activated, setActivated] = useState(false);
 
   return (
-    <div className="relative aspect-[4/3] overflow-hidden rounded-[1.35rem] bg-[#f6e8f0] sm:aspect-video sm:rounded-[1.8rem]">
-      {activated && videoUrl ? (
+    <div className="relative mx-auto aspect-video w-full max-w-4xl overflow-hidden rounded-2xl border border-[#f1dce7] bg-[#2e202a] shadow-[0_16px_38px_rgba(82,42,64,0.14)]">
+      {activated ? (
         <video
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full bg-black object-contain"
+          src={videoUrl}
           controls
-          preload="none"
-          poster={photos.stylist}
-        >
-          <source src={videoUrl} />
-        </video>
-      ) : activated ? (
-        <div
-          role="status"
-          className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#fff4f9] p-6 text-center"
-        >
-          <span aria-hidden="true" className="text-4xl">▶</span>
-          <p className="font-[family-name:var(--font-fredoka)] text-xl font-semibold text-[#c52f76]">
-            TODO: Approved video source needed
-          </p>
-        </div>
+          playsInline
+          preload="metadata"
+          poster={posterUrl}
+          aria-label="Lollipop Locs Premium Kids Salon and Spa video"
+          aria-describedby={descriptionId}
+        />
       ) : (
         <button
           type="button"
           onClick={() => setActivated(true)}
-          aria-label="▶ Watch 20 Seconds"
+          aria-label="Load the Lollipop Locs salon video. Use the player controls to play."
           className="group absolute inset-0 flex w-full items-center justify-center text-left focus-visible:outline-4 focus-visible:outline-offset-[-7px] focus-visible:outline-[#c52f76]"
         >
           <Image
-            src={photos.stylist}
-            alt="A stylist helping a child enjoy a haircut in a themed salon chair"
+            src={posterUrl}
+            alt="A child and an adult in the colourful Lollipop Locs salon"
             loading="lazy"
             fill
-            sizes="(max-width: 768px) 100vw, 1100px"
-            className="object-cover object-[50%_45%] transition-transform duration-500 group-hover:scale-[1.025]"
+            sizes="(max-width: 768px) 100vw, 768px"
+            className="bg-black object-contain transition-transform duration-500 group-hover:scale-[1.025]"
           />
           <span aria-hidden="true" className="absolute inset-0 bg-[#2e202a]/20 transition-colors group-hover:bg-[#2e202a]/30" />
           <span className="relative inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-[#c52f76] px-6 text-base font-bold text-white shadow-[0_10px_25px_rgba(85,31,61,0.24)] transition-transform group-hover:scale-[1.03]">
-            ▶ Watch 20 Seconds
+            ▶ Load Video
           </span>
         </button>
       )}
