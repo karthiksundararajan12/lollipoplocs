@@ -56,7 +56,11 @@ export function ExperienceVideo({
 const gallerySlides = [
   { caption: 'Car Chair', src: photos.car, alt: 'A child sitting in the colourful car chair at Lollipop Locs' },
   { caption: 'Unicorn Chair', src: photos.unicorn, alt: 'The unicorn-themed haircut chair at Lollipop Locs' },
-  { caption: 'Airplane Chair', todo: true },
+  {
+    caption: 'Airplane Chair',
+    src: photos.airplane,
+    alt: 'White airplane-themed kids haircut chair at Lollipop Locs',
+  },
   { caption: 'Play Area', src: photos.play, alt: 'The playful salon interior at Lollipop Locs' },
   { caption: 'Happy Haircuts', src: photos.stylist, alt: 'A stylist giving a child a haircut at Lollipop Locs' },
 ];
@@ -75,12 +79,7 @@ export function SalonGallery() {
           className="card-surface w-[82vw] max-w-[340px] shrink-0 snap-start overflow-hidden rounded-2xl p-2.5 sm:w-[300px]"
         >
           <div className="relative aspect-[4/3] overflow-hidden rounded-[1rem] bg-blush">
-            {slide.todo ? (
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-blush p-5 text-center">
-                <span aria-hidden="true" className="text-3xl">✈</span>
-                <span className="text-accent font-bold">TODO: Airplane chair photo needed</span>
-              </div>
-            ) : (
+            {slide.src ? (
               <Image
                 src={slide.src}
                 alt={slide.alt}
@@ -90,7 +89,7 @@ export function SalonGallery() {
                 sizes="(max-width: 640px) 82vw, 300px"
                 className="h-full w-full object-cover"
               />
-            )}
+            ) : null}
           </div>
           <figcaption className="px-2 pb-1 pt-3 text-lg font-semibold">
             {slide.caption}
@@ -101,17 +100,8 @@ export function SalonGallery() {
   );
 }
 
-function ComparisonPanel({ title }) {
-  return (
-    <div className="absolute inset-0 flex items-center justify-center bg-blush p-4 text-center">
-      <div className="card-surface rounded-[1.2rem] border-2 border-dashed border-black/10 px-4 py-5 sm:px-7">
-        <span aria-hidden="true" className="text-accent mb-2 block text-3xl">＋</span>
-        <span className="text-accent block text-xl font-semibold">
-          TODO: {title} image needed
-        </span>
-      </div>
-    </div>
-  );
+function ComparisonPanel() {
+  return null;
 }
 
 export function BeforeAfterSlider() {
@@ -120,13 +110,13 @@ export function BeforeAfterSlider() {
   return (
     <div className="mx-auto max-w-[780px]">
       <div className="card-surface relative aspect-[4/3] overflow-hidden rounded-2xl sm:aspect-[16/9]">
-        <ComparisonPanel title="After" />
+        <ComparisonPanel />
         <div
           aria-hidden="true"
           className="absolute inset-0 overflow-hidden"
           style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
         >
-          <ComparisonPanel title="Before" />
+          <ComparisonPanel />
         </div>
         <div
           aria-hidden="true"

@@ -35,6 +35,10 @@ const jobs = [
     outputs: [{ file: 'images/gallery-stylist.webp', width: 800, height: 600 }],
   },
   {
+    input: 'images/photos-lollipop/WhatsApp Image 2026-10-01 at 12.41.40.jpeg',
+    outputs: [{ file: 'images/gallery-airplane.webp', width: 1200, height: 1200 }],
+  },
+  {
     input: 'videos/lollipop-poster.jpg',
     outputs: [{ file: 'videos/lollipop-poster.webp', width: 1280, height: 720 }],
   },
