@@ -20,6 +20,12 @@ import {
   WHATSAPP_HREF,
 } from './contact-details';
 import { Section } from './section';
+import {
+  BTN_PRIMARY,
+  BTN_SECONDARY,
+  BTN_WHATSAPP,
+  GoogleRatingBadge,
+} from './ui-primitives';
 
 function PhoneIcon() {
   return (
@@ -68,13 +74,16 @@ function MapPinIcon() {
   );
 }
 
-function ContactButton({ href, tone, children, icon, className = '', ...props }) {
+function ContactButton({ href, variant = 'primary', children, icon, className = '', ...props }) {
+  const variantClass =
+    variant === 'whatsapp'
+      ? BTN_WHATSAPP
+      : variant === 'secondary'
+        ? BTN_SECONDARY
+        : BTN_PRIMARY;
+
   return (
-    <a
-      href={href}
-      className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold leading-none text-white shadow-[0_8px_18px_rgba(46,32,42,0.12)] transition duration-200 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a] ${tone} ${className}`}
-      {...props}
-    >
+    <a href={href} className={`${variantClass} ${className}`} {...props}>
       {icon}
       {children}
     </a>
@@ -83,12 +92,7 @@ function ContactButton({ href, tone, children, icon, className = '', ...props })
 
 function CallToBook({ className = '' }) {
   return (
-    <ContactButton
-      href={PHONE_HREF}
-      tone="bg-[#c52f76] hover:bg-[#ad2868]"
-      icon={<PhoneIcon />}
-      className={className}
-    >
+    <ContactButton href={PHONE_HREF} variant="primary" icon={<PhoneIcon />} className={className}>
       Call to Book
     </ContactButton>
   );
@@ -98,7 +102,7 @@ function WhatsAppToBook({ className = '' }) {
   return (
     <ContactButton
       href={WHATSAPP_HREF}
-      tone="bg-[#00764c] hover:bg-[#006b45]"
+      variant="whatsapp"
       icon={<WhatsAppIcon />}
       className={className}
     >
@@ -116,20 +120,19 @@ export function ParentChildSection() {
       ariaLabelledby="parent-child-title"
       tone={SECTION_TONES.parentChild}
     >
-      <div className="mx-auto max-w-[760px]">
-        <h2
-          id="parent-child-title"
-          className="text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em]"
-        >
-          {heading}
-        </h2>
-        <div className="mt-7 grid grid-cols-1 gap-4 sm:mt-9 sm:grid-cols-2">
-          {items.map((item) => (
-            <article
-              key={item.label}
-              className="card-surface rounded-[1.35rem] px-5 py-4 shadow-[0_10px_28px_rgba(82,42,64,0.07)] sm:px-6 sm:py-5"
-            >
-              <p className="text-[1.02rem] font-semibold leading-snug">
+      <h2
+        id="parent-child-title"
+        className="section-heading text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
+      >
+        {heading}
+      </h2>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {items.map((item) => (
+          <article
+            key={item.label}
+            className="price-card bg-white px-5 py-4 sm:px-6 sm:py-5"
+          >
+              <p className="text-[1.02rem] font-bold leading-snug text-navy">
                 {item.label}
               </p>
               <p className="text-price mt-2 text-2xl font-bold leading-none">
@@ -138,10 +141,9 @@ export function ParentChildSection() {
             </article>
           ))}
         </div>
-        <p className="mx-auto mt-5 max-w-[52ch] text-center text-sm font-medium leading-relaxed text-[#2e202a] sm:mt-6">
-          {footnote}
-        </p>
-      </div>
+      <p className="mx-auto mt-5 max-w-[52ch] text-center text-sm font-medium leading-relaxed text-body">
+        {footnote}
+      </p>
     </Section>
   );
 }
@@ -156,21 +158,20 @@ export function FirstHaircutSection() {
       ariaLabelledby="first-haircut-title"
       tone={SECTION_TONES.firstHaircut}
     >
-      <div className="mx-auto max-w-[760px]">
-        <article className="card-surface rounded-[1.8rem] p-5 shadow-[0_16px_40px_rgba(52,83,94,0.07)] sm:p-7">
-          <h2
-            id="first-haircut-title"
-            className="text-2xl font-semibold leading-tight sm:text-[1.75rem]"
-          >
-            {copy.heading}
-          </h2>
+      <article className="mx-auto max-w-[760px]">
+        <h2
+          id="first-haircut-title"
+          className="section-heading text-2xl font-bold leading-tight sm:text-[1.75rem]"
+        >
+          {copy.heading}
+        </h2>
           <p className="mt-4 text-[1.02rem] leading-[1.65]">
             {copy.introBeforeBold}
             <strong>{copy.introBold}</strong>
             {copy.introAfterBold}
           </p>
           <p className="mt-3 text-[1.02rem] leading-[1.65]">{copy.body}</p>
-          <h3 className="text-accent mt-6 text-lg font-semibold leading-snug sm:text-xl">
+          <h3 className="text-accent mt-6 text-lg font-bold leading-snug sm:text-xl">
             {copy.subheading}
           </h3>
           <p className="mt-4 text-[1.02rem] leading-[1.65]">
@@ -194,30 +195,25 @@ export function FirstHaircutSection() {
             ))}
           </ul>
           <p className="mt-5 font-bold leading-relaxed">{copy.tagline}</p>
-          <p className="mt-2 text-sm italic leading-relaxed text-[#2e202a]">
+          <p className="mt-2 text-sm italic leading-relaxed text-body">
             {copy.disclaimer}
           </p>
-          <a
-            href={PHONE_HREF}
-            className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#c52f76] px-6 py-3 text-sm font-bold leading-none text-white shadow-[0_8px_18px_rgba(46,32,42,0.12)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#ad2868] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]"
-          >
-            {copy.callToBookLabel}
-          </a>
-        </article>
-      </div>
+        <a href={PHONE_HREF} className={`${BTN_PRIMARY} mt-6`}>
+          {copy.callToBookLabel}
+        </a>
+      </article>
     </Section>
   );
 }
 
 export function CertificateSection() {
   return (
-    <Section ariaLabel="First haircut certificate" tone="white">
-      <div className="mx-auto max-w-[760px]">
-        <article className="card-surface grid gap-5 rounded-[1.8rem] p-5 shadow-[0_16px_40px_rgba(52,83,94,0.07)] sm:p-7 md:grid-cols-[1fr_160px] md:items-center">
-          <div>
-            <h2 className="text-2xl font-semibold leading-tight sm:text-[1.75rem]">
-              Personalised First Haircut Certificate
-            </h2>
+    <Section ariaLabel="First haircut certificate" tone={SECTION_TONES.certificate}>
+      <article className="mx-auto grid max-w-[760px] gap-5 md:grid-cols-[1fr_160px] md:items-center">
+        <div>
+          <h2 className="section-heading text-2xl font-bold leading-tight sm:text-[1.75rem]">
+            Personalised First Haircut Certificate
+          </h2>
             <p className="mt-4 font-bold leading-relaxed">
               Optional add-on — {formatInr(PRICING.certificate)} extra
             </p>
@@ -225,7 +221,7 @@ export function CertificateSection() {
               Haircut charged separately.
             </p>
           </div>
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-[190px] overflow-hidden rounded-[1.2rem] border-4 border-white shadow-[0_12px_30px_rgba(82,42,64,0.14)] md:max-w-none">
+          <div className="price-card relative mx-auto aspect-[4/5] w-full max-w-[190px] overflow-hidden border-2 border-brand bg-white md:max-w-none">
             <Image
               src={CERTIFICATE_IMAGE}
               alt="Baby tonsure and first haircut certificate at Lollipop Locs, Electronic City"
@@ -236,44 +232,42 @@ export function CertificateSection() {
               className="h-full w-full object-cover"
             />
           </div>
-          <CallToBook className="md:col-span-2 md:justify-self-start" />
-        </article>
-      </div>
+        <CallToBook className="md:col-span-2 md:justify-self-start" />
+      </article>
     </Section>
   );
 }
 
 export function ReviewsSection() {
   return (
-    <Section id="reviews" ariaLabelledby="reviews-title" tone="cream">
-      <div className="mx-auto max-w-[1120px]">
+    <Section id="reviews" ariaLabelledby="reviews-title" tone="pinkDeep">
+      <div className="mb-6 text-center lg:mb-8">
         <h2
           id="reviews-title"
-          className="text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em]"
+          className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em] text-navy"
         >
           Loved by Parents &amp; Little Ones 💛
         </h2>
-        <p className="mx-auto mt-3 max-w-[42ch] text-center text-[1.0625rem] font-medium leading-[1.6] text-[#111827]">
+        <p className="mx-auto mt-3 max-w-[42ch] text-[1.0625rem] font-medium leading-[1.6] text-body">
           Real reviews from Google
         </p>
 
         {GOOGLE_REVIEWS_AGGREGATE ? (
           <div className="mt-4 flex justify-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-black/5 bg-white px-4 py-2">
-              <span aria-hidden="true" className="text-[#946200]">
-                ★
-              </span>
-              <span className="text-sm font-bold text-[#111827]">
-                {GOOGLE_REVIEWS_AGGREGATE.value} on Google ·{' '}
-                {GOOGLE_REVIEWS_AGGREGATE.count} reviews
-              </span>
-            </div>
+            <GoogleRatingBadge
+              rating={String(GOOGLE_REVIEWS_AGGREGATE.value)}
+              label={`on Google · ${GOOGLE_REVIEWS_AGGREGATE.count} reviews`}
+            />
           </div>
-        ) : null}
+        ) : (
+          <div className="mt-4 flex justify-center">
+            <GoogleRatingBadge />
+          </div>
+        )}
+      </div>
 
-        <div className="mt-7 min-w-0 sm:mt-9">
-          <GoogleReviews reviews={GOOGLE_REVIEWS} />
-        </div>
+      <div className="min-w-0">
+        <GoogleReviews reviews={GOOGLE_REVIEWS} />
       </div>
     </Section>
   );
@@ -282,24 +276,23 @@ export function ReviewsSection() {
 export function QuestionsSection() {
   return (
     <Section id="questions" ariaLabelledby="questions-title" tone="white">
-      <div className="mx-auto max-w-[900px]">
-        <h2
-          id="questions-title"
-          className="text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em]"
-        >
-          Quick Questions Parents Ask
-        </h2>
-        <div className="mt-7 space-y-3 sm:mt-9">
-          {FAQ_ITEMS.map(({ question, answer }) => (
-            <details
-              key={question}
-              className="card-surface group overflow-hidden rounded-[1.1rem] shadow-[0_8px_22px_rgba(82,42,64,0.045)]"
-            >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-4 font-bold leading-snug marker:hidden focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-[#c52f76] sm:px-6 sm:py-5 [&::-webkit-details-marker]:hidden">
+      <h2
+        id="questions-title"
+        className="section-heading text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
+      >
+        Quick Questions Parents Ask
+      </h2>
+      <div className="mx-auto max-w-[900px] space-y-3">
+        {FAQ_ITEMS.map(({ question, answer }) => (
+          <details
+            key={question}
+            className="price-card group overflow-hidden bg-white"
+          >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-4 font-bold leading-snug marker:hidden focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-brand sm:px-6 sm:py-5 [&::-webkit-details-marker]:hidden">
                 <span>{question}</span>
                 <span
                   aria-hidden="true"
-                  className="text-accent flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-pastel-blush text-xl leading-none transition-transform group-open:rotate-45"
+                  className="text-accent flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blush text-xl leading-none transition-transform group-open:rotate-45"
                 >
                   +
                 </span>
@@ -308,8 +301,7 @@ export function QuestionsSection() {
                 {answer}
               </p>
             </details>
-          ))}
-        </div>
+        ))}
       </div>
     </Section>
   );
@@ -321,16 +313,15 @@ export function LocationSection() {
 
   return (
     <Section id="location" ariaLabelledby="location-title" tone={SECTION_TONES.visitUs}>
-      <div className="mx-auto max-w-[1120px]">
-        <h2
-          id="location-title"
-          className="text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em]"
-        >
-          Visit Lollipop Locs – Electronic City 📍
-        </h2>
-        <div className="mt-7 grid gap-5 sm:mt-9 lg:grid-cols-[0.9fr_1.1fr] lg:gap-7">
-          <div className="card-surface rounded-[1.8rem] p-5 shadow-[0_14px_36px_rgba(53,73,96,0.07)] sm:p-7">
-            <p className="text-accent text-xl font-semibold leading-snug sm:text-2xl">
+      <h2
+        id="location-title"
+        className="section-heading text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
+      >
+        Visit Lollipop Locs – Electronic City 📍
+      </h2>
+      <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:gap-6">
+        <div className="price-card bg-white p-5 sm:p-6">
+            <p className="text-accent text-xl font-bold leading-snug sm:text-2xl">
               {BUSINESS.name}
             </p>
             <p className="text-muted mt-1 font-bold">{BUSINESS.tagline}</p>
@@ -341,7 +332,7 @@ export function LocationSection() {
                   href={BUSINESS.mapsLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 block hover:text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c52f76]"
+                  className="mt-2 block hover:text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >
                   {address.lines.map((line) => (
                     <span key={line} className="block">
@@ -351,7 +342,7 @@ export function LocationSection() {
                 </a>
                 <p className="text-muted mt-2 font-bold">{address.floorNote}</p>
               </div>
-              <p className="font-medium">⭐ 4.9 on Google</p>
+              <GoogleRatingBadge className="w-full justify-center sm:w-auto" />
               <div className="card-surface rounded-xl px-4 py-3 font-semibold">
                 <p className="font-bold">🕐 Store hours</p>
                 <ul className="mt-2 space-y-1">
@@ -376,25 +367,23 @@ export function LocationSection() {
                 href={BUSINESS.mapsLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                tone="bg-white text-[#c52f76] ring-1 ring-black/5 hover:bg-pastel-blush"
+                variant="secondary"
                 icon={<MapPinIcon />}
-                className="card-surface !text-[#c52f76]"
               >
                 Get Directions
               </ContactButton>
             </div>
           </div>
 
-          <div className="card-surface overflow-hidden rounded-[1.8rem] shadow-[0_14px_36px_rgba(53,73,96,0.07)]">
-            <iframe
-              title="Lollipop Locs location"
-              src={BUSINESS.mapsEmbedUrl}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="aspect-[4/3] min-h-[230px] w-full sm:min-h-[300px] lg:aspect-auto lg:min-h-[360px]"
-              allowFullScreen
-            />
-          </div>
+        <div className="price-card overflow-hidden bg-white">
+          <iframe
+            title="Lollipop Locs location"
+            src={BUSINESS.mapsEmbedUrl}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="aspect-[4/3] w-full lg:aspect-auto lg:min-h-[320px]"
+            allowFullScreen
+          />
         </div>
       </div>
     </Section>
@@ -405,13 +394,13 @@ export function FinalCallToAction() {
   return (
     <Section
       ariaLabelledby="final-cta-title"
-      className="pb-28 sm:pb-16"
-      tone="white"
+      className="pb-20 sm:pb-8"
+      tone={SECTION_TONES.finalCta}
     >
-      <div className="card-surface mx-auto max-w-[900px] rounded-[2rem] px-5 py-8 text-center shadow-[0_18px_48px_rgba(82,42,64,0.1)] sm:px-10 sm:py-12">
+      <div className="price-card mx-auto max-w-[900px] bg-white px-5 py-6 text-center sm:px-8 sm:py-8">
         <h2
           id="final-cta-title"
-          className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em]"
+          className="section-heading text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
         >
           Ready for Their Next Haircut? 🍭✂️
         </h2>
@@ -420,11 +409,11 @@ export function FinalCallToAction() {
           in.
         </p>
         <div className="mx-auto mt-6 grid max-w-[560px] gap-3 sm:grid-cols-2">
-          <p className="card-surface rounded-[1.1rem] px-4 py-3 text-left font-bold">
+          <p className="price-card bg-skyfade px-4 py-3 text-left font-bold text-navy">
             👦 Boys Haircut Only —{' '}
             <span className="text-price text-xl">{formatInr(PRICING.boysHaircut)}</span>
           </p>
-          <p className="card-surface rounded-[1.1rem] px-4 py-3 text-left font-bold">
+          <p className="price-card bg-tint-pink px-4 py-3 text-left font-bold text-navy">
             👧 Girls Haircut Only —{' '}
             <span className="text-price text-xl">{formatInr(PRICING.girlsHaircut)}</span>
           </p>

@@ -6,6 +6,8 @@ export function Section({
   ariaLabelledby,
   ariaLabel,
   className = '',
+  innerClassName = '',
+  hero = false,
   children,
 }) {
   const backgroundClass =
@@ -16,9 +18,9 @@ export function Section({
       id={id}
       aria-labelledby={ariaLabelledby}
       aria-label={ariaLabel}
-      className={`${backgroundClass} px-5 py-12 sm:px-8 sm:py-16 ${className}`}
+      className={`section w-full ${backgroundClass} ${hero ? 'section-hero' : ''} ${className}`}
     >
-      {children}
+      <div className={`section-inner ${innerClassName}`}>{children}</div>
     </section>
   );
 }

@@ -5,7 +5,9 @@ import {
   WHATSAPP_HREF,
   formatFullAddress,
   formatHoursDisplay,
-} from '../../lib/site-config';
+} from '../lib/site-config';
+import { BTN_PRIMARY, BTN_WHATSAPP } from '../app/kids-haircut-electronic-city/ui-primitives';
+import { FooterFullLogo } from './site-logo';
 
 function PhoneIcon() {
   return (
@@ -39,25 +41,22 @@ function WhatsAppIcon() {
   );
 }
 
-export function SiteFooter() {
+export function SiteFooter({ copyrightNote = 'Kids haircut Electronic City, Bengaluru.' }) {
   const address = formatFullAddress();
   const hours = formatHoursDisplay();
 
   return (
-    <footer className="border-t border-black/5 bg-white px-5 py-10 sm:px-8">
+    <footer className="border-t border-black/5 bg-white px-4 py-8 md:px-6">
       <div className="mx-auto grid max-w-[1240px] gap-8 lg:grid-cols-[1.2fr_0.8fr]">
         <div>
-          <p className="text-accent text-xl font-semibold">
-            {BUSINESS.shortName}
-          </p>
-          <p className="text-muted mt-1 text-sm font-bold">{BUSINESS.tagline}</p>
+          <FooterFullLogo />
           <address className="mt-4 not-italic text-sm leading-relaxed">
             <span className="block font-bold">{BUSINESS.name}</span>
             <a
               href={BUSINESS.mapsLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 block hover:text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2e202a]"
+              className="mt-2 block hover:text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
             >
               {address.lines.map((line) => (
                 <span key={line} className="block">
@@ -70,7 +69,7 @@ export function SiteFooter() {
             </span>
             <a
               href={PHONE_HREF}
-              className="text-accent mt-3 inline-flex items-center gap-2 font-bold hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2e202a]"
+              className="text-accent mt-3 inline-flex items-center gap-2 font-bold hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
             >
               <PhoneIcon />
               {PHONE_NUMBER}
@@ -92,17 +91,11 @@ export function SiteFooter() {
           </div>
           <p className="text-sm font-bold">Book a kids haircut</p>
           <div className="flex flex-wrap gap-2 sm:justify-end">
-            <a
-              href={PHONE_HREF}
-              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#c52f76] px-5 py-3 text-sm font-bold text-white shadow-[0_8px_18px_rgba(46,32,42,0.12)] transition hover:bg-[#ad2868] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]"
-            >
+            <a href={PHONE_HREF} className={BTN_PRIMARY}>
               <PhoneIcon />
               Call to Book
             </a>
-            <a
-              href={WHATSAPP_HREF}
-              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#00764c] px-5 py-3 text-sm font-bold text-white shadow-[0_8px_18px_rgba(46,32,42,0.12)] transition hover:bg-[#006b45] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]"
-            >
+            <a href={WHATSAPP_HREF} className={BTN_WHATSAPP}>
               <WhatsAppIcon />
               WhatsApp Lollipop Locs
             </a>
@@ -110,8 +103,7 @@ export function SiteFooter() {
         </div>
       </div>
       <p className="text-muted mx-auto mt-8 max-w-[1240px] text-center text-xs">
-        © {new Date().getFullYear()} {BUSINESS.shortName}. Kids haircut Electronic City,
-        Bengaluru.
+        © {new Date().getFullYear()} {BUSINESS.shortName}. {copyrightNote}
       </p>
     </footer>
   );

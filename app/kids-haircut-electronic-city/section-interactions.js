@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { GALLERY_IMAGES } from '../../lib/site-config';
+import { BTN_PRIMARY } from './ui-primitives';
 
 const photos = GALLERY_IMAGES;
 
@@ -14,7 +15,7 @@ export function ExperienceVideo({
   const [activated, setActivated] = useState(false);
 
   return (
-    <div className="card-surface relative mx-auto aspect-video w-full max-w-4xl overflow-hidden rounded-2xl bg-[#2e202a] shadow-[0_16px_38px_rgba(82,42,64,0.14)]">
+    <div className="card-surface relative mx-auto aspect-video w-full max-w-4xl overflow-hidden rounded-2xl bg-navy">
       {activated ? (
         <video
           className="absolute inset-0 h-full w-full bg-black object-contain"
@@ -31,7 +32,7 @@ export function ExperienceVideo({
           type="button"
           onClick={() => setActivated(true)}
           aria-label="Load the Lollipop Locs salon video. Use the player controls to play."
-          className="group absolute inset-0 flex w-full items-center justify-center text-left focus-visible:outline-4 focus-visible:outline-offset-[-7px] focus-visible:outline-[#c52f76]"
+          className="group absolute inset-0 flex w-full items-center justify-center text-left focus-visible:outline-4 focus-visible:outline-offset-[-7px] focus-visible:outline-brand"
         >
           <Image
             src={posterUrl}
@@ -42,8 +43,8 @@ export function ExperienceVideo({
             sizes="(max-width: 768px) 100vw, 768px"
             className="h-full w-full bg-black object-contain transition-transform duration-500 group-hover:scale-[1.025]"
           />
-          <span aria-hidden="true" className="absolute inset-0 bg-[#2e202a]/20 transition-colors group-hover:bg-[#2e202a]/30" />
-          <span className="relative inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-[#c52f76] px-6 text-base font-bold text-white shadow-[0_10px_25px_rgba(85,31,61,0.24)] transition-transform group-hover:scale-[1.03]">
+          <span aria-hidden="true" className="absolute inset-0 bg-navy/20 transition-colors group-hover:bg-navy/30" />
+          <span className={`${BTN_PRIMARY} relative h-14 px-6 text-base transition-transform group-hover:scale-[1.03]`}>
             ▶ Load Video
           </span>
         </button>
@@ -66,16 +67,16 @@ export function SalonGallery() {
       role="region"
       aria-label="Lollipop Locs salon gallery"
       tabIndex={0}
-      className="flex w-full min-w-0 max-w-full snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4 [scrollbar-color:#e9afca_transparent] [scrollbar-width:thin] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c52f76]"
+      className="flex w-full min-w-0 max-w-full snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4 [scrollbar-color:#f5a3c7_transparent] [scrollbar-width:thin] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
     >
       {gallerySlides.map((slide) => (
         <figure
           key={slide.caption}
-          className="card-surface w-[82vw] max-w-[340px] shrink-0 snap-start overflow-hidden rounded-[1.4rem] p-2.5 shadow-[0_10px_26px_rgba(82,42,64,0.08)] sm:w-[300px]"
+          className="card-surface w-[82vw] max-w-[340px] shrink-0 snap-start overflow-hidden rounded-2xl p-2.5 sm:w-[300px]"
         >
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[1rem] bg-pastel-blush">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[1rem] bg-blush">
             {slide.todo ? (
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-pastel-blush p-5 text-center">
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-blush p-5 text-center">
                 <span aria-hidden="true" className="text-3xl">✈</span>
                 <span className="text-accent font-bold">TODO: Airplane chair photo needed</span>
               </div>
@@ -102,7 +103,7 @@ export function SalonGallery() {
 
 function ComparisonPanel({ title }) {
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-pastel-blush p-4 text-center">
+    <div className="absolute inset-0 flex items-center justify-center bg-blush p-4 text-center">
       <div className="card-surface rounded-[1.2rem] border-2 border-dashed border-black/10 px-4 py-5 sm:px-7">
         <span aria-hidden="true" className="text-accent mb-2 block text-3xl">＋</span>
         <span className="text-accent block text-xl font-semibold">
@@ -118,7 +119,7 @@ export function BeforeAfterSlider() {
 
   return (
     <div className="mx-auto max-w-[780px]">
-      <div className="card-surface relative aspect-[4/3] overflow-hidden rounded-[1.5rem] shadow-[0_16px_38px_rgba(82,42,64,0.12)] sm:aspect-[16/9]">
+      <div className="card-surface relative aspect-[4/3] overflow-hidden rounded-2xl sm:aspect-[16/9]">
         <ComparisonPanel title="After" />
         <div
           aria-hidden="true"
@@ -129,10 +130,10 @@ export function BeforeAfterSlider() {
         </div>
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 z-10 w-1 bg-white shadow-[0_0_0_1px_rgba(130,73,100,0.18)]"
+          className="pointer-events-none absolute inset-y-0 z-10 w-1 bg-white shadow-[0_0_0_1px_rgba(27,42,92,0.18)]"
           style={{ left: `${position}%` }}
         >
-          <span className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[3px] border-white bg-[#c52f76] text-xl font-bold text-white shadow-[0_4px_14px_rgba(82,42,64,0.25)]">
+          <span className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[3px] border-white bg-brand text-xl font-bold text-white shadow-[0_4px_14px_rgba(27,42,92,0.25)]">
             ↔
           </span>
         </div>
@@ -143,7 +144,7 @@ export function BeforeAfterSlider() {
           value={position}
           onChange={(event) => setPosition(Number(event.target.value))}
           aria-label="Drag to compare before and after haircut images"
-          className="absolute inset-0 z-20 h-full w-full cursor-ew-resize opacity-0 focus-visible:rounded-[1.25rem] focus-visible:outline-4 focus-visible:outline-[#c52f76]"
+          className="absolute inset-0 z-20 h-full w-full cursor-ew-resize opacity-0 focus-visible:rounded-[1.25rem] focus-visible:outline-4 focus-visible:outline-brand"
         />
       </div>
     </div>
@@ -155,7 +156,7 @@ function ReviewStars({ rating }) {
     <div className="flex items-center gap-2">
       <span
         aria-label={`Rated ${rating} out of 5`}
-        className="flex items-center gap-0.5 text-[#946200]"
+        className="flex items-center gap-0.5 text-star"
       >
         {Array.from({ length: 5 }, (_, index) => (
           <svg
@@ -170,7 +171,7 @@ function ReviewStars({ rating }) {
       </span>
       <span
         aria-hidden="true"
-        className="text-sm font-bold text-gray-900"
+        className="text-sm font-bold text-navy"
       >
         {rating.toFixed(1)}
       </span>
@@ -182,10 +183,10 @@ function ReviewCard({ review }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <article className="card-surface flex h-full flex-col rounded-2xl p-5 shadow-[0_12px_30px_rgba(82,42,64,0.07)] sm:p-6">
+    <article className="price-card flex h-full flex-col bg-white p-5 sm:p-6">
       <ReviewStars rating={review.rating} />
       <blockquote
-        className={`mt-4 flex-1 whitespace-pre-line text-[0.98rem] font-medium leading-[1.65] text-[#111827] ${
+        className={`mt-4 flex-1 whitespace-pre-line text-[0.98rem] font-medium leading-[1.65] text-navy ${
           expanded ? '' : 'line-clamp-6'
         }`}
       >
@@ -194,18 +195,18 @@ function ReviewCard({ review }) {
       <button
         type="button"
         onClick={() => setExpanded((current) => !current)}
-        className="text-accent mt-2 self-start text-sm font-bold hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c52f76]"
+        className="text-accent mt-2 self-start text-sm font-bold hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
       >
         {expanded ? 'Show less' : 'Read more'}
       </button>
       <footer className="mt-5 border-t border-black/5 pt-4">
-        <p className="font-bold text-[#111827]">{review.name}</p>
+        <p className="font-bold text-navy">{review.name}</p>
         <p className="text-muted mt-1 text-xs font-medium">Google review</p>
         <a
           href={review.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-accent mt-3 inline-flex min-h-10 items-center text-sm font-bold hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c52f76]"
+          className="text-accent mt-3 inline-flex min-h-10 items-center text-sm font-bold hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
         >
           View on Google
         </a>
@@ -267,11 +268,11 @@ export function GoogleReviews({ reviews }) {
   }
 
   return (
-    <div className="min-w-0 max-w-full">
+    <div className="min-w-0 max-w-full overflow-hidden">
       <div
         ref={scrollRef}
         aria-label="Google reviews"
-        className="no-scrollbar relative flex w-full snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain md:grid md:grid-cols-3 md:items-start md:gap-4 md:overflow-hidden md:snap-none"
+        className="no-scrollbar relative -mx-4 flex w-[calc(100%+2rem)] snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-4 md:-mx-6 md:w-[calc(100%+3rem)] md:px-6 lg:mx-0 lg:w-full lg:grid lg:grid-cols-3 lg:items-start lg:gap-4 lg:overflow-hidden lg:px-0 lg:snap-none"
       >
         {reviews.map((review, index) => (
           <div
@@ -279,7 +280,7 @@ export function GoogleReviews({ reviews }) {
             ref={(element) => {
               slideRefs.current[index] = element;
             }}
-            className="w-[85%] shrink-0 snap-start md:w-auto md:shrink md:snap-align-none"
+            className="w-[85%] shrink-0 snap-start lg:w-auto lg:shrink lg:snap-align-none"
           >
             <ReviewCard review={review} />
           </div>
@@ -287,7 +288,7 @@ export function GoogleReviews({ reviews }) {
       </div>
 
       <div
-        className="mt-4 flex justify-center gap-2 md:hidden"
+        className="mt-4 flex justify-center gap-2 lg:hidden"
         role="tablist"
         aria-label="Review slides"
       >

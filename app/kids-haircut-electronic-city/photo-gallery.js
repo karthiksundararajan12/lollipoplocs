@@ -16,7 +16,7 @@ function GalleryTile({ photo, eager = false, sizes }) {
           className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
-      <figcaption className="mt-2 text-center text-sm font-bold leading-snug text-[#111827] sm:text-[0.9375rem]">
+      <figcaption className="mt-2 text-center text-sm font-bold leading-snug text-navy sm:text-[0.9375rem]">
         {photo.caption}
       </figcaption>
     </figure>
@@ -76,11 +76,11 @@ export function PhotoGallery({ photos }) {
   }
 
   return (
-    <div className="min-w-0 max-w-full">
+    <div className="min-w-0 max-w-full overflow-hidden">
       <div
         ref={scrollRef}
         aria-label="Photo gallery"
-        className="no-scrollbar relative flex w-full snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain md:grid md:grid-cols-3 md:gap-4 md:overflow-hidden md:snap-none"
+        className="no-scrollbar relative -mx-4 flex w-[calc(100%+2rem)] snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-4 md:-mx-6 md:w-[calc(100%+3rem)] md:px-6 lg:mx-0 lg:w-full lg:grid lg:grid-cols-3 lg:gap-4 lg:overflow-hidden lg:px-0 lg:snap-none"
       >
         {photos.map((photo, index) => (
           <div
@@ -88,7 +88,7 @@ export function PhotoGallery({ photos }) {
             ref={(element) => {
               slideRefs.current[index] = element;
             }}
-            className="w-[82%] shrink-0 snap-start md:w-auto md:shrink md:snap-align-none"
+            className="w-[82%] shrink-0 snap-start lg:w-auto lg:shrink lg:snap-align-none"
           >
             <GalleryTile
               photo={photo}
@@ -100,7 +100,7 @@ export function PhotoGallery({ photos }) {
       </div>
 
       <div
-        className="mt-4 flex justify-center gap-2 md:hidden"
+        className="mt-4 flex justify-center gap-2 lg:hidden"
         role="tablist"
         aria-label="Gallery slides"
       >

@@ -1,10 +1,15 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { PHONE_HREF, WHATSAPP_HREF } from './contact-details';
-import { WHATSAPP_MOBILE_HREF } from '../../lib/site-config';
+import {
+  PHONE_HREF,
+  WHATSAPP_HREF,
+  WHATSAPP_MOBILE_HREF,
+} from '../lib/site-config';
+import { BTN_PRIMARY, BTN_WHATSAPP } from '../app/kids-haircut-electronic-city/ui-primitives';
+import { HeaderWordmarkLink } from './site-logo';
 
-const navLinks = [
+export const KIDS_NAV_LINKS = [
   { href: '#experience', label: 'Our Experience' },
   { href: '#pricing', label: 'Pricing' },
   { href: '#reviews', label: 'Reviews' },
@@ -13,32 +18,7 @@ const navLinks = [
 ];
 
 const navLinkClassName =
-  'text-muted flex min-h-11 items-center rounded px-2 text-[0.95rem] font-bold transition hover:text-[#c52f76] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]';
-
-function CandyMark() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="h-10 w-10 shrink-0"
-      viewBox="0 0 48 48"
-      fill="none"
-    >
-      <path
-        d="M28 27.5 39 41"
-        stroke="#D98AAE"
-        strokeLinecap="round"
-        strokeWidth="4"
-      />
-      <circle cx="21" cy="18" r="13.5" fill="#E75396" stroke="white" strokeWidth="2" />
-      <path
-        d="M18.3 10.5c-3.8 1.2-5.6 5.2-4.3 8.7 1.2 3.4 5.2 5.1 8.6 3.9 3.1-1.1 4.5-4.4 3.4-7.1-.9-2.2-3.4-3.3-5.5-2.5-1.8.7-2.7 2.5-2 4.1.5 1.2 1.8 1.8 3 1.3"
-        stroke="white"
-        strokeLinecap="round"
-        strokeWidth="2"
-      />
-    </svg>
-  );
-}
+  'text-muted flex min-h-11 items-center rounded px-2 text-[0.95rem] font-bold transition hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-navy';
 
 function PhoneIcon() {
   return (
@@ -98,20 +78,18 @@ function CloseIcon() {
   );
 }
 
-function BookingLink({ children, href, tone, icon, className = '', onClick }) {
+function BookingLink({ children, href, variant = 'primary', icon, className = '', onClick }) {
+  const variantClass = variant === 'whatsapp' ? BTN_WHATSAPP : BTN_PRIMARY;
+
   return (
-    <a
-      href={href}
-      onClick={onClick}
-      className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold leading-none text-white shadow-[0_8px_18px_rgba(46,32,42,0.12)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_22px_rgba(46,32,42,0.16)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a] ${tone} ${className}`}
-    >
+    <a href={href} onClick={onClick} className={`${variantClass} ${className}`}>
       {icon}
       {children}
     </a>
   );
 }
 
-export function SiteHeader() {
+export function SiteHeader({ navLinks = KIDS_NAV_LINKS }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = useCallback(() => {
@@ -152,31 +130,18 @@ export function SiteHeader() {
   }, [closeMenu]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/95">
-      <div className="mx-auto flex min-h-[76px] max-w-[1240px] items-center justify-between gap-5 px-5 py-3 sm:px-8">
-        <a
-          href="#top"
-          className="flex min-w-0 items-center gap-2.5 rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]"
-        >
-          <CandyMark />
-          <span className="min-w-0">
-            <span className="block font-[family-name:var(--font-fredoka)] text-[1.35rem] font-semibold leading-none tracking-[-0.03em] text-[#c52f76]">
-              Lollipop Locs
-            </span>
-            <span className="text-muted mt-1 block text-[0.64rem] font-bold leading-none">
-              Premium Kids &amp; Tweens Salon
-            </span>
-          </span>
-        </a>
+    <header className="sticky top-0 z-50 border-b border-black/5 bg-white">
+      <div className="mx-auto flex h-16 max-w-[1240px] items-center gap-3 px-5 sm:h-[72px] sm:gap-4 sm:px-8">
+        <HeaderWordmarkLink />
 
         <nav
           aria-label="Main navigation"
-          className="text-muted hidden items-center gap-5 text-[0.82rem] font-bold xl:flex"
+          className="text-muted hidden min-w-0 flex-1 items-center justify-center gap-4 text-[0.8rem] font-bold xl:flex"
         >
           {navLinks.map((link) => (
             <a
               key={link.href}
-              className="rounded transition hover:text-[#c52f76] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]"
+              className="whitespace-nowrap rounded transition hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-navy"
               href={link.href}
             >
               {link.label}
@@ -184,42 +149,44 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden shrink-0 items-center gap-2 sm:flex">
-          <BookingLink
-            href={PHONE_HREF}
-            tone="bg-[#c52f76] hover:bg-[#ad2868]"
-            icon={<PhoneIcon />}
-            className="min-h-10 px-4 text-xs"
-          >
-            Call to Book
-          </BookingLink>
-          <BookingLink
-            href={WHATSAPP_HREF}
-            tone="bg-[#00764c] hover:bg-[#006b45]"
-            icon={<WhatsAppIcon />}
-            className="min-h-10 px-4 text-xs"
-          >
-            WhatsApp
-          </BookingLink>
-        </div>
+        <div className="ml-auto flex shrink-0 items-center gap-2">
+          <div className="hidden items-center gap-2 xl:flex">
+            <BookingLink
+              href={PHONE_HREF}
+              variant="primary"
+              icon={<PhoneIcon />}
+              className="h-10 px-4 text-xs"
+            >
+              Call to Book
+            </BookingLink>
+            <BookingLink
+              href={WHATSAPP_HREF}
+              variant="whatsapp"
+              icon={<WhatsAppIcon />}
+              className="h-10 px-4 text-xs"
+            >
+              WhatsApp
+            </BookingLink>
+          </div>
 
-        <button
-          type="button"
-          className="text-muted inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg transition hover:bg-pastel-blush hover:text-[#c52f76] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a] xl:hidden"
-          aria-expanded={menuOpen}
-          aria-controls="mobile-nav-panel"
-          aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          {menuOpen ? <CloseIcon /> : <MenuIcon />}
-        </button>
+          <button
+            type="button"
+            className="text-muted inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg transition hover:bg-blush hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-navy xl:hidden"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav-panel"
+            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            {menuOpen ? <CloseIcon /> : <MenuIcon />}
+          </button>
+        </div>
       </div>
 
       {menuOpen ? (
         <nav
           id="mobile-nav-panel"
           aria-label="Mobile navigation"
-          className="xl:hidden border-t border-black/5 bg-white shadow-[0_12px_28px_rgba(46,32,42,0.08)]"
+          className="xl:hidden border-t border-black/5 bg-white shadow-[0_12px_28px_rgba(27,42,92,0.08)]"
         >
           <div className="mx-auto flex max-w-[1240px] flex-col gap-1 px-5 py-4 sm:px-8">
             {navLinks.map((link) => (
@@ -235,18 +202,18 @@ export function SiteHeader() {
             <div className="mt-3 grid gap-2 border-t border-black/5 pt-4">
               <BookingLink
                 href={PHONE_HREF}
-                tone="bg-[#c52f76] hover:bg-[#ad2868]"
+                variant="primary"
                 icon={<PhoneIcon />}
-                className="w-full min-h-11"
+                className="w-full"
                 onClick={closeMenu}
               >
                 Call
               </BookingLink>
               <BookingLink
                 href={WHATSAPP_MOBILE_HREF}
-                tone="bg-[#00764c] hover:bg-[#006b45]"
+                variant="whatsapp"
                 icon={<WhatsAppIcon />}
-                className="w-full min-h-11"
+                className="w-full"
                 onClick={closeMenu}
               >
                 WhatsApp

@@ -1,71 +1,182 @@
 @import 'tailwindcss';
 
+/* Single source of truth for the Lollipop Locs palette. */
 :root {
-  --brand: #c52f76;
-  --brand-deep: #ad2868;
-  --brand-green: #00764c;
-  --text-body: #1f2937;
-  --text-heading: #111827;
-  --text-muted: #374151;
-  --pastel-blush: #fef3f5;
-  --pastel-mint: #f0faf6;
-  --pastel-sky: #f0f7fd;
-  --pastel-cream: #fffbf2;
+  --navy: #1b2a5c;
+  --pink: #e91e7a;
+  --pink-dark: #c9156a;
+  --green: #1faf54;
+  --green-dark: #17963f;
+  --blush: #fff3f6;
+  --mint: #effaf4;
+  --skyfade: #eef6fd;
+  --cream: #fff9ec;
+  --lavender: #f5f0ff;
+  --tint-pink: #fff1f4;
+  --tint-yellow: #fff9e5;
+  --reviews-pink: #f9d3df;
+  --frame-pink: #fbd3e3;
+  --star: #ffc107;
+  --text-body: #374151;
+  --text-heading: var(--navy);
+  --text-muted: #4b5563;
   --card-border: rgb(0 0 0 / 0.05);
   --section-divider: rgb(0 0 0 / 0.05);
+
+  /* Legacy names still referenced by base styles */
+  --brand: var(--pink);
+  --brand-deep: var(--pink-dark);
+  --brand-green: var(--green);
+  --brand-navy: var(--navy);
+  --pink-deep: var(--reviews-pink);
 }
 
 @theme inline {
   --font-sans: var(--font-nunito);
   --font-display: var(--font-fredoka);
-  --color-pastel-blush: #fef3f5;
-  --color-pastel-mint: #f0faf6;
-  --color-pastel-sky: #f0f7fd;
-  --color-pastel-cream: #fffbf2;
-  --color-body: #1f2937;
-  --color-heading: #111827;
-  --color-muted: #374151;
-  --color-brand: #c52f76;
+  --color-navy: #1b2a5c;
+  --color-brand: #e91e7a;
+  --color-brand-dark: #c9156a;
+  --color-whatsapp: #1faf54;
+  --color-whatsapp-dark: #17963f;
+  --color-blush: #fff3f6;
+  --color-mint: #effaf4;
+  --color-skyfade: #eef6fd;
+  --color-cream: #fff9ec;
+  --color-lavender: #f5f0ff;
+  --color-tint-pink: #fff1f4;
+  --color-tint-yellow: #fff9e5;
+  --color-reviews-pink: #f9d3df;
+  --color-star: #ffc107;
+  --color-body: #374151;
+  --color-heading: #1b2a5c;
+  --color-muted: #4b5563;
+  /* Aliases kept for existing class names */
+  --color-brand-navy: #1b2a5c;
+  --color-pink-deep: #f9d3df;
+  --color-star-gold: #ffc107;
 }
 
-* {
-  box-sizing: border-box;
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 4.5rem;
+    }
+  }
+
+  body {
+    margin: 0;
+    background: #fff;
+    color: var(--text-body);
+    font-family: var(--font-nunito), sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--text-heading);
+    font-family: var(--font-fredoka), sans-serif;
+    font-weight: 700;
+  }
+
+  p,
+  li,
+  address,
+  td,
+  th,
+  label,
+  summary {
+    color: var(--text-body);
+    font-weight: 500;
+  }
+
+  small {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  #hero-title {
+    color: var(--brand-navy);
+  }
+
+  #reviews {
+    background-color: var(--pink-deep);
+  }
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
+@layer components {
+  .section {
+    width: 100%;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+  }
+
+  .section-inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 72rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-inner {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  .section-heading {
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .section-heading {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .section-hero {
+    padding-top: 6rem;
+    padding-bottom: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-hero {
+      padding-top: 7rem;
+      padding-bottom: 3.5rem;
+    }
+  }
 }
 
-body {
-  margin: 0;
-  background: #fff;
-  color: var(--text-body);
-  font-family: var(--font-nunito), sans-serif;
-  font-weight: 500;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  color: var(--text-heading);
-  font-family: var(--font-fredoka), sans-serif;
-  font-weight: 600;
-}
-
-p,
-li,
-address,
-td,
-th,
-label,
-summary {
-  color: var(--text-body);
-  font-weight: 500;
-}
-
-small,
 .text-muted {
   color: var(--text-muted);
   font-weight: 500;
@@ -76,14 +187,88 @@ small,
 }
 
 .text-price {
-  color: var(--brand);
+  color: var(--navy);
   font-family: var(--font-fredoka), sans-serif;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .card-surface {
   border: 1px solid var(--card-border);
   background: #fff;
+}
+
+@layer components {
+  .btn-primary {
+    background-color: var(--pink);
+    box-shadow: 0 8px 20px rgba(233, 30, 122, 0.3);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--pink-dark);
+    box-shadow: 0 12px 28px rgba(233, 30, 122, 0.38);
+  }
+
+  .btn-whatsapp {
+    background-color: var(--green);
+    box-shadow: 0 8px 20px rgba(31, 175, 84, 0.3);
+  }
+
+  .btn-whatsapp:hover {
+    background-color: var(--green-dark);
+    box-shadow: 0 12px 28px rgba(31, 175, 84, 0.38);
+  }
+
+  .btn-secondary {
+    border: 1px solid var(--pink);
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(27, 42, 92, 0.06);
+    color: var(--pink);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--blush);
+    box-shadow: 0 4px 12px rgba(27, 42, 92, 0.08);
+  }
+
+  .price-card {
+    border: 1px solid var(--card-border);
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 24px rgba(27, 42, 92, 0.08);
+    transition:
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .price-card:hover {
+    box-shadow: 0 12px 32px rgba(27, 42, 92, 0.12);
+    transform: translateY(-0.125rem);
+  }
+
+  .hero-photo {
+    isolation: isolate;
+  }
+
+  .hero-photo__offset {
+    background-color: var(--frame-pink);
+    border-radius: 2.5rem;
+    border-top-left-radius: 5rem;
+    border-bottom-right-radius: 5rem;
+    inset: 0.35rem -0.35rem -0.35rem 0.35rem;
+    position: absolute;
+    rotate: 3deg;
+    z-index: 0;
+  }
+
+  .hero-photo__frame {
+    border: 7px solid #fff;
+    border-radius: 2.5rem;
+    border-top-left-radius: 5rem;
+    border-bottom-right-radius: 5rem;
+    box-shadow: 0 20px 50px rgba(233, 30, 122, 0.18);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
 }
 
 .no-scrollbar {
@@ -96,6 +281,6 @@ small,
 }
 
 ::selection {
-  background: #f7c5dc;
+  background: var(--reviews-pink);
   color: var(--text-heading);
 }
