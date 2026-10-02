@@ -1,13 +1,28 @@
 import Image from 'next/image';
+import { buildLandingMetadata } from '../../lib/seo-metadata';
+import { buildAllStructuredData } from '../../lib/structured-data';
+import {
+  CAPTIONED_GALLERY,
+  EXPERIENCE_COPY,
+  HERO_IMAGE,
+  POSTER_IMAGE,
+  PRICING,
+  SECTION_TONES,
+  formatInr,
+} from '../../lib/site-config';
+import { PhotoGallery } from './photo-gallery';
+import { Section } from './section';
 import {
   BeforeAfterSlider,
   ExperienceVideo,
   SalonGallery,
 } from './section-interactions';
 import {
+  CertificateSection,
   FinalCallToAction,
   FirstHaircutSection,
   LocationSection,
+  ParentChildSection,
   QuestionsSection,
   ReviewsSection,
 } from './support-sections';
@@ -16,54 +31,15 @@ import {
   PHONE_NUMBER,
   WHATSAPP_HREF,
 } from './contact-details';
+import { SiteFooter } from './site-footer';
 import { SiteHeader } from './site-header';
 
-const heroImage =
-  '/images/9_e041d01a-9b54-4e65-a423-b91cf3493d86_1790778166822.jpeg';
 const experienceVideoUrl = '/videos/lollipop-video.mp4';
-const experiencePosterUrl = '/videos/lollipop-poster.jpg';
-const experienceCopy = {
-  firstParagraph:
-    "Lollipop Locs Premium Kids Salon & Spa offers a fun and safe grooming experience for kids and tweens, including kids' haircuts, baby tonsure, anti-lice treatments, puberty spa, and birthday spa parties.",
-  secondParagraph:
-    'Pamper your little ones with expert care in a child-friendly environment where every visit is filled with comfort, care, and smiles!',
-};
-const experienceVideoDescription = `${experienceCopy.firstParagraph} ${experienceCopy.secondParagraph}`;
+const experiencePosterUrl = POSTER_IMAGE;
+const experienceCopy = EXPERIENCE_COPY;
+const structuredData = buildAllStructuredData();
 
-const description =
-  'A colourful kids salon in Electronic City with patient stylists, themed chairs, toys and play—to make haircut time easier for little ones and parents.';
-
-export const metadata = {
-  title: 'Kids Haircut in Electronic City, Bangalore | Lollipop Locs',
-  description,
-  openGraph: {
-    title: 'Kids Haircut in Electronic City, Bangalore | Lollipop Locs',
-    description,
-    type: 'website',
-  },
-};
-
-const businessSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: 'Lollipop Locs',
-  description,
-  areaServed: {
-    '@type': 'Place',
-    name: 'Electronic City, Bangalore',
-  },
-  priceRange: '₹899–₹1,299',
-};
-
-const videoSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'VideoObject',
-  name: 'See the Lollipop Locs Experience',
-  description: experienceVideoDescription,
-  thumbnailUrl: experiencePosterUrl,
-  contentUrl: experienceVideoUrl,
-  uploadDate: '2026-10-01',
-};
+export const metadata = buildLandingMetadata();
 
 const trustPoints = [
   { icon: '✂️', label: 'Patient Stylists' },
@@ -121,11 +97,12 @@ function RatingStars() {
   );
 }
 
-function BookingLink({ children, href, tone, icon, className = '' }) {
+function BookingLink({ children, href, tone, icon, className = '', ...props }) {
   return (
     <a
       href={href}
       className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold leading-none text-white shadow-[0_8px_18px_rgba(46,32,42,0.12)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_22px_rgba(46,32,42,0.16)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a] ${tone} ${className}`}
+      {...props}
     >
       {icon}
       {children}
@@ -133,18 +110,14 @@ function BookingLink({ children, href, tone, icon, className = '' }) {
   );
 }
 
-function PriceCard({ label, price, theme }) {
+function PriceCard({ label, price }) {
   return (
-    <div
-      className={`rounded-[1.1rem] border px-4 py-3 ${theme === 'blue' ? 'border-[#d7e9f0] bg-[#f1f9fc]' : 'border-[#f4d5e3] bg-[#fff5fa]'}`}
-    >
+    <div className="card-surface rounded-[1.1rem] px-4 py-3 shadow-[0_8px_22px_rgba(82,42,64,0.06)]">
       <div className="flex items-baseline justify-between gap-2">
-        <p className="text-sm font-bold text-[#342330]">{label}</p>
-        <p className="font-[family-name:var(--font-fredoka)] text-[1.35rem] font-semibold leading-none text-[#c52f76]">
-          ₹{price}
-        </p>
+        <p className="text-sm font-bold">{label}</p>
+        <p className="text-price text-[1.35rem] leading-none">{formatInr(price)}</p>
       </div>
-      <p className="mt-1 text-[0.72rem] font-semibold leading-snug text-[#6d5b65]">
+      <p className="text-muted mt-1 text-[0.72rem] leading-snug">
         Haircut only • Hair wash not included
       </p>
     </div>
@@ -173,51 +146,43 @@ function LollipopDecoration() {
 
 function HeroSection() {
   return (
-    <section
-      aria-labelledby="hero-title"
-      className="relative isolate overflow-hidden bg-[linear-gradient(135deg,#fffafd_0%,#fff4f9_54%,#fff_100%)]"
+    <Section
+      ariaLabelledby="hero-title"
+      className="relative overflow-hidden pt-8 sm:pt-12 lg:pt-14"
       id="top"
+      tone="white"
     >
-      <div
-        aria-hidden="true"
-        className="absolute -left-24 top-14 h-64 w-64 rounded-full bg-[#fce8f1] opacity-70 blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-[#e9f7f1] opacity-75 blur-3xl"
-      />
-
-      <div className="relative mx-auto grid max-w-[1240px] items-center gap-10 px-5 pb-9 pt-8 sm:px-8 sm:pb-12 sm:pt-12 lg:grid-cols-[1.03fr_0.97fr] lg:gap-14 lg:pb-10 lg:pt-14">
+      <div className="relative mx-auto grid max-w-[1240px] items-center gap-10 pb-9 sm:pb-12 lg:grid-cols-[1.03fr_0.97fr] lg:gap-14 lg:pb-10">
         <div className="relative z-10">
           <h1
-            className="max-w-[17ch] text-[clamp(2.25rem,7vw,3.75rem)] font-semibold leading-[1.06] tracking-[-0.035em] text-[#2e202a]"
+            className="max-w-[22ch] text-[clamp(2rem,6vw,3.35rem)] font-semibold leading-[1.08] tracking-[-0.035em]"
             id="hero-title"
           >
-            Kids Haircut in Electronic City, Bangalore
+            Kids Haircut in Electronic City at Lollipop Locs Kids Salon &amp; Spa
           </h1>
-          <h2 className="mt-3 max-w-[25ch] text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-[#c52f76]">
+          <p className="text-accent mt-3 max-w-[25ch] text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em]">
             Haircut Time, Made Happier for Kids{' '}
             <span className="whitespace-nowrap" aria-label="candy and scissors">
               🍭✂️
             </span>
-          </h2>
-
-          <p className="mt-4 max-w-[61ch] text-[1.0625rem] leading-[1.6] text-[#5f4d58] sm:mt-5 sm:text-lg">
-            Welcome to Lollipop Locs, a colourful kids salon in Electronic City
-            with patient stylists, themed haircut chairs, toys and play—designed
-            to make haircut time easier for little ones and parents.
           </p>
 
-          <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#f4df72] bg-[#fffdf2] px-3.5 py-2">
+          <p className="mt-4 max-w-[61ch] text-[1.0625rem] leading-[1.6] sm:mt-5 sm:text-lg">
+            Welcome to Lollipop Locs, a colourful kids salon near me in Electronic
+            City, Bengaluru with patient stylists, themed haircut chairs, toys and
+            play—designed to make haircut time easier for little ones and parents.
+          </p>
+
+          <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-black/5 bg-pastel-cream px-3.5 py-2">
             <RatingStars />
-            <span className="text-sm font-bold text-[#3d3037]">
+            <span className="text-sm font-bold">
               4.9 on Google
             </span>
           </div>
 
           <div className="mt-5 grid max-w-[540px] grid-cols-2 gap-2.5 sm:gap-3">
-            <PriceCard label="👦 Boys Haircut" price="899" theme="blue" />
-            <PriceCard label="👧 Girls Haircut" price="999" theme="pink" />
+            <PriceCard label="👦 Boys Haircut" price={PRICING.boysHaircut} />
+            <PriceCard label="👧 Girls Haircut" price={PRICING.girlsHaircut} />
           </div>
 
           <div className="mt-5 flex flex-wrap gap-3">
@@ -226,44 +191,36 @@ function HeroSection() {
               tone="bg-[#c52f76] hover:bg-[#ad2868]"
               icon={<PhoneIcon />}
             >
-              Call to Book
+              Call {PHONE_NUMBER} to Book
             </BookingLink>
             <BookingLink
               href={WHATSAPP_HREF}
               tone="bg-[#00764c] hover:bg-[#006b45]"
               icon={<WhatsAppIcon />}
             >
-              WhatsApp
+              WhatsApp Lollipop Locs
             </BookingLink>
           </div>
         </div>
 
         <div className="relative mx-auto w-full max-w-[570px] lg:max-w-none">
-          <div
-            aria-hidden="true"
-            className="absolute -inset-3 -rotate-2 rounded-[2.2rem] bg-[#f4d9e7] sm:-inset-4 sm:rounded-[2.6rem]"
-          />
-          <div className="relative aspect-[1.12/1] overflow-hidden rounded-[1.8rem] border-[5px] border-white shadow-[0_24px_56px_rgba(123,67,97,0.19)] sm:aspect-[1.13/1] sm:rounded-[2.2rem] lg:aspect-[0.96/1]">
+          <div className="card-surface relative aspect-[1.12/1] overflow-hidden rounded-[1.8rem] shadow-[0_24px_56px_rgba(123,67,97,0.12)] sm:aspect-[1.13/1] sm:rounded-[2.2rem] lg:aspect-[0.96/1]">
             <Image
-              src={heroImage}
-              alt="A stylist giving a child a haircut in a themed salon chair at Lollipop Locs"
-              fill
+              src={HERO_IMAGE}
+              alt="Kids haircut in Electronic City — stylist giving a child a haircut in a themed salon chair at Lollipop Locs"
+              width={1140}
+              height={1018}
               priority
-              loading="eager"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 48vw"
-              className="object-cover object-[50%_58%]"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#341d2c]/15 to-transparent"
+              className="h-full w-full object-cover object-[50%_58%]"
             />
           </div>
           <LollipopDecoration />
         </div>
       </div>
 
-      <div className="relative mx-auto max-w-[1240px] px-5 pb-7 pt-4 sm:px-8 sm:pb-9">
-        <div className="grid grid-cols-2 gap-2 rounded-[1.4rem] border border-[#e4eef2] bg-white/90 p-3 shadow-[0_10px_30px_rgba(52,35,48,0.05)] sm:grid-cols-4 sm:gap-3 sm:p-4">
+      <div className="relative mx-auto max-w-[1240px] pb-7 pt-4 sm:pb-9">
+        <div className="card-surface grid grid-cols-2 gap-2 rounded-[1.4rem] p-3 shadow-[0_10px_30px_rgba(52,35,48,0.05)] sm:grid-cols-4 sm:gap-3 sm:p-4">
           {trustPoints.map((point) => (
             <div
               key={point.label}
@@ -272,25 +229,26 @@ function HeroSection() {
               <span aria-hidden="true" className="text-lg leading-none">
                 {point.icon}
               </span>
-              <span className="text-[0.76rem] font-bold leading-tight text-[#51424b] sm:text-sm">
+              <span className="text-[0.76rem] font-bold leading-tight sm:text-sm">
                 {point.label}
               </span>
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
 function MobileBookingBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 gap-2 border-t border-white/20 bg-[#fffafd]/95 px-3 pt-2 shadow-[0_-8px_24px_rgba(46,32,42,0.15)] backdrop-blur sm:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 gap-2 border-t border-black/5 bg-white/95 px-3 pt-2 shadow-[0_-8px_24px_rgba(46,32,42,0.15)] backdrop-blur sm:hidden">
       <BookingLink
         href={PHONE_HREF}
         tone="bg-[#c52f76] hover:bg-[#ad2868]"
         icon={<PhoneIcon />}
         className="min-h-11 px-3 text-xs"
+        aria-label={`Call Lollipop Locs at ${PHONE_NUMBER} to book a kids haircut`}
       >
         Call to Book
       </BookingLink>
@@ -299,6 +257,7 @@ function MobileBookingBar() {
         tone="bg-[#00764c] hover:bg-[#006b45]"
         icon={<WhatsAppIcon />}
         className="min-h-11 px-3 text-xs"
+        aria-label="WhatsApp Lollipop Locs to book a kids haircut"
       >
         WhatsApp
       </BookingLink>
@@ -321,91 +280,53 @@ function CallToBook({ className = '' }) {
 
 function ExperienceSection() {
   return (
-    <section
-      id="experience"
-      aria-labelledby="experience-title"
-      className="bg-[#fffafd] px-5 py-12 sm:px-8 sm:py-16"
-    >
-      <div className="mx-auto grid max-w-[1120px] items-center gap-7 rounded-[2rem] border border-[#f1dce7] bg-white p-4 shadow-[0_18px_50px_rgba(82,42,64,0.08)] sm:p-7 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10 lg:p-9">
-        <div className="px-1 sm:px-3">
-          <h2 id="experience-title" className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-[#2e202a]">
-            See the Lollipop Locs Experience 🍭
-          </h2>
-          <div id="experience-copy" className="mt-4 space-y-3 text-[1.0625rem] leading-[1.6] text-[#5f4d58]">
-            <p>{experienceCopy.firstParagraph}</p>
-            <p>{experienceCopy.secondParagraph}</p>
-          </div>
-          <p className="mt-5 font-bold text-[#51424b]">For more details 📞</p>
-          <div className="mt-3 flex flex-wrap gap-3">
-            <BookingLink
-              href={PHONE_HREF}
-              tone="bg-[#c52f76] hover:bg-[#ad2868]"
-              icon={<PhoneIcon />}
+    <Section id="experience" ariaLabelledby="experience-title" tone="white">
+      <div className="card-surface mx-auto max-w-[1120px] overflow-hidden rounded-[2rem] p-4 shadow-[0_18px_50px_rgba(82,42,64,0.08)] sm:p-7 lg:p-9">
+        <div className="grid items-center gap-7 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10">
+          <div className="min-w-0 px-1 sm:px-3">
+            <h2
+              id="experience-title"
+              className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em]"
             >
-              {PHONE_NUMBER}
-            </BookingLink>
-            <BookingLink
-              href={WHATSAPP_HREF}
-              tone="bg-[#00764c] hover:bg-[#006b45]"
-              icon={<WhatsAppIcon />}
+              {experienceCopy.heading}
+            </h2>
+            <div
+              id="experience-copy"
+              className="mt-4 space-y-3 text-[1.0625rem] leading-[1.6]"
             >
-              WhatsApp
-            </BookingLink>
+              <p>{experienceCopy.firstParagraph}</p>
+              <p>{experienceCopy.secondParagraph}</p>
+            </div>
           </div>
+          <ExperienceVideo
+            videoUrl={experienceVideoUrl}
+            posterUrl={experiencePosterUrl}
+            descriptionId="experience-copy"
+          />
         </div>
-        <ExperienceVideo
-          videoUrl={experienceVideoUrl}
-          posterUrl={experiencePosterUrl}
-          descriptionId="experience-copy"
-        />
+        <div className="mt-8 min-w-0 sm:mt-10">
+          <PhotoGallery photos={CAPTIONED_GALLERY} />
+        </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
 function ParentsSection() {
   const reasons = [
-    {
-      icon: '✂️',
-      title: 'Patient Stylists',
-      detail: 'Experienced with little ones.',
-      tone: 'bg-[#fff3f8]',
-    },
-    {
-      icon: '🚗',
-      title: 'Themed Chairs',
-      detail: 'Car, Unicorn & Airplane.',
-      tone: 'bg-[#eff9fc]',
-    },
-    {
-      icon: '🧸',
-      title: 'Toys & Distractions',
-      detail: 'Keeps little minds engaged.',
-      tone: 'bg-[#fff9e9]',
-    },
-    {
-      icon: '🛝',
-      title: 'Play Area',
-      detail: 'Let them settle in first.',
-      tone: 'bg-[#eef9f3]',
-    },
-    {
-      icon: '🫧',
-      title: 'Kid-Friendly Products',
-      detail: 'Gentle care for little hair.',
-      tone: 'bg-[#f4f2fb]',
-    },
+    { icon: '✂️', title: 'Patient Stylists', detail: 'Experienced with little ones.' },
+    { icon: '🚗', title: 'Themed Chairs', detail: 'Car, Unicorn & Airplane.' },
+    { icon: '🧸', title: 'Toys & Distractions', detail: 'Keeps little minds engaged.' },
+    { icon: '🛝', title: 'Play Area', detail: 'Let them settle in first.' },
+    { icon: '🫧', title: 'Kid-Friendly Products', detail: 'Gentle care for little hair.' },
   ];
 
   return (
-    <section
-      aria-labelledby="parents-title"
-      className="bg-[#fff4f9] px-5 py-12 sm:px-8 sm:py-16"
-    >
+    <Section ariaLabelledby="parents-title" tone="white">
       <div className="mx-auto max-w-[1240px]">
         <h2
           id="parents-title"
-          className="mx-auto max-w-[22ch] text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-[#2e202a]"
+          className="mx-auto max-w-[22ch] text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em]"
         >
             Made for Kids. Easier for Parents. ❤️
         </h2>
@@ -413,111 +334,108 @@ function ParentsSection() {
           {reasons.map((reason) => (
             <article
               key={reason.title}
-              className={`rounded-[1.35rem] border border-white/80 ${reason.tone} px-3 py-4 text-center shadow-[0_8px_22px_rgba(82,42,64,0.06)] sm:px-4 sm:py-5`}
+              className="card-surface rounded-[1.35rem] px-3 py-4 text-center shadow-[0_8px_22px_rgba(82,42,64,0.06)] sm:px-4 sm:py-5"
             >
               <span aria-hidden="true" className="text-3xl leading-none sm:text-4xl">
                 {reason.icon}
               </span>
-              <p className="mt-3 text-sm font-extrabold leading-snug text-[#342330] sm:text-[0.98rem]">
+              <h3 className="mt-3 text-sm font-bold leading-snug sm:text-[0.98rem]">
                 {reason.title}
-              </p>
-              <p className="mt-1.5 text-xs leading-relaxed text-[#6b5963] sm:text-sm">
+              </h3>
+              <p className="text-muted mt-1.5 text-xs leading-relaxed sm:text-sm">
                 — {reason.detail}
               </p>
             </article>
           ))}
         </div>
-        <p className="mx-auto mt-8 max-w-[76ch] text-center text-[1.0625rem] leading-[1.7] text-[#5f4d58] sm:mt-10 sm:text-lg">
+        <p className="mx-auto mt-8 max-w-[76ch] text-center text-[1.0625rem] leading-[1.7] sm:mt-10 sm:text-lg">
           Searching for a kids salon near me for your child&apos;s next haircut? At Lollipop Locs Electronic City, the experience is designed around children—from patient stylists and playful surroundings to themed chairs and plenty of distraction.
         </p>
       </div>
-    </section>
+    </Section>
   );
 }
 
 function ComfortableSection() {
   return (
-    <section
-      aria-labelledby="comfortable-title"
-      className="overflow-hidden bg-[#fffafd] px-5 py-12 sm:px-8 sm:py-16"
-    >
+    <Section ariaLabelledby="comfortable-title" tone={SECTION_TONES.nervousChild}>
       <div className="mx-auto w-full max-w-[1120px]">
-        <div className="grid min-w-0 grid-cols-1 gap-7 rounded-[2rem] bg-[#fcecf4] p-5 sm:p-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:gap-10 lg:p-10">
+        <div className="card-surface grid min-w-0 grid-cols-1 gap-7 rounded-[2rem] p-5 shadow-[0_18px_50px_rgba(82,42,64,0.08)] sm:p-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:gap-10 lg:p-10">
           <div className="min-w-0">
-            <h2 id="comfortable-title" className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-[#2e202a]">
+            <h2 id="comfortable-title" className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em]">
               Worried They Won&apos;t Sit for a Haircut? ❤️
             </h2>
-            <p className="mt-5 text-[1.0625rem] leading-[1.6] text-[#5f4d58]">
+            <p className="mt-5 text-[1.0625rem] leading-[1.6]">
               That&apos;s okay. Some children simply need a little more time.
             </p>
-            <p className="mt-3 text-[1.0625rem] leading-[1.6] text-[#5f4d58]">
+            <p className="mt-3 text-[1.0625rem] leading-[1.6]">
               Let them look around, meet their stylist, play and get comfortable before we begin.
             </p>
-            <p className="mt-5 font-[family-name:var(--font-fredoka)] text-xl font-semibold leading-snug text-[#c52f76] sm:text-2xl">
+            <p className="text-accent mt-5 font-[family-name:var(--font-fredoka)] text-xl font-semibold leading-snug sm:text-2xl">
               Let Them Explore. Let Them Play. Then Let Them Try.
             </p>
             <CallToBook className="mt-6" />
           </div>
           <div className="relative min-w-0">
-            <div aria-hidden="true" className="pointer-events-none absolute -inset-3 rotate-2 rounded-[1.8rem] bg-white/70" />
             <SalonGallery />
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
 function PricingSection() {
   return (
-    <section
+    <Section
       id="pricing"
-      aria-labelledby="pricing-title"
-      className="bg-[#fff6fa] px-5 pb-16 pt-12 sm:px-8 sm:pb-20 sm:pt-16"
+      ariaLabelledby="pricing-title"
+      className="pb-16 sm:pb-20"
+      tone="white"
     >
       <div className="mx-auto max-w-[1000px]">
         <div className="mx-auto max-w-[760px] text-center">
-          <h2 id="pricing-title" className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-[#2e202a]">
+          <h2 id="pricing-title" className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em]">
             Cute Salon. Serious Haircuts. ✂️
           </h2>
-          <p className="mt-4 text-left text-[1.0625rem] leading-[1.7] text-[#5f4d58] sm:text-center">
+          <p className="mt-4 text-left text-[1.0625rem] leading-[1.7] sm:text-center">
             Whether you&apos;re searching for a kids haircut near me, planning your toddler&apos;s regular trim or choosing a new growing-up style, our stylists work with you to understand the haircut you want.
           </p>
-          <p className="mt-3 font-semibold text-[#51424b]">
+          <p className="mt-3 font-semibold">
             Have a style in mind? Bring us a reference photo.
           </p>
         </div>
 
-        <div className="mt-8 overflow-hidden rounded-[1.6rem] border border-[#f1d7e4] bg-white shadow-[0_16px_42px_rgba(82,42,64,0.08)]">
-          <div className="border-b border-[#f1dce7] bg-[#fffafd] px-4 py-5 text-center sm:px-7">
-            <h3 className="font-[family-name:var(--font-fredoka)] text-2xl font-semibold text-[#c52f76]">
+        <div className="card-surface mt-8 overflow-hidden rounded-[1.6rem] shadow-[0_16px_42px_rgba(82,42,64,0.08)]">
+          <div className="border-b border-black/5 px-4 py-5 text-center sm:px-7">
+            <h3 className="text-accent text-2xl font-semibold">
               Clear &amp; Transparent Pricing
             </h3>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[480px] border-collapse text-left">
               <thead>
-                <tr className="bg-[#fff4f9] text-[#5a4551]">
+                <tr className="border-b border-black/5">
                   <th scope="col" className="w-[27%] px-4 py-4 text-sm font-bold sm:px-7" />
                   <th scope="col" className="px-4 py-4 text-sm font-bold sm:px-7">Haircut Only</th>
                   <th scope="col" className="px-4 py-4 text-sm font-bold sm:px-7">Haircut + Hair Wash</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#f2e3eb] text-[#342330]">
+              <tbody className="divide-y divide-black/5">
                 <tr>
                   <th scope="row" className="px-4 py-5 font-bold sm:px-7">👦 Boys</th>
-                  <td className="px-4 py-5 font-[family-name:var(--font-fredoka)] text-xl font-semibold text-[#c52f76] sm:px-7">₹899</td>
-                  <td className="px-4 py-5 font-[family-name:var(--font-fredoka)] text-xl font-semibold text-[#c52f76] sm:px-7">₹1,099</td>
+                  <td className="text-price px-4 py-5 text-xl sm:px-7">{formatInr(PRICING.boysHaircut)}</td>
+                  <td className="text-price px-4 py-5 text-xl sm:px-7">{formatInr(PRICING.boysHaircutWithWash)}</td>
                 </tr>
                 <tr>
                   <th scope="row" className="px-4 py-5 font-bold sm:px-7">👧 Girls</th>
-                  <td className="px-4 py-5 font-[family-name:var(--font-fredoka)] text-xl font-semibold text-[#c52f76] sm:px-7">₹999</td>
-                  <td className="px-4 py-5 font-[family-name:var(--font-fredoka)] text-xl font-semibold text-[#c52f76] sm:px-7">₹1,299</td>
+                  <td className="text-price px-4 py-5 text-xl sm:px-7">{formatInr(PRICING.girlsHaircut)}</td>
+                  <td className="text-price px-4 py-5 text-xl sm:px-7">{formatInr(PRICING.girlsHaircutWithWash)}</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p className="px-4 pb-5 pt-3 text-sm text-[#75616d] sm:px-7">
+          <p className="text-muted px-4 pb-5 pt-3 text-sm sm:px-7">
             Haircut-only prices do not include hair wash.
           </p>
         </div>
@@ -528,21 +446,20 @@ function PricingSection() {
           <BeforeAfterSlider />
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
 export default function KidsHaircutElectronicCityPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
-      />
+      {structuredData.map((schema, index) => (
+        <script
+          key={`ld-json-${index}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       <SiteHeader />
       <main>
         <HeroSection />
@@ -550,12 +467,15 @@ export default function KidsHaircutElectronicCityPage() {
         <ParentsSection />
         <ComfortableSection />
         <PricingSection />
+        <ParentChildSection />
         <FirstHaircutSection />
+        <CertificateSection />
         <ReviewsSection />
         <QuestionsSection />
         <LocationSection />
         <FinalCallToAction />
       </main>
+      <SiteFooter />
       <MobileBookingBar />
     </>
   );

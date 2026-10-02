@@ -2,8 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { PHONE_HREF, WHATSAPP_HREF } from './contact-details';
-
-const MOBILE_WHATSAPP_HREF = 'https://wa.me/918904313999';
+import { WHATSAPP_MOBILE_HREF } from '../../lib/site-config';
 
 const navLinks = [
   { href: '#experience', label: 'Our Experience' },
@@ -14,7 +13,7 @@ const navLinks = [
 ];
 
 const navLinkClassName =
-  'flex min-h-11 items-center rounded px-2 text-[0.95rem] font-bold text-[#59434f] transition hover:text-[#c52f76] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]';
+  'text-muted flex min-h-11 items-center rounded px-2 text-[0.95rem] font-bold transition hover:text-[#c52f76] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]';
 
 function CandyMark() {
   return (
@@ -153,7 +152,7 @@ export function SiteHeader() {
   }, [closeMenu]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#f2e5ec] bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/95">
+    <header className="sticky top-0 z-50 border-b border-black/5 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/95">
       <div className="mx-auto flex min-h-[76px] max-w-[1240px] items-center justify-between gap-5 px-5 py-3 sm:px-8">
         <a
           href="#top"
@@ -164,7 +163,7 @@ export function SiteHeader() {
             <span className="block font-[family-name:var(--font-fredoka)] text-[1.35rem] font-semibold leading-none tracking-[-0.03em] text-[#c52f76]">
               Lollipop Locs
             </span>
-            <span className="mt-1 block text-[0.64rem] font-bold leading-none text-[#75616d]">
+            <span className="text-muted mt-1 block text-[0.64rem] font-bold leading-none">
               Premium Kids &amp; Tweens Salon
             </span>
           </span>
@@ -172,7 +171,7 @@ export function SiteHeader() {
 
         <nav
           aria-label="Main navigation"
-          className="hidden items-center gap-5 text-[0.82rem] font-bold text-[#59434f] xl:flex"
+          className="text-muted hidden items-center gap-5 text-[0.82rem] font-bold xl:flex"
         >
           {navLinks.map((link) => (
             <a
@@ -206,7 +205,7 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-[#59434f] transition hover:bg-[#fff4f9] hover:text-[#c52f76] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a] xl:hidden"
+          className="text-muted inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg transition hover:bg-pastel-blush hover:text-[#c52f76] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a] xl:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-nav-panel"
           aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -220,7 +219,7 @@ export function SiteHeader() {
         <nav
           id="mobile-nav-panel"
           aria-label="Mobile navigation"
-          className="xl:hidden border-t border-[#f2e5ec] bg-white shadow-[0_12px_28px_rgba(46,32,42,0.08)]"
+          className="xl:hidden border-t border-black/5 bg-white shadow-[0_12px_28px_rgba(46,32,42,0.08)]"
         >
           <div className="mx-auto flex max-w-[1240px] flex-col gap-1 px-5 py-4 sm:px-8">
             {navLinks.map((link) => (
@@ -233,7 +232,7 @@ export function SiteHeader() {
                 {link.label}
               </a>
             ))}
-            <div className="mt-3 grid gap-2 border-t border-[#f2e5ec] pt-4">
+            <div className="mt-3 grid gap-2 border-t border-black/5 pt-4">
               <BookingLink
                 href={PHONE_HREF}
                 tone="bg-[#c52f76] hover:bg-[#ad2868]"
@@ -244,7 +243,7 @@ export function SiteHeader() {
                 Call
               </BookingLink>
               <BookingLink
-                href={MOBILE_WHATSAPP_HREF}
+                href={WHATSAPP_MOBILE_HREF}
                 tone="bg-[#00764c] hover:bg-[#006b45]"
                 icon={<WhatsAppIcon />}
                 className="w-full min-h-11"

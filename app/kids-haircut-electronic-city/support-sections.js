@@ -1,12 +1,25 @@
 import Image from 'next/image';
 import {
+  BUSINESS,
+  CERTIFICATE_IMAGE,
+  FAQ_ITEMS,
+  FIRST_HAIRCUT_COPY,
+  GOOGLE_REVIEWS,
+  GOOGLE_REVIEWS_AGGREGATE,
+  PARENT_CHILD_COMBOS,
+  PRICING,
+  SECTION_TONES,
+  formatFullAddress,
+  formatHoursDisplay,
+  formatInr,
+} from '../../lib/site-config';
+import { GoogleReviews } from './section-interactions';
+import {
   PHONE_HREF,
   PHONE_NUMBER,
   WHATSAPP_HREF,
 } from './contact-details';
-
-const certificateImage =
-  '/images/2_5be3a031-428d-4e15-8d0f-d6b5ad78456e_1790778166801.jpeg';
+import { Section } from './section';
 
 function PhoneIcon() {
   return (
@@ -94,340 +107,329 @@ function WhatsAppToBook({ className = '' }) {
   );
 }
 
-function ComboPrices() {
-  const combos = [
-    'Dad + Son — ₹1,199',
-    'Mom + Son — ₹1,299',
-    'Dad + Daughter — ₹1,299',
-    'Mom + Daughter — ₹1,499',
-  ];
+export function ParentChildSection() {
+  const { heading, items, footnote } = PARENT_CHILD_COMBOS;
 
   return (
-    <details className="group mt-5 rounded-[1rem] border border-[#f1d6e3] bg-white/90">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 rounded-[1rem] px-4 py-3.5 font-bold text-[#713e58] marker:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c52f76] [&::-webkit-details-marker]:hidden">
-        <span>Parent + Child Combos from ₹1,199</span>
-        <span
-          aria-hidden="true"
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#fce8f1] text-xl leading-none text-[#c52f76] transition-transform group-open:rotate-45"
+    <Section
+      id="parent-child"
+      ariaLabelledby="parent-child-title"
+      tone={SECTION_TONES.parentChild}
+    >
+      <div className="mx-auto max-w-[760px]">
+        <h2
+          id="parent-child-title"
+          className="text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em]"
         >
-          +
-        </span>
-      </summary>
-      <ul className="space-y-2 border-t border-[#f1dce7] px-4 py-3 text-sm font-semibold text-[#51424b]">
-        {combos.map((combo) => (
-          <li key={combo} className="flex items-center justify-between gap-3">
-            <span>{combo.split(' — ')[0]}</span>
-            <span className="font-[family-name:var(--font-fredoka)] text-base text-[#c52f76]">
-              {combo.split(' — ')[1]}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </details>
+          {heading}
+        </h2>
+        <div className="mt-7 grid grid-cols-1 gap-4 sm:mt-9 sm:grid-cols-2">
+          {items.map((item) => (
+            <article
+              key={item.label}
+              className="card-surface rounded-[1.35rem] px-5 py-4 shadow-[0_10px_28px_rgba(82,42,64,0.07)] sm:px-6 sm:py-5"
+            >
+              <p className="text-[1.02rem] font-semibold leading-snug">
+                {item.label}
+              </p>
+              <p className="text-price mt-2 text-2xl font-bold leading-none">
+                {formatInr(item.price)}*
+              </p>
+            </article>
+          ))}
+        </div>
+        <p className="mx-auto mt-5 max-w-[52ch] text-center text-sm font-medium leading-relaxed text-[#2e202a] sm:mt-6">
+          {footnote}
+        </p>
+      </div>
+    </Section>
   );
 }
 
 export function FirstHaircutSection() {
-  return (
-    <section
-      id="first-time"
-      aria-label="First-time haircut experiences"
-      className="bg-[#fffafd] px-5 py-12 sm:px-8 sm:py-16"
-    >
-      <div className="mx-auto grid max-w-[1120px] gap-5 lg:grid-cols-2 lg:gap-7">
-        <article className="rounded-[1.8rem] border border-[#f0d9e5] bg-[linear-gradient(145deg,#fff4f9_0%,#fff_100%)] p-5 shadow-[0_16px_40px_rgba(82,42,64,0.07)] sm:p-7">
-          <h2 className="font-[family-name:var(--font-fredoka)] text-2xl font-semibold leading-tight text-[#2e202a] sm:text-[1.75rem]">
-            ❤️ Let Them Watch You First
-          </h2>
-          <p className="mt-4 font-bold text-[#51424b]">Nervous about their haircut?</p>
-          <p className="mt-2 text-[1.02rem] leading-[1.65] text-[#5f4d58]">
-            Sometimes watching Mom or Dad comfortably get a haircut first can
-            make the experience feel more familiar.
-          </p>
-          <p className="mt-4 font-[family-name:var(--font-fredoka)] text-lg font-semibold leading-snug text-[#c52f76]">
-            Go First. Let Them Watch. Then Let Them Try.
-          </p>
-          <ComboPrices />
-          <CallToBook className="mt-5" />
-        </article>
+  const copy = FIRST_HAIRCUT_COPY;
+  const keepsakePrice = formatInr(PRICING.certificate);
 
-        <article className="grid gap-5 rounded-[1.8rem] border border-[#dcebf0] bg-[linear-gradient(145deg,#f0f9fc_0%,#fff_100%)] p-5 shadow-[0_16px_40px_rgba(52,83,94,0.07)] sm:p-7 md:grid-cols-[1fr_160px] md:items-center">
+  return (
+    <Section
+      id="first-time"
+      ariaLabelledby="first-haircut-title"
+      tone={SECTION_TONES.firstHaircut}
+    >
+      <div className="mx-auto max-w-[760px]">
+        <article className="card-surface rounded-[1.8rem] p-5 shadow-[0_16px_40px_rgba(52,83,94,0.07)] sm:p-7">
+          <h2
+            id="first-haircut-title"
+            className="text-2xl font-semibold leading-tight sm:text-[1.75rem]"
+          >
+            {copy.heading}
+          </h2>
+          <p className="mt-4 text-[1.02rem] leading-[1.65]">
+            {copy.introBeforeBold}
+            <strong>{copy.introBold}</strong>
+            {copy.introAfterBold}
+          </p>
+          <p className="mt-3 text-[1.02rem] leading-[1.65]">{copy.body}</p>
+          <h3 className="text-accent mt-6 text-lg font-semibold leading-snug sm:text-xl">
+            {copy.subheading}
+          </h3>
+          <p className="mt-4 text-[1.02rem] leading-[1.65]">
+            {copy.keepsakeBeforeBold}
+            <strong>
+              {copy.keepsakeBold} — {keepsakePrice}
+              {copy.keepsakeBoldSuffix}
+            </strong>
+            {copy.keepsakeAfterBold}
+          </p>
+          <ul className="mt-4 space-y-2.5 text-[1.02rem] leading-[1.65]">
+            {copy.keepsakeItems.map((item) => (
+              <li key={item.bold} className="flex gap-2">
+                <span aria-hidden="true">{item.emoji}</span>
+                <span>
+                  {item.beforeBold}
+                  <strong>{item.bold}</strong>
+                  {item.afterBold}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5 font-bold leading-relaxed">{copy.tagline}</p>
+          <p className="mt-2 text-sm italic leading-relaxed text-[#2e202a]">
+            {copy.disclaimer}
+          </p>
+          <a
+            href={PHONE_HREF}
+            className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#c52f76] px-6 py-3 text-sm font-bold leading-none text-white shadow-[0_8px_18px_rgba(46,32,42,0.12)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#ad2868] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]"
+          >
+            {copy.callToBookLabel}
+          </a>
+        </article>
+      </div>
+    </Section>
+  );
+}
+
+export function CertificateSection() {
+  return (
+    <Section ariaLabel="First haircut certificate" tone="white">
+      <div className="mx-auto max-w-[760px]">
+        <article className="card-surface grid gap-5 rounded-[1.8rem] p-5 shadow-[0_16px_40px_rgba(52,83,94,0.07)] sm:p-7 md:grid-cols-[1fr_160px] md:items-center">
           <div>
-            <h2 className="font-[family-name:var(--font-fredoka)] text-2xl font-semibold leading-tight text-[#2e202a] sm:text-[1.75rem]">
-              ✂️ Their First Haircut Happens Only Once
+            <h2 className="text-2xl font-semibold leading-tight sm:text-[1.75rem]">
+              Personalised First Haircut Certificate
             </h2>
-            <p className="mt-4 text-[1.02rem] leading-[1.65] text-[#5f4d58]">
-              Looking for a baby salon near me for your little one&apos;s first
-              haircut? Give them time to explore, play and settle in while our
-              patient stylists gently introduce them to the experience.
+            <p className="mt-4 font-bold leading-relaxed">
+              Optional add-on — {formatInr(PRICING.certificate)} extra
             </p>
-            <p className="mt-4 font-[family-name:var(--font-fredoka)] text-lg font-semibold leading-snug text-[#c52f76]">
-              Make the Milestone a Memory ❤️
-            </p>
-            <p className="mt-3 font-bold leading-relaxed text-[#51424b]">
-              Personalised First Haircut Certificate — ₹699 extra
-            </p>
-            <p className="mt-1 text-sm leading-relaxed text-[#75616d]">
-              Optional add-on. Haircut charged separately.
+            <p className="text-muted mt-2 text-sm leading-relaxed">
+              Haircut charged separately.
             </p>
           </div>
           <div className="relative mx-auto aspect-[4/5] w-full max-w-[190px] overflow-hidden rounded-[1.2rem] border-4 border-white shadow-[0_12px_30px_rgba(82,42,64,0.14)] md:max-w-none">
             <Image
-              src={certificateImage}
-              alt="The Lollipop Locs personalised first haircut certificate"
+              src={CERTIFICATE_IMAGE}
+              alt="Baby tonsure and first haircut certificate at Lollipop Locs, Electronic City"
+              width={760}
+              height={950}
               loading="lazy"
-              fill
               sizes="(max-width: 768px) 190px, 160px"
-              className="object-cover"
+              className="h-full w-full object-cover"
             />
           </div>
           <CallToBook className="md:col-span-2 md:justify-self-start" />
         </article>
       </div>
-    </section>
+    </Section>
   );
 }
-
-const reviewTodos = [
-  'TODO: Parent review about patient stylist / nervous child',
-  'TODO: Parent review about haircut quality',
-  'TODO: Parent review about first haircut / baby experience',
-];
 
 export function ReviewsSection() {
   return (
-    <section
-      id="reviews"
-      aria-labelledby="reviews-title"
-      className="bg-[#fff4f9] px-5 py-12 sm:px-8 sm:py-16"
-    >
+    <Section id="reviews" ariaLabelledby="reviews-title" tone="cream">
       <div className="mx-auto max-w-[1120px]">
         <h2
           id="reviews-title"
-          className="text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-[#2e202a]"
+          className="text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em]"
         >
-          Parents Say It Best ⭐
+          Loved by Parents &amp; Little Ones 💛
         </h2>
-        <div className="mt-4 flex justify-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#f4df72] bg-[#fffdf2] px-4 py-2">
-            <span aria-hidden="true" className="text-[#f4b72f]">
-              ⭐
-            </span>
-            <span className="text-sm font-bold text-[#3d3037]">4.9 on Google</span>
-          </div>
-        </div>
+        <p className="mx-auto mt-3 max-w-[42ch] text-center text-[1.0625rem] font-medium leading-[1.6] text-[#111827]">
+          Real reviews from Google
+        </p>
 
-        <div
-          role="region"
-          aria-label="Google reviews carousel"
-          tabIndex={0}
-          className="mt-7 flex w-full min-w-0 snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4 [scrollbar-color:#e9afca_transparent] [scrollbar-width:thin] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c52f76] sm:mt-9"
-        >
-          {reviewTodos.map((review, index) => (
-            <article
-              key={review}
-              className="flex min-h-[190px] w-[82vw] max-w-[360px] shrink-0 snap-start flex-col justify-between rounded-[1.4rem] border border-[#f1dce7] bg-white p-5 shadow-[0_12px_30px_rgba(82,42,64,0.07)] sm:min-h-[210px] sm:p-6"
-            >
-              <span className="font-[family-name:var(--font-fredoka)] text-sm font-semibold text-[#c52f76]">
-                Review {index + 1}
+        {GOOGLE_REVIEWS_AGGREGATE ? (
+          <div className="mt-4 flex justify-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-black/5 bg-white px-4 py-2">
+              <span aria-hidden="true" className="text-[#946200]">
+                ★
               </span>
-              <p className="mt-5 rounded-[1rem] border-2 border-dashed border-[#e4bfd0] bg-[#fff8fb] px-4 py-5 text-center font-bold leading-relaxed text-[#8a6576]">
-                {review}
-              </p>
-            </article>
-          ))}
-        </div>
+              <span className="text-sm font-bold text-[#111827]">
+                {GOOGLE_REVIEWS_AGGREGATE.value} on Google ·{' '}
+                {GOOGLE_REVIEWS_AGGREGATE.count} reviews
+              </span>
+            </div>
+          </div>
+        ) : null}
 
-        <div className="mt-3 flex justify-center">
-          <a
-            href="https://www.google.com/search?q=Lollipop+Locs+Electronic+City+Google+reviews"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-11 items-center justify-center rounded-full border-2 border-[#c52f76] px-5 py-3 text-center text-xs font-extrabold tracking-[0.04em] text-[#c52f76] transition hover:bg-[#c52f76] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2e202a]"
-          >
-            READ MORE GOOGLE REVIEWS
-          </a>
+        <div className="mt-7 min-w-0 sm:mt-9">
+          <GoogleReviews reviews={GOOGLE_REVIEWS} />
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
-const questions = [
-  {
-    question: 'My child cries during haircuts. Can you manage?',
-    answer:
-      'Our stylists regularly work with little ones who may be nervous or find it difficult to sit still. We take a patient approach and use toys and distractions to help them feel more comfortable.',
-  },
-  {
-    question: "Is Lollipop Locs suitable for my baby's first haircut?",
-    answer:
-      'Yes. We give little ones time to become familiar with the salon and stylist before beginning.',
-  },
-  {
-    question: 'Can I stay beside my child?',
-    answer: 'Yes. Parents can stay close during the haircut.',
-  },
-  {
-    question: 'Can my child choose a themed chair?',
-    answer:
-      "Yes, subject to availability and suitability for your child's age and size.",
-  },
-  {
-    question: 'Do I need an appointment?',
-    answer:
-      "Appointments are recommended, particularly on weekends. Call us to book your child's haircut.",
-  },
-];
-
 export function QuestionsSection() {
   return (
-    <section
-      id="questions"
-      aria-labelledby="questions-title"
-      className="bg-[#fffafd] px-5 py-12 sm:px-8 sm:py-16"
-    >
+    <Section id="questions" ariaLabelledby="questions-title" tone="white">
       <div className="mx-auto max-w-[900px]">
         <h2
           id="questions-title"
-          className="text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-[#2e202a]"
+          className="text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em]"
         >
           Quick Questions Parents Ask
         </h2>
         <div className="mt-7 space-y-3 sm:mt-9">
-          {questions.map(({ question, answer }) => (
+          {FAQ_ITEMS.map(({ question, answer }) => (
             <details
               key={question}
-              className="group overflow-hidden rounded-[1.1rem] border border-[#f0dce6] bg-white shadow-[0_8px_22px_rgba(82,42,64,0.045)]"
+              className="card-surface group overflow-hidden rounded-[1.1rem] shadow-[0_8px_22px_rgba(82,42,64,0.045)]"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-4 font-bold leading-snug text-[#43323d] marker:hidden focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-[#c52f76] sm:px-6 sm:py-5 [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-4 font-bold leading-snug marker:hidden focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-[#c52f76] sm:px-6 sm:py-5 [&::-webkit-details-marker]:hidden">
                 <span>{question}</span>
                 <span
                   aria-hidden="true"
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#fff0f6] text-xl leading-none text-[#c52f76] transition-transform group-open:rotate-45"
+                  className="text-accent flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-pastel-blush text-xl leading-none transition-transform group-open:rotate-45"
                 >
                   +
                 </span>
               </summary>
-              <p className="border-t border-[#f3e4eb] px-4 py-4 text-[0.98rem] leading-[1.7] text-[#66545e] sm:px-6">
+              <p className="border-t border-black/5 px-4 py-4 text-[0.98rem] leading-[1.7] sm:px-6">
                 {answer}
               </p>
             </details>
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
 export function LocationSection() {
+  const address = formatFullAddress();
+  const hours = formatHoursDisplay();
+
   return (
-    <section
-      id="location"
-      aria-labelledby="location-title"
-      className="bg-[#f4f8fc] px-5 py-12 sm:px-8 sm:py-16"
-    >
+    <Section id="location" ariaLabelledby="location-title" tone={SECTION_TONES.visitUs}>
       <div className="mx-auto max-w-[1120px]">
         <h2
           id="location-title"
-          className="text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-[#2e202a]"
+          className="text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em]"
         >
           Visit Lollipop Locs – Electronic City 📍
         </h2>
         <div className="mt-7 grid gap-5 sm:mt-9 lg:grid-cols-[0.9fr_1.1fr] lg:gap-7">
-          <div className="rounded-[1.8rem] border border-[#dce7f0] bg-white p-5 shadow-[0_14px_36px_rgba(53,73,96,0.07)] sm:p-7">
-            <p className="font-[family-name:var(--font-fredoka)] text-2xl font-semibold text-[#c52f76]">
-              Lollipop Locs
+          <div className="card-surface rounded-[1.8rem] p-5 shadow-[0_14px_36px_rgba(53,73,96,0.07)] sm:p-7">
+            <p className="text-accent text-xl font-semibold leading-snug sm:text-2xl">
+              {BUSINESS.name}
             </p>
-            <p className="mt-1 font-bold text-[#75616d]">
-              Premium Kids &amp; Tweens Salon
-            </p>
-            <div className="mt-5 space-y-3 text-[0.98rem] leading-relaxed text-[#51424b]">
-              <p className="rounded-xl bg-[#fff7fb] px-4 py-3 font-semibold">
-                📍 TODO: Full address
-              </p>
-              <p>⭐ 4.9 on Google</p>
-              <p className="rounded-xl bg-[#fff7fb] px-4 py-3 font-semibold">
-                🕐 TODO: Confirmed store hours
-              </p>
-              <p className="rounded-xl bg-[#fff7fb] px-4 py-3 font-semibold">
-                📞 {PHONE_NUMBER}
+            <p className="text-muted mt-1 font-bold">{BUSINESS.tagline}</p>
+            <div className="mt-5 space-y-3 text-[0.98rem] leading-relaxed">
+              <div className="card-surface rounded-xl px-4 py-3 font-semibold">
+                <p className="font-bold">📍 Address</p>
+                <a
+                  href={BUSINESS.mapsLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 block hover:text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c52f76]"
+                >
+                  {address.lines.map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))}
+                </a>
+                <p className="text-muted mt-2 font-bold">{address.floorNote}</p>
+              </div>
+              <p className="font-medium">⭐ 4.9 on Google</p>
+              <div className="card-surface rounded-xl px-4 py-3 font-semibold">
+                <p className="font-bold">🕐 Store hours</p>
+                <ul className="mt-2 space-y-1">
+                  {hours.map(({ label, time }) => (
+                    <li key={label}>
+                      <span className="font-medium">{label}:</span> {time}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <p className="card-surface rounded-xl px-4 py-3 font-semibold">
+                📞{' '}
+                <a href={PHONE_HREF} className="text-accent font-bold hover:underline">
+                  {PHONE_NUMBER}
+                </a>
               </p>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <CallToBook />
               <WhatsAppToBook />
               <ContactButton
-                href="https://www.google.com/maps/search/?api=1&query=Lollipop+Locs+Electronic+City+Bangalore"
+                href={BUSINESS.mapsLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                tone="bg-[#fffafd] text-[#c52f76] ring-1 ring-[#edc8d9] hover:bg-[#fff3f8]"
+                tone="bg-white text-[#c52f76] ring-1 ring-black/5 hover:bg-pastel-blush"
                 icon={<MapPinIcon />}
-                className="border border-[#edc8d9] !text-[#c52f76]"
+                className="card-surface !text-[#c52f76]"
               >
                 Get Directions
               </ContactButton>
             </div>
           </div>
 
-          <div
-            role="img"
-            aria-label="TODO: Compact Google Map after the full address is confirmed"
-            className="relative flex min-h-[230px] items-center justify-center overflow-hidden rounded-[1.8rem] border-2 border-dashed border-[#c9d7e4] bg-[linear-gradient(135deg,#e9f3f7_0%,#f6f3fa_50%,#eaf7f0_100%)] p-6 text-center sm:min-h-[300px]"
-          >
-            <div
-              aria-hidden="true"
-              className="absolute -left-10 top-8 h-40 w-[130%] rotate-[-12deg] border-y-[14px] border-white/80"
+          <div className="card-surface overflow-hidden rounded-[1.8rem] shadow-[0_14px_36px_rgba(53,73,96,0.07)]">
+            <iframe
+              title="Lollipop Locs location"
+              src={BUSINESS.mapsEmbedUrl}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="aspect-[4/3] min-h-[230px] w-full sm:min-h-[300px] lg:aspect-auto lg:min-h-[360px]"
+              allowFullScreen
             />
-            <div
-              aria-hidden="true"
-              className="absolute -bottom-16 right-8 h-[130%] w-10 rotate-[28deg] border-x-[10px] border-white/80"
-            />
-            <div className="relative rounded-[1.2rem] border border-white bg-white/90 px-5 py-4 shadow-[0_12px_30px_rgba(53,73,96,0.1)]">
-              <MapPinIcon />
-              <p className="mt-2 font-bold leading-relaxed text-[#526877]">
-                TODO: Compact Google Map
-              </p>
-            </div>
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
 export function FinalCallToAction() {
   return (
-    <section
-      aria-labelledby="final-cta-title"
-      className="bg-[linear-gradient(135deg,#f8ddea_0%,#fff2f8_54%,#eaf7f1_100%)] px-5 pb-28 pt-12 sm:px-8 sm:pb-16 sm:pt-16"
+    <Section
+      ariaLabelledby="final-cta-title"
+      className="pb-28 sm:pb-16"
+      tone="white"
     >
-      <div className="mx-auto max-w-[900px] rounded-[2rem] border border-white/80 bg-white/85 px-5 py-8 text-center shadow-[0_18px_48px_rgba(82,42,64,0.1)] backdrop-blur sm:px-10 sm:py-12">
+      <div className="card-surface mx-auto max-w-[900px] rounded-[2rem] px-5 py-8 text-center shadow-[0_18px_48px_rgba(82,42,64,0.1)] sm:px-10 sm:py-12">
         <h2
           id="final-cta-title"
-          className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-[#2e202a]"
+          className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.025em]"
         >
           Ready for Their Next Haircut? 🍭✂️
         </h2>
-        <p className="mx-auto mt-4 max-w-[58ch] text-[1.0625rem] leading-[1.6] text-[#5f4d58] sm:text-lg">
+        <p className="mx-auto mt-4 max-w-[58ch] text-[1.0625rem] leading-[1.6] sm:text-lg">
           A little play. A little patience. And a haircut they&apos;ll look great
           in.
         </p>
         <div className="mx-auto mt-6 grid max-w-[560px] gap-3 sm:grid-cols-2">
-          <p className="rounded-[1.1rem] border border-[#d7e9f0] bg-[#f1f9fc] px-4 py-3 text-left font-bold text-[#342330]">
+          <p className="card-surface rounded-[1.1rem] px-4 py-3 text-left font-bold">
             👦 Boys Haircut Only —{' '}
-            <span className="font-[family-name:var(--font-fredoka)] text-xl font-semibold text-[#c52f76]">
-              ₹899
-            </span>
+            <span className="text-price text-xl">{formatInr(PRICING.boysHaircut)}</span>
           </p>
-          <p className="rounded-[1.1rem] border border-[#f4d5e3] bg-[#fff5fa] px-4 py-3 text-left font-bold text-[#342330]">
+          <p className="card-surface rounded-[1.1rem] px-4 py-3 text-left font-bold">
             👧 Girls Haircut Only —{' '}
-            <span className="font-[family-name:var(--font-fredoka)] text-xl font-semibold text-[#c52f76]">
-              ₹999
-            </span>
+            <span className="text-price text-xl">{formatInr(PRICING.girlsHaircut)}</span>
           </p>
         </div>
-        <p className="mt-4 text-sm font-semibold leading-relaxed text-[#75616d]">
+        <p className="text-muted mt-4 text-sm leading-relaxed">
           Hair wash not included. Haircut + hair wash options available.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -435,6 +437,6 @@ export function FinalCallToAction() {
           <WhatsAppToBook />
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

@@ -1,20 +1,31 @@
 @import 'tailwindcss';
 
 :root {
-  --ink: #2e202a;
-  --pink: #e75396;
-  --pink-deep: #c52f76;
-  --blush: #fff7fb;
-  --blush-strong: #f6e8f0;
-  --mint: #eaf8f1;
-  --green: #00764c;
-  --blue: #eaf5fa;
-  --yellow: #ffc948;
+  --brand: #c52f76;
+  --brand-deep: #ad2868;
+  --brand-green: #00764c;
+  --text-body: #1f2937;
+  --text-heading: #111827;
+  --text-muted: #374151;
+  --pastel-blush: #fef3f5;
+  --pastel-mint: #f0faf6;
+  --pastel-sky: #f0f7fd;
+  --pastel-cream: #fffbf2;
+  --card-border: rgb(0 0 0 / 0.05);
+  --section-divider: rgb(0 0 0 / 0.05);
 }
 
 @theme inline {
   --font-sans: var(--font-nunito);
   --font-display: var(--font-fredoka);
+  --color-pastel-blush: #fef3f5;
+  --color-pastel-mint: #f0faf6;
+  --color-pastel-sky: #f0f7fd;
+  --color-pastel-cream: #fffbf2;
+  --color-body: #1f2937;
+  --color-heading: #111827;
+  --color-muted: #374151;
+  --color-brand: #c52f76;
 }
 
 * {
@@ -29,17 +40,62 @@ html {
 body {
   margin: 0;
   background: #fff;
-  color: var(--ink);
+  color: var(--text-body);
   font-family: var(--font-nunito), sans-serif;
+  font-weight: 500;
 }
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
+  color: var(--text-heading);
   font-family: var(--font-fredoka), sans-serif;
+  font-weight: 600;
+}
+
+p,
+li,
+address,
+td,
+th,
+label,
+summary {
+  color: var(--text-body);
+  font-weight: 500;
+}
+
+small,
+.text-muted {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.text-accent {
+  color: var(--brand);
+}
+
+.text-price {
+  color: var(--brand);
+  font-family: var(--font-fredoka), sans-serif;
+  font-weight: 600;
+}
+
+.card-surface {
+  border: 1px solid var(--card-border);
+  background: #fff;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 ::selection {
   background: #f7c5dc;
-  color: var(--ink);
+  color: var(--text-heading);
 }
