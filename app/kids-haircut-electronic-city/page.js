@@ -2,10 +2,10 @@ import Image from 'next/image';
 import { buildLandingMetadata } from '../../lib/seo-metadata';
 import { buildAllStructuredData } from '../../lib/structured-data';
 import {
-  BENEFIT_CARD_TONES,
   CAPTIONED_GALLERY,
   EXPERIENCE_COPY,
   HERO_IMAGE,
+  PARENT_CHILD_COMBOS,
   POSTER_IMAGE,
   PRICING,
   SECTION_TONES,
@@ -19,11 +19,9 @@ import {
   SalonGallery,
 } from './section-interactions';
 import {
-  CertificateSection,
   FinalCallToAction,
   FirstHaircutSection,
   LocationSection,
-  ParentChildSection,
   QuestionsSection,
   ReviewsSection,
 } from './support-sections';
@@ -187,8 +185,8 @@ function HeroSection() {
           <GoogleRatingBadge />
 
           <div className="grid min-w-0 grid-cols-2 gap-3">
-            <PriceCard label="👦 Boys Haircut" price={PRICING.boysHaircut} tint="bg-skyfade" />
-            <PriceCard label="👧 Girls Haircut" price={PRICING.girlsHaircut} tint="bg-tint-pink" />
+            <PriceCard label="👦 Boys Haircut" price={PRICING.boysHaircut} />
+            <PriceCard label="👧 Girls Haircut" price={PRICING.girlsHaircut} />
           </div>
 
           <div className="flex flex-wrap gap-3">
@@ -201,27 +199,31 @@ function HeroSection() {
           </div>
         </div>
 
-        <div className="w-full min-w-0">
+        <div className="hero-photo-glow relative w-full min-w-0">
           <HeroPhotoFrame />
         </div>
       </div>
+    </Section>
+  );
+}
 
-      <div className="relative mt-6 lg:mt-8">
-        <div className="price-card grid grid-cols-2 gap-2 bg-white p-3 sm:grid-cols-4 sm:gap-3 sm:p-4">
-          {trustPoints.map((point) => (
-            <div
-              key={point.label}
-              className="flex min-h-12 items-center justify-center gap-2 rounded-xl px-1.5 text-center sm:justify-start sm:px-2"
-            >
-              <span aria-hidden="true" className="text-lg leading-none">
-                {point.icon}
-              </span>
-              <span className="text-[0.76rem] font-bold leading-tight sm:text-sm">
-                {point.label}
-              </span>
-            </div>
-          ))}
-        </div>
+function TrustStripSection() {
+  return (
+    <Section dividerBefore tone={SECTION_TONES.trustStrip}>
+      <div className="price-card grid grid-cols-2 gap-2 bg-white p-3 sm:grid-cols-4 sm:gap-3 sm:p-4">
+        {trustPoints.map((point) => (
+          <div
+            key={point.label}
+            className="flex min-h-12 items-center justify-center gap-2 rounded-xl px-1.5 text-center sm:justify-start sm:px-2"
+          >
+            <span aria-hidden="true" className="text-lg leading-none">
+              {point.icon}
+            </span>
+            <span className="text-[0.76rem] font-bold leading-tight sm:text-sm">
+              {point.label}
+            </span>
+          </div>
+        ))}
       </div>
     </Section>
   );
@@ -264,39 +266,38 @@ function CallToBook({ className = '' }) {
 
 function ExperienceSection() {
   return (
-    <>
-      <Section
-        id="experience"
-        ariaLabelledby="experience-title"
-        tone={SECTION_TONES.experience}
-      >
-        <div className="grid items-center gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-8">
-          <div className="min-w-0">
-            <h2
-              id="experience-title"
-              className="section-heading text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
-            >
-              {experienceCopy.heading}
-            </h2>
-            <div
-              id="experience-copy"
-              className="space-y-3 text-[1.0625rem] leading-[1.6]"
-            >
-              <p>{experienceCopy.firstParagraph}</p>
-              <p>{experienceCopy.secondParagraph}</p>
-            </div>
+    <Section
+      id="experience"
+      ariaLabelledby="experience-title"
+      dividerBefore
+      tone={SECTION_TONES.experience}
+    >
+      <div className="grid items-center gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-8">
+        <div className="min-w-0">
+          <h2
+            id="experience-title"
+            className="section-heading text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
+          >
+            {experienceCopy.heading}
+          </h2>
+          <div
+            id="experience-copy"
+            className="space-y-3 text-[1.0625rem] leading-[1.6]"
+          >
+            <p>{experienceCopy.firstParagraph}</p>
+            <p>{experienceCopy.secondParagraph}</p>
           </div>
-          <ExperienceVideo
-            videoUrl={experienceVideoUrl}
-            posterUrl={experiencePosterUrl}
-            descriptionId="experience-copy"
-          />
         </div>
-      </Section>
-      <Section ariaLabel="Salon photo gallery" tone="white">
+        <ExperienceVideo
+          videoUrl={experienceVideoUrl}
+          posterUrl={experiencePosterUrl}
+          descriptionId="experience-copy"
+        />
+      </div>
+      <div className="mt-8 lg:mt-10">
         <PhotoGallery photos={CAPTIONED_GALLERY} />
-      </Section>
-    </>
+      </div>
+    </Section>
   );
 }
 
@@ -310,7 +311,11 @@ function ParentsSection() {
   ];
 
   return (
-    <Section ariaLabelledby="parents-title" tone={SECTION_TONES.benefits}>
+    <Section
+      ariaLabelledby="parents-title"
+      dividerBefore
+      tone={SECTION_TONES.benefits}
+    >
       <h2
         id="parents-title"
         className="section-heading mx-auto max-w-[22ch] text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
@@ -318,10 +323,10 @@ function ParentsSection() {
         Made for Kids. Easier for Parents. ❤️
       </h2>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5 lg:grid-cols-5">
-        {reasons.map((reason, index) => (
+        {reasons.map((reason) => (
           <article
             key={reason.title}
-            className={`price-card p-5 text-center md:p-6 ${BENEFIT_CARD_TONES[index]}`}
+            className="benefit-card p-5 text-center md:p-6"
           >
             <span aria-hidden="true" className="text-3xl leading-none sm:text-4xl">
               {reason.icon}
@@ -344,7 +349,11 @@ function ParentsSection() {
 
 function ComfortableSection() {
   return (
-    <Section ariaLabelledby="comfortable-title" tone={SECTION_TONES.nervousChild}>
+    <Section
+      ariaLabelledby="comfortable-title"
+      dividerBefore
+      tone={SECTION_TONES.nervousChild}
+    >
       <div className="grid min-w-0 grid-cols-1 gap-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:gap-8">
         <div className="min-w-0">
           <h2
@@ -373,8 +382,15 @@ function ComfortableSection() {
 }
 
 function PricingSection() {
+  const { heading, items, footnote } = PARENT_CHILD_COMBOS;
+
   return (
-    <Section id="pricing" ariaLabelledby="pricing-title" tone="white">
+    <Section
+      id="pricing"
+      ariaLabelledby="pricing-title"
+      dividerBefore
+      tone={SECTION_TONES.pricing}
+    >
       <div className="mx-auto max-w-[760px] text-center">
         <h2
           id="pricing-title"
@@ -410,14 +426,14 @@ function PricingSection() {
               </tr>
             </thead>
             <tbody className="divide-y divide-black/5">
-              <tr className="bg-skyfade">
+              <tr className="bg-white">
                 <th scope="row" className="px-4 py-5 text-base font-bold text-navy sm:px-7">
                   👦 Boys
                 </th>
                 <td className="text-price px-4 py-5 text-2xl sm:px-7">{formatInr(PRICING.boysHaircut)}</td>
                 <td className="text-price px-4 py-5 text-2xl sm:px-7">{formatInr(PRICING.boysHaircutWithWash)}</td>
               </tr>
-              <tr className="bg-tint-pink">
+              <tr className="bg-white">
                 <th scope="row" className="px-4 py-5 text-base font-bold text-navy sm:px-7">
                   👧 Girls
                 </th>
@@ -437,6 +453,33 @@ function PricingSection() {
       <div className="mt-6 lg:mt-8">
         <BeforeAfterSlider />
       </div>
+
+      <div className="mt-10 lg:mt-12">
+        <h2
+          id="parent-child-title"
+          className="section-heading text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
+        >
+          {heading}
+        </h2>
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {items.map((item) => (
+            <article
+              key={item.label}
+              className="price-card bg-white px-5 py-4 sm:px-6 sm:py-5"
+            >
+              <p className="text-[1.02rem] font-bold leading-snug text-navy">
+                {item.label}
+              </p>
+              <p className="text-price mt-2 text-2xl font-bold leading-none">
+                {formatInr(item.price)}*
+              </p>
+            </article>
+          ))}
+        </div>
+        <p className="mx-auto mt-5 max-w-[52ch] text-center text-sm font-medium leading-relaxed text-body">
+          {footnote}
+        </p>
+      </div>
     </Section>
   );
 }
@@ -454,13 +497,12 @@ export default function KidsHaircutElectronicCityPage() {
       <SiteHeader />
       <main>
         <HeroSection />
+        <TrustStripSection />
         <ExperienceSection />
         <ParentsSection />
         <ComfortableSection />
         <PricingSection />
-        <ParentChildSection />
         <FirstHaircutSection />
-        <CertificateSection />
         <ReviewsSection />
         <QuestionsSection />
         <LocationSection />

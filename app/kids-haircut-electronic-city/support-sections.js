@@ -6,7 +6,6 @@ import {
   FIRST_HAIRCUT_COPY,
   GOOGLE_REVIEWS,
   GOOGLE_REVIEWS_AGGREGATE,
-  PARENT_CHILD_COMBOS,
   PRICING,
   SECTION_TONES,
   formatFullAddress,
@@ -111,43 +110,6 @@ function WhatsAppToBook({ className = '' }) {
   );
 }
 
-export function ParentChildSection() {
-  const { heading, items, footnote } = PARENT_CHILD_COMBOS;
-
-  return (
-    <Section
-      id="parent-child"
-      ariaLabelledby="parent-child-title"
-      tone={SECTION_TONES.parentChild}
-    >
-      <h2
-        id="parent-child-title"
-        className="section-heading text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
-      >
-        {heading}
-      </h2>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {items.map((item) => (
-          <article
-            key={item.label}
-            className="price-card bg-white px-5 py-4 sm:px-6 sm:py-5"
-          >
-              <p className="text-[1.02rem] font-bold leading-snug text-navy">
-                {item.label}
-              </p>
-              <p className="text-price mt-2 text-2xl font-bold leading-none">
-                {formatInr(item.price)}*
-              </p>
-            </article>
-          ))}
-        </div>
-      <p className="mx-auto mt-5 max-w-[52ch] text-center text-sm font-medium leading-relaxed text-body">
-        {footnote}
-      </p>
-    </Section>
-  );
-}
-
 export function FirstHaircutSection() {
   const copy = FIRST_HAIRCUT_COPY;
   const keepsakePrice = formatInr(PRICING.certificate);
@@ -156,6 +118,7 @@ export function FirstHaircutSection() {
     <Section
       id="first-time"
       ariaLabelledby="first-haircut-title"
+      dividerBefore
       tone={SECTION_TONES.firstHaircut}
     >
       <article className="mx-auto max-w-[760px]">
@@ -202,36 +165,33 @@ export function FirstHaircutSection() {
           {copy.callToBookLabel}
         </a>
       </article>
-    </Section>
-  );
-}
 
-export function CertificateSection() {
-  return (
-    <Section ariaLabel="First haircut certificate" tone={SECTION_TONES.certificate}>
-      <article className="mx-auto grid max-w-[760px] gap-5 md:grid-cols-[1fr_160px] md:items-center">
+      <article
+        aria-label="First haircut certificate"
+        className="mx-auto mt-10 grid max-w-[760px] gap-5 md:mt-12 md:grid-cols-[1fr_160px] md:items-center"
+      >
         <div>
           <h2 className="section-heading text-2xl font-bold leading-tight sm:text-[1.75rem]">
             Personalised First Haircut Certificate
           </h2>
-            <p className="mt-4 font-bold leading-relaxed">
-              Optional add-on — {formatInr(PRICING.certificate)} extra
-            </p>
-            <p className="text-muted mt-2 text-sm leading-relaxed">
-              Haircut charged separately.
-            </p>
-          </div>
-          <div className="price-card relative mx-auto aspect-[4/5] w-full max-w-[190px] overflow-hidden border-2 border-brand bg-white md:max-w-none">
-            <Image
-              src={CERTIFICATE_IMAGE}
-              alt="Baby tonsure and first haircut certificate at Lollipop Locs, Electronic City"
-              width={760}
-              height={950}
-              loading="lazy"
-              sizes="(max-width: 768px) 190px, 160px"
-              className="h-full w-full object-cover"
-            />
-          </div>
+          <p className="mt-4 font-bold leading-relaxed">
+            Optional add-on — {formatInr(PRICING.certificate)} extra
+          </p>
+          <p className="text-muted mt-2 text-sm leading-relaxed">
+            Haircut charged separately.
+          </p>
+        </div>
+        <div className="price-card relative mx-auto aspect-[4/5] w-full max-w-[190px] overflow-hidden border-2 border-brand bg-white md:max-w-none">
+          <Image
+            src={CERTIFICATE_IMAGE}
+            alt="Baby tonsure and first haircut certificate at Lollipop Locs, Electronic City"
+            width={760}
+            height={950}
+            loading="lazy"
+            sizes="(max-width: 768px) 190px, 160px"
+            className="h-full w-full object-cover"
+          />
+        </div>
         <CallToBook className="md:col-span-2 md:justify-self-start" />
       </article>
     </Section>
@@ -240,7 +200,12 @@ export function CertificateSection() {
 
 export function ReviewsSection() {
   return (
-    <Section id="reviews" ariaLabelledby="reviews-title" tone="pinkDeep">
+    <Section
+      id="reviews"
+      ariaLabelledby="reviews-title"
+      dividerBefore
+      tone={SECTION_TONES.reviews}
+    >
       <div className="mb-6 text-center lg:mb-8">
         <h2
           id="reviews-title"
@@ -275,7 +240,12 @@ export function ReviewsSection() {
 
 export function QuestionsSection() {
   return (
-    <Section id="questions" ariaLabelledby="questions-title" tone="white">
+    <Section
+      id="questions"
+      ariaLabelledby="questions-title"
+      dividerBefore
+      tone={SECTION_TONES.faq}
+    >
       <h2
         id="questions-title"
         className="section-heading text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
@@ -312,7 +282,12 @@ export function LocationSection() {
   const hours = formatHoursDisplay();
 
   return (
-    <Section id="location" ariaLabelledby="location-title" tone={SECTION_TONES.visitUs}>
+    <Section
+      id="location"
+      ariaLabelledby="location-title"
+      dividerBefore
+      tone={SECTION_TONES.visitUs}
+    >
       <h2
         id="location-title"
         className="section-heading text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
@@ -395,6 +370,7 @@ export function FinalCallToAction() {
     <Section
       ariaLabelledby="final-cta-title"
       className="pb-20 sm:pb-8"
+      dividerBefore
       tone={SECTION_TONES.finalCta}
     >
       <div className="price-card mx-auto max-w-[900px] bg-white px-5 py-6 text-center sm:px-8 sm:py-8">
@@ -409,11 +385,11 @@ export function FinalCallToAction() {
           in.
         </p>
         <div className="mx-auto mt-6 grid max-w-[560px] gap-3 sm:grid-cols-2">
-          <p className="price-card bg-skyfade px-4 py-3 text-left font-bold text-navy">
+          <p className="price-card bg-white px-4 py-3 text-left font-bold text-navy">
             👦 Boys Haircut Only —{' '}
             <span className="text-price text-xl">{formatInr(PRICING.boysHaircut)}</span>
           </p>
-          <p className="price-card bg-tint-pink px-4 py-3 text-left font-bold text-navy">
+          <p className="price-card bg-white px-4 py-3 text-left font-bold text-navy">
             👧 Girls Haircut Only —{' '}
             <span className="text-price text-xl">{formatInr(PRICING.girlsHaircut)}</span>
           </p>

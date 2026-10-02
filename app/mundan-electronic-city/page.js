@@ -6,6 +6,7 @@ import {
   MUNDAN_PATH,
   PHONE_HREF,
   PHONE_NUMBER,
+  SECTION_TONES,
   SITE_URL,
   WHATSAPP_HREF,
 } from '../../lib/site-config';
@@ -69,7 +70,7 @@ export default function MundanElectronicCityPage() {
           ariaLabelledby="mundan-title"
           className="relative"
           hero
-          tone="blush"
+          tone={SECTION_TONES.hero}
         >
           <div className="mx-auto max-w-[720px] text-center">
             <IntroFullLogo className="mb-6" />
@@ -87,7 +88,12 @@ export default function MundanElectronicCityPage() {
           </div>
         </Section>
 
-        <Section id="book" ariaLabel="Book a baby mundan" tone="white">
+        <Section
+          id="book"
+          ariaLabel="Book a baby mundan"
+          dividerBefore
+          tone={SECTION_TONES.mundanBook}
+        >
           <div className="mx-auto flex max-w-[520px] flex-col items-center gap-4 text-center">
             <p className="text-[1.0625rem] leading-[1.6]">
               Call or WhatsApp to book a baby mundan at our Electronic City salon.

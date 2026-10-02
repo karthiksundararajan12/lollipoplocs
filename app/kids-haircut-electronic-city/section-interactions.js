@@ -183,7 +183,7 @@ function ReviewCard({ review }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <article className="price-card flex h-full flex-col bg-white p-5 sm:p-6">
+    <article className="price-card review-card flex h-full flex-col p-5 sm:p-6">
       <ReviewStars rating={review.rating} />
       <blockquote
         className={`mt-4 flex-1 whitespace-pre-line text-[0.98rem] font-medium leading-[1.65] text-navy ${

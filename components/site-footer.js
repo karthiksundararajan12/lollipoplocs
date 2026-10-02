@@ -2,10 +2,14 @@ import {
   BUSINESS,
   PHONE_HREF,
   PHONE_NUMBER,
+  SECTION_DIVIDER_COLORS,
+  SECTION_TONE_CLASSES,
+  SECTION_TONES,
   WHATSAPP_HREF,
   formatFullAddress,
   formatHoursDisplay,
 } from '../lib/site-config';
+import { SectionDivider } from '../app/kids-haircut-electronic-city/section-divider';
 import { BTN_PRIMARY, BTN_WHATSAPP } from '../app/kids-haircut-electronic-city/ui-primitives';
 import { FooterFullLogo } from './site-logo';
 
@@ -44,67 +48,71 @@ function WhatsAppIcon() {
 export function SiteFooter({ copyrightNote = 'Kids haircut Electronic City, Bengaluru.' }) {
   const address = formatFullAddress();
   const hours = formatHoursDisplay();
+  const footerTone = SECTION_TONES.footer;
 
   return (
-    <footer className="border-t border-black/5 bg-white px-4 py-8 md:px-6">
-      <div className="mx-auto grid max-w-[1240px] gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-        <div>
-          <FooterFullLogo />
-          <address className="mt-4 not-italic text-sm leading-relaxed">
-            <span className="block font-bold">{BUSINESS.name}</span>
-            <a
-              href={BUSINESS.mapsLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 block hover:text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
-            >
-              {address.lines.map((line) => (
-                <span key={line} className="block">
-                  {line}
-                </span>
-              ))}
-            </a>
-            <span className="text-muted mt-2 block font-semibold">
-              {address.floorNote}
-            </span>
-            <a
-              href={PHONE_HREF}
-              className="text-accent mt-3 inline-flex items-center gap-2 font-bold hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
-            >
-              <PhoneIcon />
-              {PHONE_NUMBER}
-            </a>
-          </address>
-        </div>
+    <>
+      <SectionDivider fill={SECTION_DIVIDER_COLORS[footerTone]} />
+      <footer className={`${SECTION_TONE_CLASSES[footerTone]} border-t border-black/5 px-4 py-8 md:px-6`}>
+        <div className="mx-auto grid max-w-[1240px] gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+          <div>
+            <FooterFullLogo />
+            <address className="mt-4 not-italic text-sm leading-relaxed">
+              <span className="block font-bold">{BUSINESS.name}</span>
+              <a
+                href={BUSINESS.mapsLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 block hover:text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+              >
+                {address.lines.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
+              </a>
+              <span className="text-muted mt-2 block font-semibold">
+                {address.floorNote}
+              </span>
+              <a
+                href={PHONE_HREF}
+                className="text-accent mt-3 inline-flex items-center gap-2 font-bold hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+              >
+                <PhoneIcon />
+                {PHONE_NUMBER}
+              </a>
+            </address>
+          </div>
 
-        <div className="flex flex-col gap-3 sm:items-end">
-          <div className="text-sm">
-            <p className="font-bold">Store hours</p>
-            <ul className="text-muted mt-2 space-y-1">
-              {hours.map(({ label, time }) => (
-                <li key={label}>
-                  <span className="font-semibold">{label}:</span>{' '}
-                  {time}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <p className="text-sm font-bold">Book a kids haircut</p>
-          <div className="flex flex-wrap gap-2 sm:justify-end">
-            <a href={PHONE_HREF} className={BTN_PRIMARY}>
-              <PhoneIcon />
-              Call to Book
-            </a>
-            <a href={WHATSAPP_HREF} className={BTN_WHATSAPP}>
-              <WhatsAppIcon />
-              WhatsApp Lollipop Locs
-            </a>
+          <div className="flex flex-col gap-3 sm:items-end">
+            <div className="text-sm">
+              <p className="font-bold">Store hours</p>
+              <ul className="text-muted mt-2 space-y-1">
+                {hours.map(({ label, time }) => (
+                  <li key={label}>
+                    <span className="font-semibold">{label}:</span>{' '}
+                    {time}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <p className="text-sm font-bold">Book a kids haircut</p>
+            <div className="flex flex-wrap gap-2 sm:justify-end">
+              <a href={PHONE_HREF} className={BTN_PRIMARY}>
+                <PhoneIcon />
+                Call to Book
+              </a>
+              <a href={WHATSAPP_HREF} className={BTN_WHATSAPP}>
+                <WhatsAppIcon />
+                WhatsApp Lollipop Locs
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-      <p className="text-muted mx-auto mt-8 max-w-[1240px] text-center text-xs">
-        © {new Date().getFullYear()} {BUSINESS.shortName}. {copyrightNote}
-      </p>
-    </footer>
+        <p className="text-muted mx-auto mt-8 max-w-[1240px] text-center text-xs">
+          © {new Date().getFullYear()} {BUSINESS.shortName}. {copyrightNote}
+        </p>
+      </footer>
+    </>
   );
 }

@@ -131,12 +131,12 @@ export function SiteHeader({ navLinks = KIDS_NAV_LINKS }) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-black/5 bg-white">
-      <div className="mx-auto flex h-16 max-w-[1240px] items-center gap-3 px-5 sm:h-[72px] sm:gap-4 sm:px-8">
+      <div className="mx-auto flex h-16 max-w-[1240px] flex-nowrap items-center gap-3 px-5 sm:h-[72px] sm:gap-4 sm:px-8">
         <HeaderWordmarkLink />
 
         <nav
           aria-label="Main navigation"
-          className="text-muted hidden min-w-0 flex-1 items-center justify-center gap-4 text-[0.8rem] font-bold xl:flex"
+          className="text-muted hidden min-w-max flex-1 flex-nowrap items-center justify-center gap-3 text-[0.8rem] font-bold xl:flex 2xl:gap-4"
         >
           {navLinks.map((link) => (
             <a
@@ -149,13 +149,13 @@ export function SiteHeader({ navLinks = KIDS_NAV_LINKS }) {
           ))}
         </nav>
 
-        <div className="ml-auto flex shrink-0 items-center gap-2">
-          <div className="hidden items-center gap-2 xl:flex">
+        <div className="ml-auto flex shrink-0 flex-nowrap items-center gap-2">
+          <div className="hidden shrink-0 flex-nowrap items-center gap-2 xl:flex">
             <BookingLink
               href={PHONE_HREF}
               variant="primary"
               icon={<PhoneIcon />}
-              className="h-10 px-4 text-xs"
+              className="h-10 shrink-0 whitespace-nowrap px-4 text-xs"
             >
               Call to Book
             </BookingLink>
@@ -163,7 +163,7 @@ export function SiteHeader({ navLinks = KIDS_NAV_LINKS }) {
               href={WHATSAPP_HREF}
               variant="whatsapp"
               icon={<WhatsAppIcon />}
-              className="h-10 px-4 text-xs"
+              className="h-10 shrink-0 whitespace-nowrap px-4 text-xs"
             >
               WhatsApp
             </BookingLink>
