@@ -3,10 +3,12 @@
 import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+const DESKTOP_INITIAL_COUNT = 9;
+
 function GalleryTile({ photo, eager = false, sizes }) {
   return (
     <figure className="min-w-0">
-      <div className="group relative aspect-square overflow-hidden rounded-2xl">
+      <div className="gallery-tile-frame group relative aspect-square overflow-hidden rounded-2xl">
         <Image
           src={photo.src}
           alt={photo.alt}
@@ -15,10 +17,14 @@ function GalleryTile({ photo, eager = false, sizes }) {
           sizes={sizes}
           className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1A1A2E]/75 to-transparent pt-12"
+        />
+        <figcaption className="absolute bottom-2 left-1/2 max-w-[90%] -translate-x-1/2 truncate rounded-full bg-white/95 px-3 py-1 text-center text-xs font-bold text-[#4B2A8A] shadow-sm sm:text-[0.8125rem]">
+          {photo.caption}
+        </figcaption>
       </div>
-      <figcaption className="mt-2 text-center text-sm font-bold leading-snug text-navy sm:text-[0.9375rem]">
-        {photo.caption}
-      </figcaption>
     </figure>
   );
 }
@@ -27,6 +33,9 @@ export function PhotoGallery({ photos }) {
   const scrollRef = useRef(null);
   const slideRefs = useRef([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [showAllDesktop, setShowAllDesktop] = useState(false);
+
+  const hasMoreDesktop = photos.length > DESKTOP_INITIAL_COUNT;
 
   const scrollToSlide = useCallback((index) => {
     const container = scrollRef.current;
@@ -77,6 +86,9 @@ export function PhotoGallery({ photos }) {
 
   return (
     <div className="min-w-0 max-w-full overflow-hidden">
+      <p className="mb-4 text-center text-sm font-bold text-[#4B2A8A]">
+        Real photos from our salon
+      </p>
       <div
         ref={scrollRef}
         aria-label="Photo gallery"
@@ -88,7 +100,9 @@ export function PhotoGallery({ photos }) {
             ref={(element) => {
               slideRefs.current[index] = element;
             }}
-            className="w-[82%] shrink-0 snap-start lg:w-auto lg:shrink lg:snap-align-none"
+            className={`w-[82%] shrink-0 snap-start lg:w-auto lg:shrink lg:snap-align-none ${
+              !showAllDesktop && index >= DESKTOP_INITIAL_COUNT ? 'lg:hidden' : ''
+            }`}
           >
             <GalleryTile
               photo={photo}
@@ -118,6 +132,20 @@ export function PhotoGallery({ photos }) {
           />
         ))}
       </div>
+
+      {hasMoreDesktop ? (
+        <div className="mt-6 hidden justify-center lg:flex">
+          <button
+            type="button"
+            onClick={() => setShowAllDesktop((expanded) => !expanded)}
+            className="rounded-full border-2 border-[#4B2A8A]/20 bg-white px-6 py-2.5 text-sm font-bold text-[#4B2A8A] shadow-sm transition hover:border-[#E91E7A]/40 hover:text-[#E91E7A] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4B2A8A]"
+          >
+            {showAllDesktop
+              ? 'Show less'
+              : `View more (${photos.length - DESKTOP_INITIAL_COUNT} more)`}
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }

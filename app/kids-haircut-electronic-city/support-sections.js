@@ -2,17 +2,19 @@ import Image from 'next/image';
 import {
   BUSINESS,
   CERTIFICATE_IMAGE,
-  FAQ_ITEMS,
   FIRST_HAIRCUT_COPY,
+  GOOGLE_RATING,
+  GOOGLE_REVIEW_COUNT,
   GOOGLE_REVIEWS,
-  GOOGLE_REVIEWS_AGGREGATE,
   PRICING,
   SECTION_TONES,
   formatFullAddress,
   formatHoursDisplay,
   formatInr,
 } from '../../lib/site-config';
+import { FaqAccordion } from './faq-accordion';
 import { GoogleReviews } from './section-interactions';
+import { ProofBadge } from './proof-badge';
 import {
   PHONE_HREF,
   PHONE_NUMBER,
@@ -122,6 +124,9 @@ export function FirstHaircutSection() {
       tone={SECTION_TONES.firstHaircut}
     >
       <article className="mx-auto max-w-[760px]">
+        <div className="mb-4 flex flex-wrap justify-center gap-2 sm:justify-start">
+          <ProofBadge>First Haircut Certificate</ProofBadge>
+        </div>
         <h2
           id="first-haircut-title"
           className="section-heading text-2xl font-bold leading-tight sm:text-[1.75rem]"
@@ -211,28 +216,24 @@ export function ReviewsSection() {
           id="reviews-title"
           className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em] text-navy"
         >
-          Loved by Parents &amp; Little Ones 💛
+          Trusted by Families Across Bangalore
         </h2>
         <p className="mx-auto mt-3 max-w-[42ch] text-[1.0625rem] font-medium leading-[1.6] text-body">
           Real reviews from Google
         </p>
 
-        {GOOGLE_REVIEWS_AGGREGATE ? (
-          <div className="mt-4 flex justify-center">
-            <GoogleRatingBadge
-              rating={String(GOOGLE_REVIEWS_AGGREGATE.value)}
-              label={`on Google · ${GOOGLE_REVIEWS_AGGREGATE.count} reviews`}
-            />
-          </div>
-        ) : (
-          <div className="mt-4 flex justify-center">
-            <GoogleRatingBadge />
-          </div>
-        )}
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+          <GoogleRatingBadge
+            rating={GOOGLE_RATING}
+            label={`on Google · ${GOOGLE_REVIEW_COUNT} reviews`}
+            starsSize="review"
+          />
+          <ProofBadge>Google Rated {GOOGLE_RATING}</ProofBadge>
+        </div>
       </div>
 
       <div className="min-w-0">
-        <GoogleReviews reviews={GOOGLE_REVIEWS} />
+        <GoogleReviews reviews={GOOGLE_REVIEWS} mapsLink={BUSINESS.mapsLink} />
       </div>
     </Section>
   );
@@ -252,27 +253,7 @@ export function QuestionsSection() {
       >
         Quick Questions Parents Ask
       </h2>
-      <div className="mx-auto max-w-[900px] space-y-3">
-        {FAQ_ITEMS.map(({ question, answer }) => (
-          <details
-            key={question}
-            className="price-card group overflow-hidden bg-white"
-          >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-4 font-bold leading-snug marker:hidden focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-brand sm:px-6 sm:py-5 [&::-webkit-details-marker]:hidden">
-                <span>{question}</span>
-                <span
-                  aria-hidden="true"
-                  className="text-accent flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blush text-xl leading-none transition-transform group-open:rotate-45"
-                >
-                  +
-                </span>
-              </summary>
-              <p className="border-t border-black/5 px-4 py-4 text-[0.98rem] leading-[1.7] sm:px-6">
-                {answer}
-              </p>
-            </details>
-        ))}
-      </div>
+      <FaqAccordion />
     </Section>
   );
 }
@@ -317,7 +298,10 @@ export function LocationSection() {
                 </a>
                 <p className="text-muted mt-2 font-bold">{address.floorNote}</p>
               </div>
-              <GoogleRatingBadge className="w-full justify-center sm:w-auto" />
+              <GoogleRatingBadge
+                label={`on Google · ${GOOGLE_REVIEW_COUNT} reviews`}
+                className="w-full justify-center sm:w-auto"
+              />
               <div className="card-surface rounded-xl px-4 py-3 font-semibold">
                 <p className="font-bold">🕐 Store hours</p>
                 <ul className="mt-2 space-y-1">

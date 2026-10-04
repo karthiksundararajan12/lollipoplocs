@@ -1,5 +1,12 @@
-export function RatingStars({ size = 'sm' }) {
-  const starClass = size === 'sm' ? 'h-3.5 w-3.5' : 'h-4 w-4';
+import { GOOGLE_RATING } from '../../lib/site-config';
+
+export function RatingStars({ size = 'hero' }) {
+  const starClass =
+    size === 'review'
+      ? 'h-[22px] w-[22px]'
+      : size === 'hero'
+        ? 'h-[18px] w-[18px] md:h-5 md:w-5'
+        : 'h-3.5 w-3.5';
 
   return (
     <span aria-hidden="true" className="flex items-center gap-0.5 text-star">
@@ -16,9 +23,9 @@ export function RatingStars({ size = 'sm' }) {
   );
 }
 
-function GoogleLogo() {
+export function GoogleLogo({ className = 'h-4 w-4 shrink-0' }) {
   return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 shrink-0">
+    <svg aria-hidden="true" viewBox="0 0 24 24" className={className}>
       <path
         d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1Z"
         fill="#4285F4"
@@ -40,8 +47,9 @@ function GoogleLogo() {
 }
 
 export function GoogleRatingBadge({
-  rating = '4.9',
+  rating = GOOGLE_RATING,
   label = 'on Google',
+  starsSize = 'hero',
   className = '',
 }) {
   return (
@@ -49,8 +57,14 @@ export function GoogleRatingBadge({
       className={`google-rating-badge inline-flex items-center gap-2 rounded-full border border-black/5 bg-white px-4 py-2 shadow-sm ${className}`}
     >
       <GoogleLogo />
-      <span className="text-sm font-bold text-navy">{rating}</span>
-      <RatingStars />
+      <span
+        className={`font-bold text-navy ${
+          starsSize === 'review' ? 'text-[1.0625rem] md:text-lg' : 'text-base md:text-[1.0625rem]'
+        }`}
+      >
+        {rating}
+      </span>
+      <RatingStars size={starsSize} />
       <span className="text-sm font-medium text-muted">{label}</span>
     </div>
   );

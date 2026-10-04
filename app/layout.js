@@ -1,11 +1,11 @@
 import './globals.css';
-import { Fredoka, Nunito } from 'next/font/google';
+import { Baloo_2, Nunito } from 'next/font/google';
 import { BUSINESS, SITE_URL } from '../lib/site-config';
 
-const fredoka = Fredoka({
-  variable: '--font-fredoka',
+const baloo2 = Baloo_2({
+  variable: '--font-baloo',
   subsets: ['latin'],
-  weight: ['500', '600', '700'],
+  weight: ['600', '700', '800'],
   display: 'swap',
 });
 
@@ -31,7 +31,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en-IN">
-      <body className={`${fredoka.variable} ${nunito.variable} font-sans text-base`}>
+      <body className={`${baloo2.variable} ${nunito.variable} font-sans text-base`}>
         {children}
       </body>
     </html>

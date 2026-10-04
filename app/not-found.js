@@ -12,7 +12,7 @@ export const metadata = {
 export default function NotFound() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-blush px-5 py-16 text-center">
-      <p className="font-[family-name:var(--font-fredoka)] text-6xl font-semibold text-brand">
+      <p className="font-heading text-6xl font-semibold text-brand">
         404
       </p>
       <h1 className="mt-4 text-2xl font-bold text-navy">Page not found</h1>
