@@ -15,6 +15,32 @@ function getScrollStep(container) {
   return card.getBoundingClientRect().width + GAP_PX;
 }
 
+function ChairCardImage({ chair }) {
+  const [failed, setFailed] = useState(false);
+
+  if (failed) {
+    return (
+      <div
+        className="absolute inset-0 bg-pink-100"
+        aria-hidden="true"
+      />
+    );
+  }
+
+  return (
+    <Image
+      src={chair.src}
+      alt={chair.alt}
+      fill
+      sizes="(min-width:1024px) 33vw, 85vw"
+      className="object-cover"
+      style={{ objectPosition: chair.objectPosition ?? 'center' }}
+      draggable={false}
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
 export function ChooseChairCarousel({ chairs }) {
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -94,15 +120,7 @@ export function ChooseChairCarousel({ chairs }) {
               className="w-[85%] shrink-0 snap-start overflow-hidden rounded-3xl bg-white shadow-[0_8px_24px_rgb(26_26_46_/0.08)] sm:w-[60%] lg:w-[42%]"
             >
               <div className="relative aspect-[4/3] w-full overflow-hidden">
-                <Image
-                  src={chair.src}
-                  alt={chair.alt}
-                  fill
-                  sizes="(min-width:1024px) 33vw, 85vw"
-                  className="object-cover"
-                  style={{ objectPosition: chair.objectPosition ?? 'center' }}
-                  draggable={false}
-                />
+                <ChairCardImage chair={chair} />
                 <div
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1A1A2E]/70 to-transparent pt-10"

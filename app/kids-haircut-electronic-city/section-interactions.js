@@ -141,6 +141,36 @@ const gallerySlides = [
   { caption: 'Happy Haircuts', src: photos.stylist, alt: 'A stylist giving a child a haircut at Lollipop Locs' },
 ];
 
+function SalonGalleryImage({ slide }) {
+  const [failed, setFailed] = useState(false);
+
+  if (!slide.src) {
+    return null;
+  }
+
+  if (failed) {
+    return (
+      <div
+        className="h-full w-full bg-pink-100"
+        aria-hidden="true"
+      />
+    );
+  }
+
+  return (
+    <Image
+      src={slide.src}
+      alt={slide.alt}
+      width={800}
+      height={600}
+      loading="lazy"
+      sizes="(max-width: 640px) 82vw, 300px"
+      className="h-full w-full object-cover"
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
 export function SalonGallery() {
   return (
     <div
@@ -155,17 +185,7 @@ export function SalonGallery() {
           className="card-surface w-[82vw] max-w-[340px] shrink-0 snap-start overflow-hidden rounded-2xl p-2.5 sm:w-[300px]"
         >
           <div className="relative aspect-[4/3] overflow-hidden rounded-[1rem] bg-blush">
-            {slide.src ? (
-              <Image
-                src={slide.src}
-                alt={slide.alt}
-                width={800}
-                height={600}
-                loading="lazy"
-                sizes="(max-width: 640px) 82vw, 300px"
-                className="h-full w-full object-cover"
-              />
-            ) : null}
+            <SalonGalleryImage slide={slide} />
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1A1A2E]/70 to-transparent pt-10"

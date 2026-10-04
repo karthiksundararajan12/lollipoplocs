@@ -162,7 +162,7 @@ function SparkleBadgeIcon() {
 function PioneerBadge({ className = '' }) {
   return (
     <p
-      className={`inline-flex max-w-full items-center gap-2 rounded-full border border-[#F8B6D0] bg-[#FFE0EC] px-3 py-2 text-sm font-bold leading-snug text-[#E91E7A] shadow-sm ${className}`}
+      className={`hero-pioneer-badge inline-flex max-w-full items-center gap-2 rounded-full border border-[#F8B6D0] bg-[#FFE0EC] px-3 py-2 text-sm font-bold leading-snug text-[#E91E7A] shadow-sm ${className}`}
     >
       <SparkleBadgeIcon />
       One of India&apos;s pioneering premium kids salons
@@ -180,7 +180,7 @@ function HeroTrustStrip({ className = '' }) {
 
   return (
     <div
-      className={`grid w-full grid-cols-2 gap-x-4 gap-y-3 rounded-2xl bg-white/90 p-3 ring-1 ring-black/5 backdrop-blur md:flex md:w-fit md:items-center md:gap-6 md:bg-white/70 md:px-4 md:py-3 ${className}`}
+      className={`hero-trust-strip grid w-full grid-cols-2 gap-x-4 gap-y-3 rounded-2xl bg-white/90 p-3 ring-1 ring-black/5 backdrop-blur md:flex md:w-fit md:items-center md:gap-6 md:bg-white/70 md:px-4 md:py-3 ${className}`}
     >
       <div className={itemClass}>
         <span className={`${textBlockClass} gap-1`}>
@@ -247,7 +247,7 @@ function HeroPhotoFrame({ className = '' }) {
     <div className={`hero-photo relative w-full overflow-visible p-3 ${className}`}>
       <div aria-hidden="true" className="hero-photo__offset" />
       <div className="hero-photo__frame">
-        <div className="relative mx-auto aspect-[4/5] w-full max-h-[640px] lg:aspect-[5/6]">
+        <div className="hero-photo__media relative mx-auto aspect-[4/5] w-full max-h-[640px]">
           <Image
             src={HERO_IMAGE}
             alt="Kids haircut in Electronic City — stylist giving a child a haircut in a themed salon chair at Lollipop Locs"
@@ -292,8 +292,8 @@ function HeroSection() {
         <div className="hero-mobile-gradient" />
       </div>
 
-      <div className="hero-content relative z-10 grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-        <div className="min-w-0 space-y-5">
+      <div className="hero-content relative z-10 grid min-h-0 items-center gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-8">
+        <div className="min-w-0 space-y-5 lg:space-y-0">
           <h1
             className="hero-title max-w-[22ch] text-[clamp(2rem,6vw,3.35rem)] font-bold leading-[1.08] tracking-[-0.035em] text-brand-navy"
             id="hero-title"
@@ -347,7 +347,7 @@ function HeroSection() {
           <HeroTrustStrip />
         </div>
 
-        <div className="hero-photo-glow relative hidden w-full min-w-0 md:block">
+        <div className="hero-photo-glow relative hidden w-full min-w-0 overflow-visible md:block lg:max-w-none">
           <HeroPhotoFrame />
         </div>
       </div>
