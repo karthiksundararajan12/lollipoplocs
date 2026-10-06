@@ -18,10 +18,10 @@ const HERO_PHOTO = {
 };
 
 const HERO_FEATURES = [
-  { label: 'Patient Stylists', Icon: Scissors, circle: 'md:bg-pink-100 md:text-pink-500', mobileIcon: 'text-[#EC2F7B]', desktopBg: 'bg-pink-100', desktopIcon: 'text-pink-500' },
-  { label: 'Themed Chairs', Icon: Sparkles, circle: 'md:bg-teal-100 md:text-teal-500', mobileIcon: 'text-[#9333EA]', desktopBg: 'bg-teal-100', desktopIcon: 'text-teal-500' },
-  { label: 'Play Area', Icon: ToyBrick, circle: 'md:bg-amber-100 md:text-amber-500', mobileIcon: 'text-[#E11D48]', desktopBg: 'bg-yellow-100', desktopIcon: 'text-yellow-500' },
-  { label: 'Kid-Friendly', Icon: Heart, circle: 'md:bg-purple-100 md:text-purple-500', mobileIcon: 'text-[#A855F7]', desktopBg: 'bg-purple-100', desktopIcon: 'text-purple-500' },
+  { label: 'Patient Stylists', mobileLabel: 'Patient Stylists', Icon: Scissors, desktopBg: 'bg-pink-100', desktopIcon: 'text-pink-500' },
+  { label: 'Themed Chairs', mobileLabel: 'Themed Chairs', Icon: Sparkles, desktopBg: 'bg-teal-100', desktopIcon: 'text-teal-500' },
+  { label: 'Play Area', mobileLabel: 'Play Area', Icon: ToyBrick, desktopBg: 'bg-yellow-100', desktopIcon: 'text-yellow-500' },
+  { label: 'Kid-Friendly', mobileLabel: 'Kid-Friendly Products', Icon: Heart, desktopBg: 'bg-purple-100', desktopIcon: 'text-purple-500' },
 ];
 
 function WhatsAppIcon({ className = 'h-5 w-5 shrink-0' }) {
@@ -42,9 +42,9 @@ function WhatsAppIcon({ className = 'h-5 w-5 shrink-0' }) {
   );
 }
 
-function PhoneIcon() {
+function PhoneIcon({ className = 'h-5 w-5' }) {
   return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none">
+    <svg aria-hidden="true" viewBox="0 0 24 24" className={className} fill="none">
       <path
         d="M7.2 3.8h2.5l1.2 4.3-1.8 1.8a15 15 0 0 0 5 5l1.8-1.8 4.3 1.2v2.5a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 5.2 6a2 2 0 0 1 2-2.2Z"
         stroke="currentColor"
@@ -56,7 +56,42 @@ function PhoneIcon() {
   );
 }
 
-const HeroCta = ({ href, variant, icon, label }) => {
+function BoyFaceIcon({ className = 'h-11 w-11 shrink-0 md:h-7 md:w-7' }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 40 40" className={className}>
+      <path fill="#6B4423" d="M9 20c.4-8 4.4-13 11-13s10.6 5 11 13v2H9v-2Z" />
+      <circle cx="9.2" cy="23" r="2.3" fill="#FFD3A8" />
+      <circle cx="30.8" cy="23" r="2.3" fill="#FFD3A8" />
+      <ellipse cx="20" cy="24" rx="9.2" ry="8.4" fill="#FFD7B5" />
+      <path fill="#6B4423" d="M11.2 19.2C12.6 13.4 15.8 10.2 20 10.2s7.4 3.2 8.8 9c-2.2-2.4-5-3.4-8.8-3.4s-6.6 1-8.8 3.4Z" />
+      <circle cx="16.4" cy="23.2" r="1.2" fill="#3A2A1A" />
+      <circle cx="23.6" cy="23.2" r="1.2" fill="#3A2A1A" />
+      <path d="M16.8 27.2c1 1.1 2 1.6 3.2 1.6s2.2-.5 3.2-1.6" fill="none" stroke="#E0896A" strokeLinecap="round" strokeWidth="1.3" />
+      <ellipse cx="13.8" cy="25.6" rx="1.4" ry="0.85" fill="#F4A6B5" />
+      <ellipse cx="26.2" cy="25.6" rx="1.4" ry="0.85" fill="#F4A6B5" />
+    </svg>
+  );
+}
+
+function GirlFaceIcon({ className = 'h-11 w-11 shrink-0 md:h-7 md:w-7' }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 40 40" className={className}>
+      <path fill="#6B4423" d="M8.5 24c.2-8.2 4.2-14.2 11.5-14.2S31.3 15.8 31.5 24c0 2.2-.8 4-2 5.2H10.5c-1.2-1.2-2-3-2-5.2Z" />
+      <ellipse cx="20" cy="24.4" rx="8.4" ry="7.8" fill="#FFD7B5" />
+      <path fill="#6B4423" d="M12 19.4C13.4 13.8 16.2 11 20 11s6.6 2.8 8 8.4c-2-2.2-4.6-3.2-8-3.2s-6 1-8 3.2Z" />
+      <ellipse cx="16.2" cy="9.6" rx="3" ry="1.8" fill="#F25C8A" transform="rotate(-28 16.2 9.6)" />
+      <ellipse cx="23.8" cy="9.6" rx="3" ry="1.8" fill="#F25C8A" transform="rotate(28 23.8 9.6)" />
+      <circle cx="20" cy="10.6" r="1.35" fill="#EC2F7B" />
+      <circle cx="16.4" cy="23.4" r="1.15" fill="#3A2A1A" />
+      <circle cx="23.6" cy="23.4" r="1.15" fill="#3A2A1A" />
+      <path d="M16.8 27.4c.9 1 1.9 1.5 3.2 1.5s2.3-.5 3.2-1.5" fill="none" stroke="#E0896A" strokeLinecap="round" strokeWidth="1.3" />
+      <ellipse cx="13.6" cy="25.8" rx="1.3" ry="0.8" fill="#F4A6B5" />
+      <ellipse cx="26.4" cy="25.8" rx="1.3" ry="0.8" fill="#F4A6B5" />
+    </svg>
+  );
+}
+
+const HeroCta = ({ href, variant, icon, label, mobileLabel }) => {
   const mobileStyles =
     variant === 'whatsapp'
       ? 'bg-[#16A765] text-white'
@@ -72,7 +107,10 @@ const HeroCta = ({ href, variant, icon, label }) => {
       className={`inline-flex h-12 w-full items-center justify-center gap-1.5 overflow-visible whitespace-nowrap rounded-full px-3 text-white shadow-md max-[340px]:px-2 ${mobileStyles} ${desktopStyles} md:h-11 md:w-auto md:max-w-none md:shrink-0 md:justify-center md:gap-2 md:px-3 md:py-0 md:text-[13px]`}
     >
       {icon}
-      <span className="text-[12px] font-bold leading-none max-[340px]:text-[11px] md:text-[13px] md:leading-normal">
+      <span className="text-[13px] font-bold leading-none max-[359px]:text-[12px] md:hidden">
+        {mobileLabel || label}
+      </span>
+      <span className="hidden text-[13px] font-bold leading-normal md:inline">
         {label}
       </span>
       <ChevronRight className="hidden h-4 w-4 shrink-0 md:inline" aria-hidden="true" />
@@ -82,18 +120,25 @@ const HeroCta = ({ href, variant, icon, label }) => {
 
 function HeroGoogleRating() {
   return (
-    <div className="mt-3 flex flex-col items-start gap-1 md:mt-0 md:inline-flex md:w-fit md:gap-0.5 md:rounded-2xl md:bg-white md:px-2.5 md:py-1.5 md:shadow-md">
-      <div className="flex items-center gap-2">
-        <GoogleLogo className="h-6 w-6 shrink-0 md:h-5 md:w-5" />
-        <span className="text-xl font-extrabold text-[#2A1F6B] md:text-base md:font-bold md:text-indigo-950">{GOOGLE_RATING}</span>
-        <span aria-hidden="true" className="inline-flex items-center gap-0.5">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Star key={i} className="h-5 w-5 fill-amber-400 text-amber-400 md:h-3.5 md:w-3.5" />
-          ))}
-        </span>
-      </div>
-      <p className="whitespace-nowrap text-[13px] font-semibold text-[#2A1F6B] md:text-[11px] md:font-normal md:text-slate-600">
-        {GOOGLE_REVIEW_COUNT} Google Reviews
+    <div className="mt-2 inline-flex max-w-full items-center gap-2 whitespace-nowrap rounded-full bg-[#FFFDF8] px-2.5 py-1.5 shadow-[0_2px_10px_rgba(42,31,107,0.08)] md:mt-0 md:w-fit md:gap-1.5 md:rounded-2xl md:bg-white md:px-2.5 md:py-1.5 md:shadow-md">
+      <GoogleLogo className="h-4 w-4 shrink-0 filter-none md:h-[18px] md:w-[18px]" />
+      <span className="text-[11px] font-extrabold leading-none text-[#2A1F6B] min-[400px]:text-xs md:hidden">
+        {GOOGLE_RATING}
+      </span>
+      <span aria-hidden="true" className="inline-flex items-center gap-0.5">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Star
+            key={i}
+            strokeWidth={0}
+            className="h-3 w-3 fill-[#FFC107] text-[#FFC107] min-[400px]:h-3.5 min-[400px]:w-3.5 md:h-3 md:w-3 md:stroke-[1.25] lg:h-3.5 lg:w-3.5"
+          />
+        ))}
+      </span>
+      <span aria-hidden="true" className="h-4 w-px shrink-0 bg-gray-300 md:hidden" />
+      <p className="whitespace-nowrap text-[11px] font-semibold leading-none text-[#2A1F6B] min-[400px]:text-xs md:text-[11px] lg:text-xs xl:text-sm">
+        <span className="hidden font-extrabold md:inline">{GOOGLE_RATING}</span>
+        <span className="hidden md:inline">{` · ${GOOGLE_REVIEW_COUNT} Happy Customers`}</span>
+        <span className="md:hidden">{GOOGLE_REVIEW_COUNT} Happy Customers</span>
       </p>
     </div>
   );
@@ -102,18 +147,25 @@ function HeroGoogleRating() {
 function HeroPriceRow() {
   return (
     <div className="max-md:mt-0 md:mt-0 md:px-4 md:py-4 lg:mt-0 lg:p-0">
-      <div className="mb-4 grid grid-cols-2 gap-3 md:mb-0 lg:flex lg:flex-row lg:justify-start lg:gap-4">
-        <div className="rounded-2xl border border-[#CFE6FA] bg-[#E8F4FF] p-3 md:border-sky-200 md:bg-sky-100 md:px-3 md:py-2 md:text-sky-900 lg:w-full lg:max-w-sm">
-          <p className="text-sm font-bold text-[#2A1F6B] md:font-semibold md:text-inherit">Boys Haircut</p>
-          <p className="text-2xl font-extrabold text-[#2A1F6B] md:text-xl md:text-inherit">{formatInr(PRICING.boysHaircut)}</p>
+      <div className="grid grid-cols-2 gap-3 md:mb-0 lg:flex lg:flex-row lg:justify-start lg:gap-4">
+        <div className="flex items-center gap-1.5 rounded-2xl border border-[#CFE6FA] bg-[#E8F4FF] p-2 md:border-sky-200 md:bg-sky-100 md:px-3 md:py-2 md:text-sky-900 lg:w-full lg:max-w-sm">
+          <BoyFaceIcon />
+          <div className="min-w-0">
+            <p className="text-sm font-bold text-[#2A1F6B] md:font-semibold md:text-inherit">Boys Haircut</p>
+            <p className="text-2xl font-extrabold text-[#2A1F6B] md:text-xl md:text-inherit">{formatInr(PRICING.boysHaircut)}</p>
+          </div>
         </div>
-        <div className="rounded-2xl border border-[#F9CBDD] bg-[#FFE4EF] p-3 md:border-pink-200 md:bg-pink-100 md:px-3 md:py-2 md:text-pink-900 lg:w-full lg:max-w-sm">
-          <p className="text-sm font-bold text-[#2A1F6B] md:font-semibold md:text-inherit">Girls Haircut</p>
-          <p className="text-2xl font-extrabold text-[#2A1F6B] md:text-xl md:text-inherit">{formatInr(PRICING.girlsHaircut)}</p>
+        <div className="flex items-center gap-1.5 rounded-2xl border border-[#F9CBDD] bg-[#FFE4EF] p-2 md:border-pink-200 md:bg-pink-100 md:px-3 md:py-2 md:text-pink-900 lg:w-full lg:max-w-sm">
+          <GirlFaceIcon />
+          <div className="min-w-0">
+            <p className="text-sm font-bold text-[#2A1F6B] md:font-semibold md:text-inherit">Girls Haircut</p>
+            <p className="text-2xl font-extrabold text-[#2A1F6B] md:text-xl md:text-inherit">{formatInr(PRICING.girlsHaircut)}</p>
+          </div>
         </div>
       </div>
-      <p className="mt-0 text-center text-[11px] text-slate-600 md:mt-2 md:text-left lg:text-left">
-        Haircut-only prices. Hair wash not included.
+      <p className="mt-3 text-center text-[11px] text-slate-600 md:mt-2 md:text-left lg:text-left">
+        <span className="md:hidden">Haircut-only prices do not include hair wash.</span>
+        <span className="hidden md:inline">Haircut-only prices. Hair wash not included.</span>
       </p>
     </div>
   );
@@ -121,16 +173,17 @@ function HeroPriceRow() {
 
 function HeroFeatureStrip() {
   return (
-    <ul className="max-md:mt-0 grid grid-cols-4 gap-1 max-md:gap-2 text-center md:relative md:z-30 md:mt-0 md:gap-2 md:rounded-t-3xl md:bg-orange-50 md:px-3 md:py-5">
-      {HERO_FEATURES.map(({ label, Icon, desktopBg, desktopIcon }) => (
+    <ul className="mt-2 grid grid-cols-4 gap-2 text-center md:relative md:z-30 md:mt-0 md:gap-2 md:rounded-t-3xl md:bg-orange-50 md:px-3 md:py-5">
+      {HERO_FEATURES.map(({ label, mobileLabel, Icon, desktopBg, desktopIcon }) => (
         <li key={label} className="flex flex-col items-center gap-1.5 text-center">
           <div
-            className={`flex h-10 w-10 items-center justify-center rounded-full md:h-12 md:w-12 ${desktopBg}`}
+            className={`flex h-11 w-11 items-center justify-center rounded-full md:h-12 md:w-12 ${desktopBg}`}
           >
             <Icon className={`h-5 w-5 ${desktopIcon}`} aria-hidden="true" />
           </div>
           <span className="text-[11px] font-semibold leading-tight text-[#2A1F6B] md:text-xs md:text-indigo-950">
-            {label}
+            <span className="md:hidden">{mobileLabel}</span>
+            <span className="hidden md:inline">{label}</span>
           </span>
         </li>
       ))}
@@ -171,9 +224,9 @@ export function HeroSection() {
       <section
         id="top"
         aria-labelledby="hero-title"
-        className="relative flex w-full max-md:gap-0 flex-col scroll-mt-16 bg-[#FFF5F9] max-md:mx-0 max-md:mb-0 max-md:mt-0 md:grid md:h-auto md:min-h-0 md:grid-cols-[minmax(0,42%)_minmax(0,58%)] md:grid-rows-[auto_auto_auto] md:items-stretch md:overflow-visible md:bg-[#FFF8FB] md:scroll-mt-[4.5rem] lg:grid-rows-[auto]"
+        className="relative flex w-full max-md:gap-0 flex-col scroll-mt-16 overflow-x-hidden bg-[#FDEBF1] max-md:mx-0 max-md:mb-0 max-md:mt-0 md:grid md:h-auto md:min-h-0 md:grid-cols-[minmax(0,42%)_minmax(0,58%)] md:grid-rows-[auto_auto_auto] md:items-stretch md:overflow-visible md:bg-[#FFF8FB] md:scroll-mt-[4.5rem] lg:grid-rows-[auto]"
       >
-        <div className="relative order-1 h-[300px] w-full overflow-hidden md:order-none md:col-start-2 md:row-start-1 md:aspect-auto md:h-auto md:min-h-[640px] lg:h-full lg:min-h-[600px]">
+        <div className="relative order-1 h-[clamp(300px,82vw,340px)] w-full overflow-hidden md:order-none md:col-start-2 md:row-start-1 md:aspect-auto md:h-auto md:min-h-[576px] lg:h-full lg:min-h-[540px]">
           <Image
             src={HERO_PHOTO.src}
             alt={HERO_PHOTO.alt}
@@ -181,15 +234,15 @@ export function HeroSection() {
             priority
             sizes="(min-width: 768px) 58vw, 100vw"
             quality={90}
-            className="object-cover object-[75%_60%] md:max-lg:object-[55%_42%] lg:object-[center_75%]"
+            className="object-cover object-[60%_100%] md:max-lg:object-[55%_42%] lg:object-[center_75%]"
           />
           <svg
             aria-hidden
-            className="absolute bottom-0 left-0 h-6 w-full md:hidden"
-            viewBox="0 0 375 24"
+            className="pointer-events-none absolute bottom-0 left-0 h-3 w-full md:hidden"
+            viewBox="0 0 390 12"
             preserveAspectRatio="none"
           >
-            <path d="M0 18C60 6 120 0 187.5 8C255 16 315 22 375 10V24H0Z" fill="#FFF5F9" />
+            <path d="M0 4C60 7 120 12 170 12H390V12H0Z" fill="#FDEBF1" />
           </svg>
           <div
             aria-hidden
@@ -202,22 +255,22 @@ export function HeroSection() {
         </div>
 
         <div className="contents md:col-start-1 md:row-start-1 md:flex md:w-full md:max-w-7xl md:flex-col md:justify-end md:gap-3 md:px-8 md:pt-12 md:pb-0 lg:px-12">
-          <div className="order-2 px-4 pt-3 md:order-none md:p-0">
+          <div className="order-2 px-4 pt-2 md:order-none md:p-0">
             <h1
               id="hero-title"
-              className="font-heading font-extrabold leading-[1.1] md:leading-[0.95]"
+              className="font-heading font-extrabold leading-[1.05] md:leading-[0.95]"
             >
-              <span className="block text-[2rem] text-[#EC2F7B] md:text-6xl md:leading-none md:text-pink-600">
+              <span className="block text-2xl text-[#EC2F7B] min-[390px]:text-[1.7rem] md:text-6xl md:leading-none md:text-pink-600">
                 Kids Haircut
               </span>
-              <span className="block text-[2rem] text-[#2A1F6B] md:mt-0 md:inline md:text-4xl md:text-indigo-950">
+              <span className="block text-2xl text-[#2A1F6B] min-[390px]:text-[1.7rem] md:mt-0 md:inline md:text-4xl md:leading-[0.95] md:text-indigo-950">
                 in Electronic City,{' '}
               </span>
-              <span className="block text-[2rem] text-[#2A1F6B] md:inline md:text-4xl md:text-indigo-950">
+              <span className="block text-2xl text-[#2A1F6B] min-[390px]:text-[1.7rem] md:inline md:text-4xl md:leading-[0.95] md:text-indigo-950">
                 Bangalore
               </span>
             </h1>
-            <p className="mt-2 text-sm font-bold text-[#EC2F7B] md:mt-0 md:max-w-md md:text-2xl md:text-pink-600">
+            <p className="mt-1 whitespace-nowrap text-[15px] font-semibold text-[#EC2F7B] min-[390px]:text-base md:mt-0 md:max-w-md md:whitespace-normal md:text-2xl md:font-bold md:text-pink-600">
               Haircut Time, Made Happier for Kids 🍭✂️
             </p>
             <p className="hidden max-w-xl text-sm font-semibold leading-relaxed text-[#1E3A8A] md:block md:text-lg lg:text-xl">
@@ -227,12 +280,18 @@ export function HeroSection() {
             <HeroGoogleRating />
           </div>
 
-          <div className="order-4 mt-4 mb-4 grid w-full grid-cols-2 gap-3 px-4 md:order-none md:my-0 md:flex md:w-auto md:flex-row md:flex-wrap md:items-center md:gap-4 md:px-0">
+          <div className="order-4 mt-3 mb-2 grid w-full grid-cols-2 gap-3 px-4 md:order-none md:my-0 md:flex md:w-auto md:flex-row md:flex-wrap md:items-center md:gap-4 md:px-0">
             <HeroCta
               href={PHONE_HREF}
               variant="book"
-              icon={<CalendarDays className="h-4 w-4 shrink-0 md:h-5 md:w-5" aria-hidden="true" />}
+              icon={
+                <>
+                  <PhoneIcon className="h-4 w-4 shrink-0 md:hidden" />
+                  <CalendarDays className="hidden h-5 w-5 shrink-0 md:inline" aria-hidden="true" />
+                </>
+              }
               label="Book an Appointment"
+              mobileLabel="Call to Book"
             />
             <HeroCta
               href={WHATSAPP_HREF}
@@ -249,7 +308,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="order-3 mt-4 px-4 md:order-none md:col-span-2 md:row-start-3 md:mt-0 md:px-0 lg:hidden">
+        <div className="order-3 mt-3 px-4 md:order-none md:col-span-2 md:row-start-3 md:mt-0 md:px-0 lg:hidden">
           <HeroPriceRow />
         </div>
 
@@ -257,7 +316,7 @@ export function HeroSection() {
           <HeroFeatureStrip />
         </div>
 
-        <p className="order-6 w-full bg-[#FFF5F9] px-4 py-4 text-[1.375rem] font-semibold leading-snug text-[#2A1F6B] max-md:mb-0 max-md:mt-0 md:hidden">
+        <p className="order-6 w-full px-4 py-4 text-[1.375rem] font-semibold leading-snug text-[#2A1F6B] max-md:mb-0 max-md:mt-0 md:hidden">
           {heroIntro}
         </p>
       </section>
