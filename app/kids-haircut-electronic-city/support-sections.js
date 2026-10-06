@@ -2,10 +2,11 @@ import Image from 'next/image';
 import {
   BUSINESS,
   CERTIFICATE_IMAGE,
-  FIRST_HAIRCUT_COPY,
+  FIRST_TIME_EXPERIENCES,
   GOOGLE_RATING,
   GOOGLE_REVIEW_COUNT,
   GOOGLE_REVIEWS,
+  PARENT_CHILD_COMBOS,
   PRICING,
   SECTION_TONES,
   formatFullAddress,
@@ -112,93 +113,101 @@ function WhatsAppToBook({ className = '' }) {
   );
 }
 
-export function FirstHaircutSection() {
-  const copy = FIRST_HAIRCUT_COPY;
-  const keepsakePrice = formatInr(PRICING.certificate);
+function CallToBookExperiences() {
+  return (
+    <a href={PHONE_HREF} className={`${BTN_PRIMARY} w-full`}>
+      {FIRST_TIME_EXPERIENCES.callToBookLabel}
+    </a>
+  );
+}
+
+export function FirstTimeExperiencesSection() {
+  const copy = FIRST_TIME_EXPERIENCES;
+  const combos = PARENT_CHILD_COMBOS.items;
+  const comboFromPrice = Math.min(...combos.map((item) => item.price));
 
   return (
     <Section
       id="first-time"
-      ariaLabelledby="first-haircut-title"
+      ariaLabelledby="first-time-title"
       dividerBefore
       tone={SECTION_TONES.firstHaircut}
     >
-      <article className="mx-auto max-w-[760px]">
-        <div className="mb-4 flex flex-wrap justify-center gap-2 sm:justify-start">
-          <ProofBadge>First Haircut Certificate</ProofBadge>
-        </div>
-        <h2
-          id="first-haircut-title"
-          className="section-heading text-2xl font-bold leading-tight sm:text-[1.75rem]"
-        >
-          {copy.heading}
-        </h2>
-          <p className="mt-4 text-[1.02rem] leading-[1.65]">
-            {copy.introBeforeBold}
-            <strong>{copy.introBold}</strong>
-            {copy.introAfterBold}
-          </p>
-          <p className="mt-3 text-[1.02rem] leading-[1.65]">{copy.body}</p>
-          <h3 className="text-accent mt-6 text-lg font-bold leading-snug sm:text-xl">
-            {copy.subheading}
-          </h3>
-          <p className="mt-4 text-[1.02rem] leading-[1.65]">
-            {copy.keepsakeBeforeBold}
-            <strong>
-              {copy.keepsakeBold} — {keepsakePrice}
-              {copy.keepsakeBoldSuffix}
-            </strong>
-            {copy.keepsakeAfterBold}
-          </p>
-          <ul className="mt-4 space-y-2.5 text-[1.02rem] leading-[1.65]">
-            {copy.keepsakeItems.map((item) => (
-              <li key={item.bold} className="flex gap-2">
-                <span aria-hidden="true">{item.emoji}</span>
-                <span>
-                  {item.beforeBold}
-                  <strong>{item.bold}</strong>
-                  {item.afterBold}
-                </span>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-5 font-bold leading-relaxed">{copy.tagline}</p>
-          <p className="mt-2 text-sm italic leading-relaxed text-body">
-            {copy.disclaimer}
-          </p>
-        <a href={PHONE_HREF} className={`${BTN_PRIMARY} mt-6`}>
-          {copy.callToBookLabel}
-        </a>
-      </article>
-
-      <article
-        aria-label="First haircut certificate"
-        className="mx-auto mt-10 grid max-w-[760px] gap-5 md:mt-12 md:grid-cols-[1fr_160px] md:items-center"
+      <h2
+        id="first-time-title"
+        className="section-heading text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
       >
-        <div>
-          <h2 className="section-heading text-2xl font-bold leading-tight sm:text-[1.75rem]">
-            Personalised First Haircut Certificate
-          </h2>
-          <p className="mt-4 font-bold leading-relaxed">
-            Optional add-on — {formatInr(PRICING.certificate)} extra
+        {copy.heading}
+      </h2>
+      <div className="grid grid-cols-1 items-stretch gap-4 md:grid-cols-2 md:gap-6">
+        <article className="price-card flex h-full flex-col bg-[#FFEBDD] p-4 md:p-6">
+          <h3 className="text-xl font-bold leading-snug text-navy sm:text-2xl">
+            {copy.watch.title}
+          </h3>
+          <p className="text-accent mt-2 font-bold leading-snug">
+            {copy.watch.subheading}
           </p>
-          <p className="text-muted mt-2 text-sm leading-relaxed">
-            Haircut charged separately.
+          <p className="mt-3 text-[0.98rem] leading-[1.65] md:text-[1.02rem]">
+            {copy.watch.body}
           </p>
-        </div>
-        <div className="price-card relative mx-auto aspect-[4/5] w-full max-w-[190px] overflow-hidden border-2 border-brand bg-white md:max-w-none">
-          <Image
-            src={CERTIFICATE_IMAGE}
-            alt="Baby tonsure and first haircut certificate at Lollipop Locs, Electronic City"
-            width={760}
-            height={950}
-            loading="lazy"
-            sizes="(max-width: 768px) 190px, 160px"
-            className="h-full w-full object-cover"
-          />
-        </div>
-        <CallToBook className="md:col-span-2 md:justify-self-start" />
-      </article>
+          <p className="mt-4 font-bold leading-snug">{copy.watch.bold}</p>
+          <details className="group mt-4 overflow-hidden rounded-xl border border-black/5 bg-white">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-3 py-3 font-bold leading-snug marker:hidden [&::-webkit-details-marker]:hidden">
+              <span>
+                {PARENT_CHILD_COMBOS.heading} from {formatInr(comboFromPrice)}
+              </span>
+              <span
+                aria-hidden="true"
+                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#FFE0EC] text-lg leading-none text-[#E91E7A] transition-transform group-open:rotate-45"
+              >
+                +
+              </span>
+            </summary>
+            <ul className="space-y-2 border-t border-black/5 px-3 py-3 text-[0.98rem] leading-relaxed">
+              {combos.map((item) => (
+                <li key={item.label}>
+                  {item.label} — <span className="font-bold text-navy">{formatInr(item.price)}</span>
+                </li>
+              ))}
+            </ul>
+          </details>
+          <div className="mt-auto pt-5">
+            <CallToBookExperiences />
+          </div>
+        </article>
+
+        <article className="price-card flex h-full flex-col bg-white p-4 md:p-6">
+          <div className="mb-4 overflow-hidden rounded-2xl bg-[#FFF8FB]">
+            <Image
+              src={CERTIFICATE_IMAGE}
+              alt="Lollipop Locs First Haircut Certificate, a personalised Mundan Ceremony card with a lollipop charm and a pink potli for the first cut of hair"
+              width={760}
+              height={950}
+              loading="lazy"
+              sizes="(max-width: 768px) 90vw, 400px"
+              className="mx-auto h-auto w-full max-w-[280px] object-contain"
+            />
+          </div>
+          <h3 className="text-xl font-bold leading-snug text-navy sm:text-2xl">
+            {copy.firstHaircut.title}
+          </h3>
+          <p className="mt-3 text-[0.98rem] leading-[1.65] md:text-[1.02rem]">
+            {copy.firstHaircut.body}
+          </p>
+          <p className="text-accent mt-4 font-bold leading-snug">
+            {copy.firstHaircut.bold}
+          </p>
+          <p className="mt-3 font-extrabold leading-relaxed text-navy">
+            {copy.firstHaircut.certificateLabel} — {formatInr(PARENT_CHILD_COMBOS.certificate)} extra
+          </p>
+          <p className="text-muted mt-1 text-sm leading-relaxed">
+            {copy.firstHaircut.note}
+          </p>
+          <div className="mt-auto pt-5">
+            <CallToBookExperiences />
+          </div>
+        </article>
+      </div>
     </Section>
   );
 }
@@ -353,7 +362,6 @@ export function FinalCallToAction() {
   return (
     <Section
       ariaLabelledby="final-cta-title"
-      className="pb-20 sm:pb-8"
       dividerBefore
       tone={SECTION_TONES.finalCta}
     >

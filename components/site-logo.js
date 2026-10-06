@@ -2,21 +2,25 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { LOGO_ALT, LOGO_INTRINSIC, LOGO_PATHS } from '../lib/logo-config';
 
-export function HeaderWordmarkLink({ className = '' }) {
-  const { width, height } = LOGO_INTRINSIC.brand;
+const HEADER_LOGO = {
+  src: '/images/logo/logo-final.jpg',
+  width: 1172,
+  height: 273,
+};
 
+export function HeaderWordmarkLink({ className = '' }) {
   return (
     <Link
       href="/"
       className={`inline-flex shrink-0 items-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-navy ${className}`}
     >
       <Image
-        src={LOGO_PATHS.brand}
+        src={HEADER_LOGO.src}
         alt={LOGO_ALT}
-        width={width}
-        height={height}
+        width={HEADER_LOGO.width}
+        height={HEADER_LOGO.height}
         priority
-        className="h-auto w-[200px] border-0 object-contain shadow-none outline-none ring-0 md:w-[260px]"
+        className="h-11 w-auto max-w-none object-contain"
       />
     </Link>
   );
@@ -37,7 +41,15 @@ function BrandLogo({ className = '' }) {
 }
 
 export function FooterFullLogo({ className = '' }) {
-  return <BrandLogo className={className} />;
+  return (
+    <Image
+      src="/images/logo/logo-final.jpg"
+      alt={LOGO_ALT}
+      width={1172}
+      height={273}
+      className={`h-12 w-auto max-w-none object-contain ${className}`}
+    />
+  );
 }
 
 export function IntroFullLogo({ className = '' }) {

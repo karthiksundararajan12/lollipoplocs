@@ -2,47 +2,12 @@
 
 import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { GALLERY_IMAGES } from '../../lib/site-config';
 import { BTN_PRIMARY, GoogleLogo } from './ui-primitives';
 
-const photos = GALLERY_IMAGES;
-
-function MuteIcon({ muted }) {
-  if (muted) {
-    return (
-      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none">
-        <path
-          d="M9 9v6h4l5 5V4l-5 5H9Z"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="1.8"
-        />
-        <path
-          d="m19 9 2 2m0-2-2 2"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeWidth="1.8"
-        />
-      </svg>
-    );
-  }
-
+function PlayIcon() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none">
-      <path
-        d="M9 9v6h4l5 5V4l-5 5H9Z"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M15 9a4 4 0 0 1 0 6"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="1.8"
-      />
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="ml-0.5 h-6 w-6 text-[#E91E7A]">
+      <path d="M8 5v14l11-7L8 5Z" fill="currentColor" />
     </svg>
   );
 }
@@ -52,62 +17,42 @@ export function ExperienceVideo({
   posterUrl,
   descriptionId,
 }) {
-  const containerRef = useRef(null);
-  const videoRef = useRef(null);
-  const [muted, setMuted] = useState(true);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    const video = videoRef.current;
-    if (!container || !video) {
-      return undefined;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            video.play().catch(() => {});
-          } else {
-            video.pause();
-          }
-        });
-      },
-      { threshold: 0.5 },
-    );
-
-    observer.observe(container);
-
-    return () => observer.disconnect();
-  }, []);
-
-  const toggleMuted = () => {
-    const video = videoRef.current;
-    if (!video) {
-      return;
-    }
-
-    video.muted = !video.muted;
-    setMuted(video.muted);
-  };
+  const [play, setPlay] = useState(false);
 
   return (
-    <div
-      ref={containerRef}
-      className="relative mx-auto aspect-video w-full max-w-4xl overflow-hidden rounded-3xl shadow-[0_8px_24px_rgb(30_27_75_/_0.08)]"
-    >
-      <video
-        ref={videoRef}
-        className="h-full w-full object-cover"
-        src={videoUrl}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster={posterUrl}
-        aria-label="Lollipop Locs salon tour video"
-        aria-describedby={descriptionId}
-      />
+    <div className="relative mx-auto aspect-video w-full max-w-4xl overflow-hidden rounded-3xl shadow-[0_8px_24px_rgb(30_27_75_/_0.08)]">
+      {play ? (
+        <video
+          className="h-full w-full object-cover"
+          src={videoUrl}
+          controls
+          autoPlay
+          playsInline
+          preload="auto"
+          poster={posterUrl}
+          aria-label="Lollipop Locs salon tour video"
+          aria-describedby={descriptionId}
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={() => setPlay(true)}
+          aria-label="Play video"
+          className="absolute inset-0 block h-full w-full cursor-pointer"
+        >
+          <Image
+            src={posterUrl}
+            alt=""
+            fill
+            loading="lazy"
+            sizes="(max-width: 896px) 100vw, 896px"
+            className="object-cover"
+          />
+          <span className="absolute left-1/2 top-1/2 z-[2] flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/90">
+            <PlayIcon />
+          </span>
+        </button>
+      )}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] bg-gradient-to-b from-[#1A1A2E]/50 to-transparent px-4 pb-10 pt-4">
         <span className="inline-flex items-center rounded-full bg-[#E91E7A] px-3 py-1.5 text-xs font-bold text-white shadow-md sm:text-sm">
           Salon Tour
@@ -116,86 +61,6 @@ export function ExperienceVideo({
           See where little ones have their happiest haircuts
         </p>
       </div>
-      <button
-        type="button"
-        onClick={toggleMuted}
-        aria-label={muted ? 'Unmute video' : 'Mute video'}
-        aria-pressed={!muted}
-        className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-black/35 text-white backdrop-blur-sm transition hover:bg-black/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-      >
-        <MuteIcon muted={muted} />
-      </button>
-    </div>
-  );
-}
-
-const gallerySlides = [
-  { caption: 'Car Chair', src: photos.car, alt: 'A child sitting in the colourful car chair at Lollipop Locs' },
-  { caption: 'Unicorn Chair', src: photos.unicorn, alt: 'The unicorn-themed haircut chair at Lollipop Locs' },
-  {
-    caption: 'Airplane Chair',
-    src: photos.airplane,
-    alt: 'White airplane-themed kids haircut chair at Lollipop Locs',
-  },
-  { caption: 'Play Area', src: photos.play, alt: 'The playful salon interior at Lollipop Locs' },
-  { caption: 'Happy Haircuts', src: photos.stylist, alt: 'A stylist giving a child a haircut at Lollipop Locs' },
-];
-
-function SalonGalleryImage({ slide }) {
-  const [failed, setFailed] = useState(false);
-
-  if (!slide.src) {
-    return null;
-  }
-
-  if (failed) {
-    return (
-      <div
-        className="h-full w-full bg-pink-100"
-        aria-hidden="true"
-      />
-    );
-  }
-
-  return (
-    <Image
-      src={slide.src}
-      alt={slide.alt}
-      width={800}
-      height={600}
-      loading="lazy"
-      sizes="(max-width: 640px) 82vw, 300px"
-      className="h-full w-full object-cover"
-      onError={() => setFailed(true)}
-    />
-  );
-}
-
-export function SalonGallery() {
-  return (
-    <div
-      role="region"
-      aria-label="Lollipop Locs salon gallery"
-      tabIndex={0}
-      className="flex w-full min-w-0 max-w-full snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4 [scrollbar-color:#f5a3c7_transparent] [scrollbar-width:thin] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
-    >
-      {gallerySlides.map((slide) => (
-        <figure
-          key={slide.caption}
-          className="card-surface w-[82vw] max-w-[340px] shrink-0 snap-start overflow-hidden rounded-2xl p-2.5 sm:w-[300px]"
-        >
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[1rem] bg-blush">
-            <SalonGalleryImage slide={slide} />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1A1A2E]/70 to-transparent pt-10"
-            />
-            <figcaption className="absolute bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-[#4B2A8A] shadow-sm">
-              {slide.caption}
-            </figcaption>
-          </div>
-        </figure>
-      ))}
     </div>
   );
 }

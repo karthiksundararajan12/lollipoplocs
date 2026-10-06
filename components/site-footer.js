@@ -53,7 +53,7 @@ export function SiteFooter({ copyrightNote = 'Kids haircut Electronic City, Beng
   return (
     <>
       <SectionDivider fill={SECTION_DIVIDER_COLORS[footerTone]} />
-      <footer className={`${SECTION_TONE_CLASSES[footerTone]} border-t border-black/5 px-4 py-8 md:px-6`}>
+      <footer className={`${SECTION_TONE_CLASSES[footerTone]} border-t border-black/5 px-4 pt-8 pb-24 md:px-6 md:py-12`}>
         <div className="mx-auto grid max-w-[1240px] gap-8 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
             <FooterFullLogo />

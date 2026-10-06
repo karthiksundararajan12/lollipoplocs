@@ -1,9 +1,8 @@
 import Image from 'next/image';
-import { Award, Check, Scissors, Sparkles, Star, Users } from 'lucide-react';
+import { Award, Check, Scissors, Sparkles, Star } from 'lucide-react';
 import {
   CERTIFICATE_IMAGE,
   PACKAGE_INCLUDES,
-  PARENT_CHILD_COMBOS,
   PRICING,
   PRICING_PACKAGE_IMAGES,
   SECTION_TONES,
@@ -167,7 +166,6 @@ function FirstHaircutExtras() {
 }
 
 export function PricingSection() {
-  const { heading, items, footnote } = PARENT_CHILD_COMBOS;
   const images = PRICING_PACKAGE_IMAGES;
 
   return (
@@ -237,37 +235,6 @@ export function PricingSection() {
 
       <div className="mt-10 lg:mt-12">
         <BeforeAfterSlider />
-      </div>
-
-      <div className="mt-10 lg:mt-12">
-        <div className="flex items-center justify-center gap-2">
-          <Users className="h-6 w-6 text-[#E91E7A]" aria-hidden="true" />
-          <h2
-            id="parent-child-title"
-            className="text-center text-[clamp(1.25rem,3.5vw,1.75rem)] font-bold leading-[1.1] tracking-[-0.025em] text-[#4B2A8A]"
-          >
-            {heading}
-          </h2>
-        </div>
-        <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {items.map((item) => (
-            <article
-              key={item.label}
-              className="rounded-2xl border border-black/5 bg-white px-3 py-4 text-center shadow-[0_4px_12px_rgb(26_26_46_/0.05)] sm:px-4"
-            >
-              <Users className="mx-auto h-5 w-5 text-[#E91E7A]" aria-hidden="true" />
-              <p className="mt-2 text-xs font-bold leading-snug text-[#1A1A2E] sm:text-sm">
-                {item.label}
-              </p>
-              <p className="mt-1 font-heading text-lg font-bold text-[#4B2A8A] sm:text-xl">
-                {formatInr(item.price)}*
-              </p>
-            </article>
-          ))}
-        </div>
-        <p className="mx-auto mt-4 max-w-[52ch] text-center text-sm font-medium leading-relaxed text-body">
-          {footnote}
-        </p>
       </div>
     </Section>
   );

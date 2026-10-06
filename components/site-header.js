@@ -2,11 +2,16 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import {
+  BUSINESS,
   PHONE_HREF,
   WHATSAPP_HREF,
   WHATSAPP_MOBILE_HREF,
 } from '../lib/site-config';
-import { BTN_PRIMARY, BTN_WHATSAPP } from '../app/kids-haircut-electronic-city/ui-primitives';
+import {
+  BTN_PRIMARY,
+  BTN_SECONDARY,
+  BTN_WHATSAPP,
+} from '../app/kids-haircut-electronic-city/ui-primitives';
 import { HeaderWordmarkLink } from './site-logo';
 
 export const KIDS_NAV_LINKS = [
@@ -157,7 +162,7 @@ export function SiteHeader({ navLinks = KIDS_NAV_LINKS }) {
               icon={<PhoneIcon />}
               className="h-10 shrink-0 whitespace-nowrap px-4 text-xs"
             >
-              Call to Book
+              Call
             </BookingLink>
             <BookingLink
               href={WHATSAPP_HREF}
@@ -167,11 +172,17 @@ export function SiteHeader({ navLinks = KIDS_NAV_LINKS }) {
             >
               WhatsApp
             </BookingLink>
+            <a
+              href={BUSINESS.mapsLink}
+              className={`${BTN_SECONDARY} h-10 shrink-0 whitespace-nowrap px-4 text-xs`}
+            >
+              Get Directions
+            </a>
           </div>
 
           <button
             type="button"
-            className="text-muted inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg transition hover:bg-blush hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-navy xl:hidden"
+            className="text-muted inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg transition hover:bg-blush hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-navy xl:hidden"
             aria-expanded={menuOpen}
             aria-controls="mobile-nav-panel"
             aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
