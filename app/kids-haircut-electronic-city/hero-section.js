@@ -143,14 +143,14 @@ function HeroPriceRow() {
           <BoyFaceIcon />
           <div className="min-w-0">
             <p className="text-xs font-bold text-[#2A1F6B] md:text-sm md:font-semibold md:text-inherit">Boys Haircut</p>
-            <p className="text-xl font-extrabold text-[#2A1F6B] md:text-xl md:text-inherit">{formatInr(PRICING.boysHaircut)}</p>
+            <p className="text-2xl font-extrabold text-[#2A1F6B] md:text-2xl md:text-inherit">{formatInr(PRICING.boysHaircut)}</p>
           </div>
         </div>
         <div className="flex items-center gap-1 rounded-2xl border border-[#F9CBDD] bg-[#FFE4EF] py-2 pl-2 pr-2.5 md:gap-1.5 md:border-pink-200 md:bg-pink-100 md:px-3 md:py-2 md:text-pink-900 lg:w-full lg:max-w-sm">
           <GirlFaceIcon />
           <div className="min-w-0">
             <p className="text-xs font-bold text-[#2A1F6B] md:text-sm md:font-semibold md:text-inherit">Girls Haircut</p>
-            <p className="text-xl font-extrabold text-[#2A1F6B] md:text-xl md:text-inherit">{formatInr(PRICING.girlsHaircut)}</p>
+            <p className="text-2xl font-extrabold text-[#2A1F6B] md:text-2xl md:text-inherit">{formatInr(PRICING.girlsHaircut)}</p>
           </div>
         </div>
       </div>
