@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { Camera, Sparkles } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 const DESKTOP_INITIAL_COUNT = 9;
@@ -21,8 +22,9 @@ function GalleryTile({ photo, eager = false, sizes }) {
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1A1A2E]/75 to-transparent pt-12"
         />
-        <figcaption className="absolute bottom-2 left-1/2 max-w-[90%] -translate-x-1/2 truncate rounded-full bg-white/95 px-3 py-1 text-center text-xs font-bold text-[#4B2A8A] shadow-sm sm:text-[0.8125rem]">
-          {photo.caption}
+        <figcaption className="absolute bottom-2 left-1/2 flex max-w-[90%] -translate-x-1/2 items-center gap-1 rounded-full bg-white/95 px-3 py-1 text-center text-xs font-bold text-[#4B2A8A] shadow-sm sm:text-[0.8125rem]">
+          <Camera className="h-3 w-3 shrink-0 text-[#E91E7A]" aria-hidden="true" />
+          <span className="truncate">{photo.caption}</span>
         </figcaption>
       </div>
     </figure>
@@ -86,9 +88,11 @@ export function PhotoGallery({ photos }) {
 
   return (
     <div className="min-w-0 max-w-full overflow-hidden">
-      <p className="mb-4 text-balance text-center text-3xl font-bold leading-tight text-[#4B2A8A] md:text-4xl lg:text-5xl">
-        Real photos from our salon
-      </p>
+      <h2 className="section-heading flex items-center justify-center gap-2">
+        <Camera className="h-[0.85em] w-[0.85em] shrink-0 text-[#4B2A8A]" aria-hidden="true" />
+        <span>Real photos from our salon</span>
+        <Sparkles className="h-[0.85em] w-[0.85em] shrink-0 text-[#E91E7A]" aria-hidden="true" />
+      </h2>
       <div
         ref={scrollRef}
         aria-label="Photo gallery"

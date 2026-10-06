@@ -111,9 +111,25 @@ const HeroCta = ({ href, variant, icon, label, mobileLabel }) => {
   );
 };
 
+function HeroSparkle() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 18 22"
+      className="ml-[0.12em] inline-block h-[0.42em] w-[0.38em] -translate-y-[0.42em] text-brand"
+    >
+      <g fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="2.2">
+        <path d="M3 15.5 5.2 8" />
+        <path d="M8 17.5 9.6 7" />
+        <path d="M13 14.5 15.2 6" />
+      </g>
+    </svg>
+  );
+}
+
 function HeroGoogleRating() {
   return (
-    <div className="mt-1 flex w-full min-w-0 max-w-full flex-row flex-nowrap items-center gap-[0.5vw] whitespace-nowrap rounded-full bg-[#FFF9E8] px-[2vw] py-2.5 shadow-sm md:mt-0 md:w-fit md:max-w-none md:gap-2 md:px-3">
+    <div className="mt-1 flex w-full min-w-0 max-w-full flex-row flex-nowrap items-center gap-[0.5vw] whitespace-nowrap rounded-full border border-gray-100 bg-white px-[2vw] py-2.5 shadow-sm md:mt-0 md:w-fit md:max-w-none md:gap-2 md:px-3">
       <GoogleLogo className="h-[clamp(22px,7vw,30px)] w-[clamp(22px,7vw,30px)] shrink-0 filter-none md:h-6 md:w-6" />
       <span className="shrink-0 text-[clamp(17px,5.6vw,24px)] font-bold leading-none text-[#2A1F6B] md:text-xl">
         {GOOGLE_RATING}
@@ -128,7 +144,7 @@ function HeroGoogleRating() {
         ))}
       </span>
       <span aria-hidden="true" className="h-5 w-px shrink-0 bg-slate-300" />
-      <span className="shrink-0 whitespace-nowrap text-[clamp(13px,4.2vw,16px)] font-semibold leading-none text-[#2A1F6B] md:text-sm">
+      <span className="shrink-0 whitespace-nowrap text-[clamp(13px,4.2vw,16px)] font-bold leading-none text-[#2A1F6B] md:text-sm">
         {GOOGLE_REVIEW_COUNT} Happy Customers
       </span>
     </div>
@@ -143,14 +159,14 @@ function HeroPriceRow() {
           <BoyFaceIcon />
           <div className="min-w-0">
             <p className="text-xs font-bold text-[#2A1F6B] md:text-sm md:font-semibold md:text-inherit">Boys Haircut</p>
-            <p className="text-2xl font-extrabold text-[#2A1F6B] md:text-2xl md:text-inherit">{formatInr(PRICING.boysHaircut)}</p>
+            <p className="text-3xl font-black text-[#2A1F6B] md:text-3xl md:text-inherit">{formatInr(PRICING.boysHaircut)}</p>
           </div>
         </div>
         <div className="flex items-center gap-1 rounded-2xl border border-[#F9CBDD] bg-[#FFE4EF] py-2 pl-2 pr-2.5 md:gap-1.5 md:border-pink-200 md:bg-pink-100 md:px-3 md:py-2 md:text-pink-900 lg:w-full lg:max-w-sm">
           <GirlFaceIcon />
           <div className="min-w-0">
             <p className="text-xs font-bold text-[#2A1F6B] md:text-sm md:font-semibold md:text-inherit">Girls Haircut</p>
-            <p className="text-2xl font-extrabold text-[#2A1F6B] md:text-2xl md:text-inherit">{formatInr(PRICING.girlsHaircut)}</p>
+            <p className="text-3xl font-black text-[#2A1F6B] md:text-3xl md:text-inherit">{formatInr(PRICING.girlsHaircut)}</p>
           </div>
         </div>
       </div>
@@ -205,19 +221,18 @@ export function HeroSection() {
           <div className="order-2 px-4 pt-1 md:order-none md:p-0">
             <h1
               id="hero-title"
-              className="font-heading font-extrabold leading-[1.05] md:leading-[0.95]"
+              className="text-left font-heading text-[clamp(1.65rem,8.6vw,2.6rem)] font-extrabold leading-tight md:text-[clamp(1.5rem,3.2vw,3.5rem)]"
             >
-              <span className="block text-2xl text-[#EC2F7B] min-[390px]:text-[1.7rem] md:text-6xl md:leading-none md:text-pink-600">
+              <span className="block whitespace-nowrap text-brand">
                 Kids Haircut
+                <HeroSparkle />
               </span>
-              <span className="block text-2xl text-[#2A1F6B] min-[390px]:text-[1.7rem] md:mt-0 md:inline md:text-4xl md:leading-[0.95] md:text-indigo-950">
-                in Electronic City,{' '}
-              </span>
-              <span className="block text-2xl text-[#2A1F6B] min-[390px]:text-[1.7rem] md:inline md:text-4xl md:leading-[0.95] md:text-indigo-950">
-                Bangalore
+              <span className="block whitespace-nowrap text-[#2A1F6B]">in Electronic City,</span>
+              <span className="block whitespace-nowrap text-[0.8em] text-[#2A1F6B]">
+                at Lollipop Locs Kids Salon
               </span>
             </h1>
-            <p className="mt-1 whitespace-nowrap text-[15px] font-semibold text-[#EC2F7B] min-[390px]:text-base md:mt-0 md:max-w-md md:whitespace-normal md:text-2xl md:font-bold md:text-pink-600">
+            <p className="mt-1 text-left text-[clamp(0.66rem,3.44vw,1.04rem)] font-medium leading-snug text-brand md:whitespace-nowrap md:text-[clamp(0.6rem,1.28vw,1.4rem)]">
               Haircut Time, Made Happier for Kids 🍭✂️
             </p>
             <p className="hidden max-w-xl text-sm font-semibold leading-relaxed text-[#1E3A8A] md:block md:text-lg lg:text-xl">

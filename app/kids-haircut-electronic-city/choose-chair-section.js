@@ -17,10 +17,7 @@ export function ChooseChairSection() {
             className="h-5 w-5 shrink-0 text-[#E91E7A] sm:h-6 sm:w-6"
             aria-hidden="true"
           />
-          <h2
-            id="chairs-title"
-            className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em] text-[#1A1A2E]"
-          >
+          <h2 id="chairs-title" className="section-heading">
             Choose Your Favorite Chair
           </h2>
           <Candy
@@ -28,7 +25,7 @@ export function ChooseChairSection() {
             aria-hidden="true"
           />
         </div>
-        <p className="mx-auto mt-3 max-w-[36ch] text-[1.0625rem] font-medium leading-[1.6] text-[#1A1A2E]/80">
+        <p className="section-subtext mx-auto mt-3 max-w-[36ch]">
           Every haircut becomes an adventure!
         </p>
       </div>

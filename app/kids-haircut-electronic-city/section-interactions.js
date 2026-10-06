@@ -71,8 +71,8 @@ const BEFORE_IMAGE = {
 };
 
 const AFTER_IMAGE = {
-  src: '/images/gallery-kids-haircut.webp',
-  alt: 'Stylist giving a child a haircut in the airplane chair at Lollipop Locs',
+  src: '/images/photos-lollipop/photo1.jpeg',
+  alt: 'Child with a fresh bob haircut at Lollipop Locs',
 };
 
 function ComparisonPhoto({ src, alt, label }) {
@@ -101,9 +101,7 @@ export function BeforeAfterSlider() {
 
   return (
     <div className="mx-auto max-w-[780px]">
-      <p className="mb-3 text-balance text-center text-3xl font-bold leading-tight text-[#4B2A8A] md:text-4xl lg:text-5xl">
-        Real photos from our salon
-      </p>
+      <h2 className="section-heading">Real photos from our salon</h2>
       <div className="card-surface relative aspect-[4/3] overflow-hidden rounded-2xl sm:aspect-[16/9]">
         <ComparisonPhoto
           src={AFTER_IMAGE.src}

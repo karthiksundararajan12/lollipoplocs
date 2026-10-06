@@ -140,7 +140,7 @@ export function FirstTimeExperiencesSection() {
     >
       <h2
         id="first-time-title"
-        className="section-heading text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
+        className="section-heading"
       >
         {copy.heading}
       </h2>
@@ -231,19 +231,23 @@ export function ReviewsSection() {
       <div className="mb-6 text-center lg:mb-8">
         <h2
           id="reviews-title"
-          className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em] text-navy"
+          className="section-heading"
         >
           Trusted by Families Across Bangalore
         </h2>
-        <p className="mx-auto mt-3 max-w-[42ch] text-[1.0625rem] font-medium leading-[1.6] text-body">
+        <p className="section-subtext mx-auto max-w-[42ch]">
           Real reviews from Google
         </p>
 
         <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
           <GoogleRatingBadge
             rating={GOOGLE_RATING}
-            label={`on Google · ${GOOGLE_REVIEW_COUNT} reviews`}
+            label={`${GOOGLE_REVIEW_COUNT} happy customers`}
             starsSize="review"
+            logoClassName="h-6 w-6 shrink-0 md:h-4 md:w-4"
+            ratingClassName="font-extrabold"
+            labelClassName="whitespace-nowrap text-sm font-bold text-[#4b5563]"
+            className="max-md:px-2.5 max-md:py-1.5"
           />
           <ProofBadge>Google Rated {GOOGLE_RATING}</ProofBadge>
         </div>
@@ -266,7 +270,7 @@ export function QuestionsSection() {
     >
       <h2
         id="questions-title"
-        className="section-heading text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
+        className="section-heading"
       >
         Quick Questions Parents Ask
       </h2>
@@ -288,12 +292,12 @@ export function LocationSection() {
     >
       <h2
         id="location-title"
-        className="section-heading text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
+        className="section-heading"
       >
         Visit Lollipop Locs – Electronic City 📍
       </h2>
       <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:gap-6">
-        <div className="price-card bg-white p-5 sm:p-6">
+        <div className="price-card min-w-0 bg-white p-5 sm:p-6">
             <p className="text-accent text-xl font-bold leading-snug sm:text-2xl">
               {BUSINESS.name}
             </p>
@@ -315,10 +319,18 @@ export function LocationSection() {
                 </a>
                 <p className="text-muted mt-2 font-bold">{address.floorNote}</p>
               </div>
-              <GoogleRatingBadge
-                label={`on Google · ${GOOGLE_REVIEW_COUNT} reviews`}
-                className="w-full justify-center sm:w-auto"
-              />
+              <div className="max-[400px]:-mx-5 max-[400px]:flex max-[400px]:justify-center">
+                <GoogleRatingBadge
+                  rating={GOOGLE_RATING}
+                  label={`${GOOGLE_REVIEW_COUNT} happy customers`}
+                  starsSize="review"
+                  logoClassName="h-6 w-6 shrink-0 md:h-4 md:w-4"
+                  ratingClassName="font-extrabold"
+                  labelClassName="whitespace-nowrap text-sm font-bold text-[#4b5563] max-[400px]:text-[13px]"
+                  starsClassName="h-4 w-4 max-[400px]:h-3 max-[400px]:w-3 md:h-[22px] md:w-[22px]"
+                  className="max-md:px-2.5 max-md:py-1.5 max-[400px]:!px-1.5 max-[400px]:!py-1"
+                />
+              </div>
               <div className="card-surface rounded-xl px-4 py-3 font-semibold">
                 <p className="font-bold">🕐 Store hours</p>
                 <ul className="mt-2 space-y-1">
@@ -376,11 +388,11 @@ export function FinalCallToAction() {
       <div className="price-card mx-auto max-w-[900px] bg-white px-5 py-6 text-center sm:px-8 sm:py-8">
         <h2
           id="final-cta-title"
-          className="section-heading text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
+          className="section-heading"
         >
           Ready for Their Next Haircut? 🍭✂️
         </h2>
-        <p className="mx-auto mt-4 max-w-[58ch] text-[1.0625rem] leading-[1.6] sm:text-lg">
+        <p className="section-subtext mx-auto max-w-[58ch]">
           A little play. A little patience. And a haircut they&apos;ll look great
           in.
         </p>

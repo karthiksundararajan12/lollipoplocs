@@ -86,6 +86,7 @@ function PackageCard({
   priceNote,
   image,
   featured = false,
+  showIncludes = true,
   children,
   orderClass = '',
 }) {
@@ -121,12 +122,14 @@ function PackageCard({
         <p className="mt-4 font-heading text-4xl font-extrabold leading-none text-[#4B2A8A]">
           {typeof price === 'number' ? formatInr(price) : price}
         </p>
-        <p className="mt-2 text-xs font-medium leading-snug text-[#1A1A2E]/70">
-          {priceNote}
-        </p>
+        {priceNote ? (
+          <p className="mt-2 text-xs font-medium leading-snug text-[#1A1A2E]/70">
+            {priceNote}
+          </p>
+        ) : null}
       </div>
 
-      <IncludedList />
+      {showIncludes ? <IncludedList /> : null}
 
       {children}
 
@@ -144,10 +147,7 @@ function FirstHaircutExtras() {
   return (
     <div className="mt-4 rounded-2xl border border-[#FFE0EC] bg-[#FFF8FB] p-4">
       <p className="text-sm font-bold text-[#4B2A8A]">
-        Personalised First Haircut Certificate
-      </p>
-      <p className="mt-1 text-xs font-medium text-[#1A1A2E]/80">
-        {formatInr(PRICING.certificate)} extra · optional add-on
+        Personalised Haircut Certificate
       </p>
       <div className="relative mx-auto mt-3 h-[120px] w-full max-w-[220px]">
         <div className="absolute left-0 top-0 z-10 aspect-[4/5] w-[100px] overflow-hidden rounded-xl border-2 border-white shadow-md">
@@ -189,7 +189,7 @@ export function PricingSection() {
       <div className="mx-auto max-w-[760px] text-center">
         <h2
           id="pricing-title"
-          className="section-heading text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
+          className="section-heading"
         >
           Cute Salon. Serious Haircuts. ✂️
         </h2>
@@ -205,12 +205,16 @@ export function PricingSection() {
 
       <div className="mt-8 grid grid-cols-1 items-stretch gap-5 md:grid-cols-3 md:gap-4 lg:mt-10 lg:gap-6">
         <PackageCard
-          title="First Haircut Special"
+          title="Haircut Certificate"
           icon={Award}
-          price={`From ${formatInr(PRICING.boysHaircut)}`}
-          priceNote={`Haircut only, hair wash not included · Girls from ${formatInr(PRICING.girlsHaircut)}`}
-          image={images.firstHaircut}
+          price={PRICING.certificate}
+          image={{
+            src: '/images/photos-lollipop/photo1.jpeg',
+            alt: 'Child with a fresh bob haircut at Lollipop Locs',
+            objectPosition: 'center 18%',
+          }}
           featured
+          showIncludes={false}
           orderClass="order-1 md:order-2"
         >
           <FirstHaircutExtras />

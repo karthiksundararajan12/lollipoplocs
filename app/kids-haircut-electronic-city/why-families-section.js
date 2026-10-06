@@ -48,12 +48,12 @@ export function WhyFamiliesSection() {
     >
       <h2
         id="why-families-title"
-        className="section-heading mx-auto max-w-[24ch] text-center text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
+        className="section-heading mx-auto max-w-[24ch]"
       >
         Why Families Choose Lollipop Locs
       </h2>
 
-      <ul className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-6">
+      <ul className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-6">
         {WHY_FAMILIES_ITEMS.map((item, index) => {
           const Icon = ICON_MAP[item.icon];
           const tint = TINTS[index % TINTS.length];

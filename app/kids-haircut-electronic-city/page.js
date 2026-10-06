@@ -42,10 +42,7 @@ function ExperienceSection() {
     >
       <div className="grid items-center gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-8">
         <div className="min-w-0">
-          <h2
-            id="experience-title"
-            className="section-heading text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.025em]"
-          >
+          <h2 id="experience-title" className="section-heading">
             {experienceCopy.heading}
           </h2>
           <div
@@ -91,11 +88,11 @@ function ParentsSection() {
         <p className="text-center text-sm text-pink-600">Why Parents Choose Us</p>
         <h2
           id="why-parents-choose-us-title"
-          className="font-heading mx-auto mt-2 max-w-[22ch] text-center text-[clamp(1.75rem,4.5vw,2.5rem)] leading-[1.1] tracking-[-0.025em]"
+          className="section-heading mx-auto mt-2 max-w-[22ch]"
         >
           Made for Kids. Easier for Parents. ❤️
         </h2>
-        <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4 lg:mt-8 lg:gap-4">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 lg:gap-4">
           {reasons.map((reason) => (
             <article
               key={reason.title}

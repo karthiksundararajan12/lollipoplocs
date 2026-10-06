@@ -88,6 +88,7 @@
   }
 
   body {
+    --font-heading: var(--font-baloo), sans-serif;
     margin: 0;
     background: #fff5f9;
     color: var(--text-body);
@@ -108,7 +109,7 @@
   h3,
   h4 {
     color: var(--text-heading);
-    font-family: var(--font-baloo), sans-serif;
+    font-family: var(--font-heading);
     font-weight: 700;
   }
 
@@ -213,12 +214,43 @@
   }
 
   .section-heading {
-    margin-bottom: 1.5rem;
+    color: #2a1f6b;
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-wrap: balance;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     .section-heading {
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  /* Icon row: keep the shared type, but don't push the flanking icons off the text. */
+  .flex:has(> .section-heading) > .section-heading {
+    margin-bottom: 0;
+  }
+
+  .section-heading:has(+ .section-subtext) {
+    margin-bottom: 0.75rem;
+  }
+
+  .section-subtext {
+    color: var(--text-body);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .section-subtext {
+      font-size: 1.125rem;
     }
   }
 
