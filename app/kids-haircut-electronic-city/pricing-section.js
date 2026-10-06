@@ -46,10 +46,17 @@ function IncludedList() {
   );
 }
 
-function PackagePhoto({ src, alt, caption }) {
+function PackagePhoto({ src, alt, caption, objectPosition = 'center' }) {
   return (
     <div className="relative mx-auto mt-4 aspect-[4/3] w-full max-w-[200px] overflow-hidden rounded-2xl">
-      <Image src={src} alt={alt} fill sizes="200px" className="object-cover" />
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="200px"
+        className="object-cover"
+        style={{ objectPosition }}
+      />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1A1A2E]/70 to-transparent pt-8"
@@ -106,7 +113,11 @@ function PackageCard({
           />
         </span>
         <h3 className="mt-3 text-xl font-bold text-[#4B2A8A]">{title}</h3>
-        <PackagePhoto src={image.src} alt={image.alt} />
+        <PackagePhoto
+          src={image.src}
+          alt={image.alt}
+          objectPosition={image.objectPosition}
+        />
         <p className="mt-4 font-heading text-4xl font-extrabold leading-none text-[#4B2A8A]">
           {typeof price === 'number' ? formatInr(price) : price}
         </p>
@@ -121,7 +132,7 @@ function PackageCard({
 
       <a href={PHONE_HREF} className={`${BTN_PRIMARY} mt-5 w-full`}>
         <PhoneIcon />
-        Book Appointment
+        Call to Book
       </a>
     </article>
   );

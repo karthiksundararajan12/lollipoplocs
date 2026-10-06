@@ -162,7 +162,7 @@ export function SiteHeader({ navLinks = KIDS_NAV_LINKS }) {
               icon={<PhoneIcon />}
               className="h-10 shrink-0 whitespace-nowrap px-4 text-xs"
             >
-              Call
+              Call to Book
             </BookingLink>
             <BookingLink
               href={WHATSAPP_HREF}

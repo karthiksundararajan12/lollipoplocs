@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { CalendarDays, ChevronRight, Heart, Scissors, Sparkles, Star, ToyBrick } from 'lucide-react';
+import { CalendarDays, ChevronRight, Star } from 'lucide-react';
 import {
   GOOGLE_RATING,
   GOOGLE_REVIEW_COUNT,
@@ -16,13 +16,6 @@ const HERO_PHOTO = {
   src: '/images/gallery-kids-haircut.webp',
   alt: 'Kids haircut in Electronic City — stylist giving a child a haircut in a themed chair at Lollipop Locs',
 };
-
-const HERO_FEATURES = [
-  { label: 'Patient Stylists', mobileLabel: 'Patient Stylists', Icon: Scissors, desktopBg: 'bg-pink-100', desktopIcon: 'text-pink-500' },
-  { label: 'Themed Chairs', mobileLabel: 'Themed Chairs', Icon: Sparkles, desktopBg: 'bg-teal-100', desktopIcon: 'text-teal-500' },
-  { label: 'Play Area', mobileLabel: 'Play Area', Icon: ToyBrick, desktopBg: 'bg-yellow-100', desktopIcon: 'text-yellow-500' },
-  { label: 'Kid-Friendly', mobileLabel: 'Kid-Friendly Products', Icon: Heart, desktopBg: 'bg-purple-100', desktopIcon: 'text-purple-500' },
-];
 
 function WhatsAppIcon({ className = 'h-5 w-5 shrink-0' }) {
   return (
@@ -56,7 +49,7 @@ function PhoneIcon({ className = 'h-5 w-5' }) {
   );
 }
 
-function BoyFaceIcon({ className = 'h-11 w-11 shrink-0 md:h-7 md:w-7' }) {
+function BoyFaceIcon({ className = 'h-9 w-9 shrink-0 md:h-7 md:w-7' }) {
   return (
     <svg aria-hidden="true" viewBox="0 0 40 40" className={className}>
       <path fill="#6B4423" d="M9 20c.4-8 4.4-13 11-13s10.6 5 11 13v2H9v-2Z" />
@@ -73,7 +66,7 @@ function BoyFaceIcon({ className = 'h-11 w-11 shrink-0 md:h-7 md:w-7' }) {
   );
 }
 
-function GirlFaceIcon({ className = 'h-11 w-11 shrink-0 md:h-7 md:w-7' }) {
+function GirlFaceIcon({ className = 'h-9 w-9 shrink-0 md:h-7 md:w-7' }) {
   return (
     <svg aria-hidden="true" viewBox="0 0 40 40" className={className}>
       <path fill="#6B4423" d="M8.5 24c.2-8.2 4.2-14.2 11.5-14.2S31.3 15.8 31.5 24c0 2.2-.8 4-2 5.2H10.5c-1.2-1.2-2-3-2-5.2Z" />
@@ -120,26 +113,24 @@ const HeroCta = ({ href, variant, icon, label, mobileLabel }) => {
 
 function HeroGoogleRating() {
   return (
-    <div className="mt-2 inline-flex max-w-full items-center gap-2 whitespace-nowrap rounded-full bg-[#FFFDF8] px-2.5 py-1.5 shadow-[0_2px_10px_rgba(42,31,107,0.08)] md:mt-0 md:w-fit md:gap-1.5 md:rounded-2xl md:bg-white md:px-2.5 md:py-1.5 md:shadow-md">
-      <GoogleLogo className="h-4 w-4 shrink-0 filter-none md:h-[18px] md:w-[18px]" />
-      <span className="text-[11px] font-extrabold leading-none text-[#2A1F6B] min-[400px]:text-xs md:hidden">
+    <div className="mt-1 flex w-full min-w-0 max-w-full flex-row flex-nowrap items-center gap-[0.5vw] whitespace-nowrap rounded-full bg-[#FFF9E8] px-[2vw] py-2.5 shadow-sm md:mt-0 md:w-fit md:max-w-none md:gap-2 md:px-3">
+      <GoogleLogo className="h-[clamp(22px,7vw,30px)] w-[clamp(22px,7vw,30px)] shrink-0 filter-none md:h-6 md:w-6" />
+      <span className="shrink-0 text-[clamp(17px,5.6vw,24px)] font-bold leading-none text-[#2A1F6B] md:text-xl">
         {GOOGLE_RATING}
       </span>
-      <span aria-hidden="true" className="inline-flex items-center gap-0.5">
+      <span aria-hidden="true" className="inline-flex shrink-0 items-center gap-0.5">
         {Array.from({ length: 5 }).map((_, i) => (
           <Star
             key={i}
             strokeWidth={0}
-            className="h-3 w-3 fill-[#FFC107] text-[#FFC107] min-[400px]:h-3.5 min-[400px]:w-3.5 md:h-3 md:w-3 md:stroke-[1.25] lg:h-3.5 lg:w-3.5"
+            className="h-[clamp(14px,4.4vw,22px)] w-[clamp(14px,4.4vw,22px)] fill-[#FFC107] text-[#FFC107] md:h-5 md:w-5"
           />
         ))}
       </span>
-      <span aria-hidden="true" className="h-4 w-px shrink-0 bg-gray-300 md:hidden" />
-      <p className="whitespace-nowrap text-[11px] font-semibold leading-none text-[#2A1F6B] min-[400px]:text-xs md:text-[11px] lg:text-xs xl:text-sm">
-        <span className="hidden font-extrabold md:inline">{GOOGLE_RATING}</span>
-        <span className="hidden md:inline">{` · ${GOOGLE_REVIEW_COUNT} Happy Customers`}</span>
-        <span className="md:hidden">{GOOGLE_REVIEW_COUNT} Happy Customers</span>
-      </p>
+      <span aria-hidden="true" className="h-5 w-px shrink-0 bg-slate-300" />
+      <span className="shrink-0 whitespace-nowrap text-[clamp(13px,4.2vw,16px)] font-semibold leading-none text-[#2A1F6B] md:text-sm">
+        {GOOGLE_REVIEW_COUNT} Happy Customers
+      </span>
     </div>
   );
 }
@@ -147,71 +138,27 @@ function HeroGoogleRating() {
 function HeroPriceRow() {
   return (
     <div className="max-md:mt-0 md:mt-0 md:px-4 md:py-4 lg:mt-0 lg:p-0">
-      <div className="grid grid-cols-2 gap-3 md:mb-0 lg:flex lg:flex-row lg:justify-start lg:gap-4">
-        <div className="flex items-center gap-1.5 rounded-2xl border border-[#CFE6FA] bg-[#E8F4FF] p-2 md:border-sky-200 md:bg-sky-100 md:px-3 md:py-2 md:text-sky-900 lg:w-full lg:max-w-sm">
+      <div className="grid grid-cols-2 gap-2 md:mb-0 md:gap-3 lg:flex lg:flex-row lg:justify-start lg:gap-4">
+        <div className="flex items-center gap-1 rounded-2xl border border-[#CFE6FA] bg-[#E8F4FF] py-2 pl-2 pr-2.5 md:gap-1.5 md:border-sky-200 md:bg-sky-100 md:px-3 md:py-2 md:text-sky-900 lg:w-full lg:max-w-sm">
           <BoyFaceIcon />
           <div className="min-w-0">
-            <p className="text-sm font-bold text-[#2A1F6B] md:font-semibold md:text-inherit">Boys Haircut</p>
-            <p className="text-2xl font-extrabold text-[#2A1F6B] md:text-xl md:text-inherit">{formatInr(PRICING.boysHaircut)}</p>
+            <p className="text-xs font-bold text-[#2A1F6B] md:text-sm md:font-semibold md:text-inherit">Boys Haircut</p>
+            <p className="text-xl font-extrabold text-[#2A1F6B] md:text-xl md:text-inherit">{formatInr(PRICING.boysHaircut)}</p>
           </div>
         </div>
-        <div className="flex items-center gap-1.5 rounded-2xl border border-[#F9CBDD] bg-[#FFE4EF] p-2 md:border-pink-200 md:bg-pink-100 md:px-3 md:py-2 md:text-pink-900 lg:w-full lg:max-w-sm">
+        <div className="flex items-center gap-1 rounded-2xl border border-[#F9CBDD] bg-[#FFE4EF] py-2 pl-2 pr-2.5 md:gap-1.5 md:border-pink-200 md:bg-pink-100 md:px-3 md:py-2 md:text-pink-900 lg:w-full lg:max-w-sm">
           <GirlFaceIcon />
           <div className="min-w-0">
-            <p className="text-sm font-bold text-[#2A1F6B] md:font-semibold md:text-inherit">Girls Haircut</p>
-            <p className="text-2xl font-extrabold text-[#2A1F6B] md:text-xl md:text-inherit">{formatInr(PRICING.girlsHaircut)}</p>
+            <p className="text-xs font-bold text-[#2A1F6B] md:text-sm md:font-semibold md:text-inherit">Girls Haircut</p>
+            <p className="text-xl font-extrabold text-[#2A1F6B] md:text-xl md:text-inherit">{formatInr(PRICING.girlsHaircut)}</p>
           </div>
         </div>
       </div>
-      <p className="mt-3 text-center text-[11px] text-slate-600 md:mt-2 md:text-left lg:text-left">
+      <p className="mt-2 text-center text-[11px] text-slate-600 md:mt-2 md:text-left lg:text-left">
         <span className="md:hidden">Haircut-only prices do not include hair wash.</span>
         <span className="hidden md:inline">Haircut-only prices. Hair wash not included.</span>
       </p>
     </div>
-  );
-}
-
-function HeroFeatureStrip() {
-  return (
-    <ul className="mt-2 grid grid-cols-4 gap-2 text-center md:relative md:z-30 md:mt-0 md:gap-2 md:rounded-t-3xl md:bg-orange-50 md:px-3 md:py-5">
-      {HERO_FEATURES.map(({ label, mobileLabel, Icon, desktopBg, desktopIcon }) => (
-        <li key={label} className="flex flex-col items-center gap-1.5 text-center">
-          <div
-            className={`flex h-11 w-11 items-center justify-center rounded-full md:h-12 md:w-12 ${desktopBg}`}
-          >
-            <Icon className={`h-5 w-5 ${desktopIcon}`} aria-hidden="true" />
-          </div>
-          <span className="text-[11px] font-semibold leading-tight text-[#2A1F6B] md:text-xs md:text-indigo-950">
-            <span className="md:hidden">{mobileLabel}</span>
-            <span className="hidden md:inline">{label}</span>
-          </span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function HeroFeaturesSection() {
-  return (
-    <section
-      aria-label="Salon features"
-      className="mt-0 hidden w-full bg-orange-50 py-8 md:py-12 lg:block"
-    >
-      <div className="w-full max-w-7xl px-6 lg:px-12">
-        <ul className="grid w-full grid-cols-4 gap-6">
-          {HERO_FEATURES.map(({ label, Icon, desktopBg, desktopIcon }) => (
-            <li key={label} className="flex flex-col items-center gap-2 text-center">
-              <div
-                className={`flex h-14 w-14 items-center justify-center rounded-full ${desktopBg}`}
-              >
-                <Icon className={`h-6 w-6 ${desktopIcon}`} aria-hidden="true" />
-              </div>
-              <span className="text-xs font-semibold leading-tight text-indigo-950">{label}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
   );
 }
 
@@ -226,7 +173,7 @@ export function HeroSection() {
         aria-labelledby="hero-title"
         className="relative flex w-full max-md:gap-0 flex-col scroll-mt-16 overflow-x-hidden bg-[#FDEBF1] max-md:mx-0 max-md:mb-0 max-md:mt-0 md:grid md:h-auto md:min-h-0 md:grid-cols-[minmax(0,42%)_minmax(0,58%)] md:grid-rows-[auto_auto_auto] md:items-stretch md:overflow-visible md:bg-[#FFF8FB] md:scroll-mt-[4.5rem] lg:grid-rows-[auto]"
       >
-        <div className="relative order-1 h-[clamp(300px,82vw,340px)] w-full overflow-hidden md:order-none md:col-start-2 md:row-start-1 md:aspect-auto md:h-auto md:min-h-[576px] lg:h-full lg:min-h-[540px]">
+        <div className="relative order-1 h-[clamp(243px,66.6vw,275px)] w-full overflow-hidden md:order-none md:col-start-2 md:row-start-1 md:aspect-auto md:h-auto md:min-h-[576px] lg:h-full lg:min-h-[540px]">
           <Image
             src={HERO_PHOTO.src}
             alt={HERO_PHOTO.alt}
@@ -234,7 +181,7 @@ export function HeroSection() {
             priority
             sizes="(min-width: 768px) 58vw, 100vw"
             quality={90}
-            className="object-cover object-[60%_100%] md:max-lg:object-[55%_42%] lg:object-[center_75%]"
+            className="object-cover object-[center_58%] md:max-lg:object-[55%_42%] lg:object-[center_75%]"
           />
           <svg
             aria-hidden
@@ -255,7 +202,7 @@ export function HeroSection() {
         </div>
 
         <div className="contents md:col-start-1 md:row-start-1 md:flex md:w-full md:max-w-7xl md:flex-col md:justify-end md:gap-3 md:px-8 md:pt-12 md:pb-0 lg:px-12">
-          <div className="order-2 px-4 pt-2 md:order-none md:p-0">
+          <div className="order-2 px-4 pt-1 md:order-none md:p-0">
             <h1
               id="hero-title"
               className="font-heading font-extrabold leading-[1.05] md:leading-[0.95]"
@@ -280,7 +227,7 @@ export function HeroSection() {
             <HeroGoogleRating />
           </div>
 
-          <div className="order-4 mt-3 mb-2 grid w-full grid-cols-2 gap-3 px-4 md:order-none md:my-0 md:flex md:w-auto md:flex-row md:flex-wrap md:items-center md:gap-4 md:px-0">
+          <div className="order-4 mt-2 mb-2 grid w-full grid-cols-2 gap-3 px-4 md:order-none md:my-0 md:flex md:w-auto md:flex-row md:flex-wrap md:items-center md:gap-4 md:px-0">
             <HeroCta
               href={PHONE_HREF}
               variant="book"
@@ -290,7 +237,7 @@ export function HeroSection() {
                   <CalendarDays className="hidden h-5 w-5 shrink-0 md:inline" aria-hidden="true" />
                 </>
               }
-              label="Book an Appointment"
+              label="Call to Book"
               mobileLabel="Call to Book"
             />
             <HeroCta
@@ -308,20 +255,14 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="order-3 mt-3 px-4 md:order-none md:col-span-2 md:row-start-3 md:mt-0 md:px-0 lg:hidden">
+        <div className="order-3 mt-2 px-4 md:order-none md:col-span-2 md:row-start-3 md:mt-0 md:px-0 lg:hidden">
           <HeroPriceRow />
         </div>
 
-        <div className="order-5 max-md:pt-0 max-md:pb-4 px-4 md:order-none md:col-span-2 md:row-start-2 md:px-0 md:pb-0 lg:hidden">
-          <HeroFeatureStrip />
-        </div>
-
-        <p className="order-6 w-full px-4 py-4 text-[1.375rem] font-semibold leading-snug text-[#2A1F6B] max-md:mb-0 max-md:mt-0 md:hidden">
+        <p className="order-5 w-full px-4 py-4 text-[1.375rem] font-semibold leading-snug text-[#2A1F6B] max-md:mb-0 max-md:mt-0 md:hidden">
           {heroIntro}
         </p>
       </section>
-
-      <HeroFeaturesSection />
     </>
   );
 }

@@ -7,7 +7,6 @@ import {
   GOOGLE_REVIEW_COUNT,
   GOOGLE_REVIEWS,
   PARENT_CHILD_COMBOS,
-  PRICING,
   SECTION_TONES,
   formatFullAddress,
   formatHoursDisplay,
@@ -116,14 +115,20 @@ function WhatsAppToBook({ className = '' }) {
 function CallToBookExperiences() {
   return (
     <a href={PHONE_HREF} className={`${BTN_PRIMARY} w-full`}>
-      {FIRST_TIME_EXPERIENCES.callToBookLabel}
+      <span className="md:hidden">{FIRST_TIME_EXPERIENCES.callToBookLabel}</span>
+      <span className="hidden md:inline">Call to Book</span>
     </a>
   );
 }
 
 export function FirstTimeExperiencesSection() {
   const copy = FIRST_TIME_EXPERIENCES;
-  const combos = PARENT_CHILD_COMBOS.items;
+  const combos = [
+    { label: 'Dad + Son', price: 1399 },
+    { label: 'Dad + Daughter', price: 1599 },
+    { label: 'Mom + Son', price: 1800 },
+    { label: 'Mom + Daughter', price: 1899 },
+  ];
   const comboFromPrice = Math.min(...combos.map((item) => item.price));
 
   return (
@@ -166,10 +171,13 @@ export function FirstTimeExperiencesSection() {
             <ul className="space-y-2 border-t border-black/5 px-3 py-3 text-[0.98rem] leading-relaxed">
               {combos.map((item) => (
                 <li key={item.label}>
-                  {item.label} — <span className="font-bold text-navy">{formatInr(item.price)}</span>
+                  {item.label} — <span className="font-bold text-navy">{formatInr(item.price)}*</span>
                 </li>
               ))}
             </ul>
+            <p className="text-muted mt-1 px-3 pb-3 text-sm leading-relaxed">
+              *Hair wash is not included. Price may vary depending on hair length.
+            </p>
           </details>
           <div className="mt-auto pt-5">
             <CallToBookExperiences />
@@ -375,19 +383,6 @@ export function FinalCallToAction() {
         <p className="mx-auto mt-4 max-w-[58ch] text-[1.0625rem] leading-[1.6] sm:text-lg">
           A little play. A little patience. And a haircut they&apos;ll look great
           in.
-        </p>
-        <div className="mx-auto mt-6 grid max-w-[560px] gap-3 sm:grid-cols-2">
-          <p className="price-card bg-white px-4 py-3 text-left font-bold text-navy">
-            👦 Boys Haircut Only —{' '}
-            <span className="text-price text-xl">{formatInr(PRICING.boysHaircut)}</span>
-          </p>
-          <p className="price-card bg-white px-4 py-3 text-left font-bold text-navy">
-            👧 Girls Haircut Only —{' '}
-            <span className="text-price text-xl">{formatInr(PRICING.girlsHaircut)}</span>
-          </p>
-        </div>
-        <p className="text-muted mt-4 text-sm leading-relaxed">
-          Hair wash not included. Haircut + hair wash options available.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <CallToBook />

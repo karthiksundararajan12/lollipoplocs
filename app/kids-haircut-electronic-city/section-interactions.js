@@ -101,7 +101,7 @@ export function BeforeAfterSlider() {
 
   return (
     <div className="mx-auto max-w-[780px]">
-      <p className="mb-3 text-center text-sm font-bold text-[#4B2A8A]">
+      <p className="mb-3 text-balance text-center text-3xl font-bold leading-tight text-[#4B2A8A] md:text-4xl lg:text-5xl">
         Real photos from our salon
       </p>
       <div className="card-surface relative aspect-[4/3] overflow-hidden rounded-2xl sm:aspect-[16/9]">

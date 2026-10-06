@@ -71,11 +71,14 @@ function ExperienceSection() {
 
 function ParentsSection() {
   const reasons = [
-    { icon: '✂️', title: 'Patient Stylists', detail: 'Experienced with little ones.', circle: 'bg-pink-100' },
-    { icon: '🚗', title: 'Themed Chairs', detail: 'Car, Unicorn & Airplane.', circle: 'bg-teal-100' },
-    { icon: '🧸', title: 'Toys & Distractions', detail: 'Keeps little minds engaged.', circle: 'bg-amber-100' },
-    { icon: '🛝', title: 'Play Area', detail: 'Let them settle in first.', circle: 'bg-yellow-100' },
-    { icon: '🫧', title: 'Kid-Friendly Products', detail: 'Gentle care for little hair.', circle: 'bg-purple-100' },
+    { icon: '🧼', title: 'Hygienic Environment', detail: 'Clean, child-ready spaces.', circle: 'bg-pink-100' },
+    { icon: '✨', title: 'Sterilised Tools', detail: 'Sanitised between services.', circle: 'bg-teal-100' },
+    { icon: '📺', title: 'Optional Screen Time', detail: 'Extra distraction when needed.', circle: 'bg-amber-100' },
+    { icon: '🎓', title: 'First Haircut Certificate', detail: 'A keepsake for the milestone.', circle: 'bg-yellow-100' },
+    { icon: '👨‍👩‍👧', title: 'Parent + Child Haircuts', detail: 'Haircut time together.', circle: 'bg-purple-100' },
+    { icon: '🤱', title: 'Breastfeeding-Friendly Space', detail: 'Added comfort for moms.', circle: 'bg-pink-100' },
+    { icon: '🪮', title: 'Detangling Support', detail: 'Gentle care for tangled, curly or long hair.', circle: 'bg-teal-100' },
+    { icon: '📸', title: 'Photo-Worthy Salon Experience', detail: 'Candyland interiors made for memories.', circle: 'bg-amber-100' },
   ];
 
   return (
@@ -92,11 +95,11 @@ function ParentsSection() {
         >
           Made for Kids. Easier for Parents. ❤️
         </h2>
-        <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 lg:mt-8 lg:grid-cols-5 lg:gap-4">
-          {reasons.map((reason, index) => (
+        <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4 lg:mt-8 lg:gap-4">
+          {reasons.map((reason) => (
             <article
               key={reason.title}
-              className={`rounded-2xl bg-white p-4 text-left shadow-[0_8px_24px_rgb(30_27_75_/_0.06)] ${index === reasons.length - 1 ? 'col-span-2 md:col-span-1' : ''}`}
+              className="rounded-2xl bg-white p-4 text-left shadow-[0_8px_24px_rgb(30_27_75_/_0.06)]"
             >
               <span
                 aria-hidden="true"

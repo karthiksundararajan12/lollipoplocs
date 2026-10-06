@@ -15,7 +15,7 @@ import { BTN_PRIMARY, BTN_WHATSAPP } from '../kids-haircut-electronic-city/ui-pr
 
 const mundanNavLinks = [
   { href: '#intro', label: 'About Mundan' },
-  { href: '#book', label: 'Book Now' },
+  { href: PHONE_HREF, label: 'Call to Book' },
 ];
 
 export const metadata = {

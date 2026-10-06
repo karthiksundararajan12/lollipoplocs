@@ -86,7 +86,7 @@ export function PhotoGallery({ photos }) {
 
   return (
     <div className="min-w-0 max-w-full overflow-hidden">
-      <p className="mb-4 text-center text-sm font-bold text-[#4B2A8A]">
+      <p className="mb-4 text-balance text-center text-3xl font-bold leading-tight text-[#4B2A8A] md:text-4xl lg:text-5xl">
         Real photos from our salon
       </p>
       <div
