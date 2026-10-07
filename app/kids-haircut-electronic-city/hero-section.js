@@ -129,7 +129,7 @@ function HeroSparkle() {
 
 function HeroGoogleRating() {
   return (
-    <div className="mt-1 flex w-full min-w-0 max-w-full flex-row flex-nowrap items-center gap-[0.5vw] whitespace-nowrap rounded-full border border-gray-100 bg-white px-[2vw] py-2.5 shadow-sm md:mt-0 md:w-fit md:max-w-none md:gap-2 md:px-3">
+    <div className="mt-1 flex w-full min-w-0 max-w-full flex-row flex-nowrap items-center gap-[0.5vw] whitespace-nowrap rounded-full border border-gray-100 bg-white px-[2vw] py-2.5 shadow-sm max-[400px]:!gap-0 md:mt-0 md:w-fit md:max-w-none md:gap-2 md:px-3">
       <GoogleLogo className="h-[clamp(22px,7vw,30px)] w-[clamp(22px,7vw,30px)] shrink-0 filter-none md:h-6 md:w-6" />
       <span className="shrink-0 text-[clamp(17px,5.6vw,24px)] font-bold leading-none text-[#2A1F6B] md:text-xl">
         {GOOGLE_RATING}
@@ -139,12 +139,12 @@ function HeroGoogleRating() {
           <Star
             key={i}
             strokeWidth={0}
-            className="h-[clamp(14px,4.4vw,22px)] w-[clamp(14px,4.4vw,22px)] fill-[#FFC107] text-[#FFC107] md:h-5 md:w-5"
+            className="h-[clamp(14px,4.4vw,22px)] w-[clamp(14px,4.4vw,22px)] fill-[#FFC107] text-[#FFC107] max-[400px]:!h-[clamp(10px,3.2vw,14px)] max-[400px]:!w-[clamp(10px,3.2vw,14px)] md:h-5 md:w-5"
           />
         ))}
       </span>
       <span aria-hidden="true" className="h-5 w-px shrink-0 bg-slate-300" />
-      <span className="shrink-0 whitespace-nowrap text-[clamp(13px,4.2vw,16px)] font-bold leading-none text-[#2A1F6B] md:text-sm">
+      <span className="shrink-0 whitespace-nowrap text-[clamp(15px,4.7vw,18px)] font-extrabold leading-none text-[#2A1F6B] md:text-base">
         {GOOGLE_REVIEW_COUNT} Happy Customers
       </span>
     </div>

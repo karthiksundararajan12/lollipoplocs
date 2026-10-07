@@ -100,6 +100,11 @@ export function PricingComparison() {
       <div className="space-y-3 md:hidden">
         {columns.map((col, colIndex) => {
           const key = columnKeys[colIndex];
+          const isFirstHaircut = key === 'firstHaircut';
+          const title = isFirstHaircut ? 'First Haircut Certificate' : col;
+          const visibleRows = isFirstHaircut
+            ? rows.filter((row) => row.label === 'Certificate')
+            : rows;
           return (
             <details
               key={col}
@@ -107,7 +112,7 @@ export function PricingComparison() {
               open={colIndex === 2}
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-4 font-bold text-[#4B2A8A] marker:hidden [&::-webkit-details-marker]:hidden">
-                {col}
+                {title}
                 <span
                   aria-hidden="true"
                   className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FFE0EC] text-xl leading-none"
@@ -116,12 +121,18 @@ export function PricingComparison() {
                 </span>
               </summary>
               <ul className="border-t border-black/5 px-4 py-3">
-                {rows.map((row) => (
+                {visibleRows.map((row) => (
                   <li
                     key={row.label}
                     className="flex items-center justify-between gap-3 border-b border-black/5 py-3 last:border-0"
                   >
-                    <span className="text-sm font-semibold text-[#1A1A2E]">
+                    <span
+                      className={`text-sm text-[#1A1A2E] ${
+                        isFirstHaircut && row.label === 'Certificate'
+                          ? 'font-bold'
+                          : 'font-semibold'
+                      }`}
+                    >
                       {row.label}
                     </span>
                     <CellValue value={row[key]} column={row.label} />

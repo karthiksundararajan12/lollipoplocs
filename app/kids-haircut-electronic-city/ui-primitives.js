@@ -1,4 +1,4 @@
-import { GOOGLE_RATING } from '../../lib/site-config';
+import { GOOGLE_RATING, GOOGLE_REVIEW_COUNT } from '../../lib/site-config';
 
 export function RatingStars({ size = 'hero', className = '' }) {
   const starClass =
@@ -72,6 +72,25 @@ export function GoogleRatingBadge({
       <RatingStars size={starsSize} className={starsClassName} />
       <span className={labelClassName}>{label}</span>
     </div>
+  );
+}
+
+export function HappyCustomersRating({
+  className = '',
+  starsClassName = '',
+  logoClassName = 'h-6 w-6 shrink-0 md:h-4 md:w-4',
+}) {
+  return (
+    <GoogleRatingBadge
+      rating={GOOGLE_RATING}
+      label={`${GOOGLE_REVIEW_COUNT} happy customers`}
+      starsSize="review"
+      logoClassName={logoClassName}
+      ratingClassName="font-extrabold"
+      labelClassName="whitespace-nowrap text-base font-extrabold text-[#4b5563]"
+      starsClassName={starsClassName}
+      className={className}
+    />
   );
 }
 

@@ -20,6 +20,7 @@ export const KIDS_NAV_LINKS = [
   { href: '#reviews', label: 'Reviews' },
   { href: '#questions', label: 'FAQs' },
   { href: '#location', label: 'Visit Us' },
+  { href: '#parent-child-combo', label: 'Parent + Child Combo' },
 ];
 
 const navLinkClassName =
@@ -205,7 +206,22 @@ export function SiteHeader({ navLinks = KIDS_NAV_LINKS }) {
                 key={link.href}
                 href={link.href}
                 className={navLinkClassName}
-                onClick={closeMenu}
+                onClick={(event) => {
+                  if (link.href.startsWith('#')) {
+                    const target = document.querySelector(link.href);
+                    if (target) {
+                      event.preventDefault();
+                      document.body.style.overflow = '';
+                      closeMenu();
+                      window.setTimeout(() => {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }, 0);
+                      window.history.pushState(null, '', link.href);
+                      return;
+                    }
+                  }
+                  closeMenu();
+                }}
               >
                 {link.label}
               </a>

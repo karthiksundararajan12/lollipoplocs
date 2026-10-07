@@ -4,7 +4,6 @@ import {
   CERTIFICATE_IMAGE,
   FIRST_TIME_EXPERIENCES,
   GOOGLE_RATING,
-  GOOGLE_REVIEW_COUNT,
   GOOGLE_REVIEWS,
   PARENT_CHILD_COMBOS,
   SECTION_TONES,
@@ -25,7 +24,7 @@ import {
   BTN_PRIMARY,
   BTN_SECONDARY,
   BTN_WHATSAPP,
-  GoogleRatingBadge,
+  HappyCustomersRating,
 } from './ui-primitives';
 
 function PhoneIcon() {
@@ -124,16 +123,16 @@ function CallToBookExperiences() {
 export function FirstTimeExperiencesSection() {
   const copy = FIRST_TIME_EXPERIENCES;
   const combos = [
-    { label: 'Dad + Son', price: 1399 },
-    { label: 'Dad + Daughter', price: 1599 },
-    { label: 'Mom + Son', price: 1800 },
-    { label: 'Mom + Daughter', price: 1899 },
+    { label: 'Dad + Son', price: 1199, emoji: '👨‍👦' },
+    { label: 'Dad + Daughter', price: 1299, emoji: '👨‍👧' },
+    { label: 'Mom + Son', price: 1299, emoji: '👩‍👦' },
+    { label: 'Mom + Daughter', price: 1499, emoji: '👩‍👧' },
   ];
   const comboFromPrice = Math.min(...combos.map((item) => item.price));
 
   return (
     <Section
-      id="first-time"
+      id="parent-child-combo"
       ariaLabelledby="first-time-title"
       dividerBefore
       tone={SECTION_TONES.firstHaircut}
@@ -159,7 +158,8 @@ export function FirstTimeExperiencesSection() {
           <details className="group mt-4 overflow-hidden rounded-xl border border-black/5 bg-white">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-3 py-3 font-bold leading-snug marker:hidden [&::-webkit-details-marker]:hidden">
               <span>
-                {PARENT_CHILD_COMBOS.heading} from {formatInr(comboFromPrice)}
+                {PARENT_CHILD_COMBOS.heading} from{' '}
+                <span className="font-extrabold text-brand">{formatInr(comboFromPrice)}</span>
               </span>
               <span
                 aria-hidden="true"
@@ -168,16 +168,60 @@ export function FirstTimeExperiencesSection() {
                 +
               </span>
             </summary>
-            <ul className="space-y-2 border-t border-black/5 px-3 py-3 text-[0.98rem] leading-relaxed">
-              {combos.map((item) => (
-                <li key={item.label}>
-                  {item.label} — <span className="font-bold text-navy">{formatInr(item.price)}*</span>
-                </li>
-              ))}
-            </ul>
-            <p className="text-muted mt-1 px-3 pb-3 text-sm leading-relaxed">
-              *Hair wash is not included. Price may vary depending on hair length.
-            </p>
+            <div className="border-t border-black/5 px-3 py-3">
+              <div className="w-full max-w-md overflow-hidden rounded-xl border border-[#F3D6E0]">
+                <table className="w-full border-collapse text-left">
+                  <thead>
+                    <tr className="bg-[#FDE8EF]">
+                      <th
+                        scope="col"
+                        className="bg-[#FDE8EF] px-4 py-2.5 text-left text-xs font-bold uppercase tracking-wide text-navy"
+                      >
+                        Combo
+                      </th>
+                      <th
+                        scope="col"
+                        className="w-[1%] whitespace-nowrap bg-[#FDE8EF] px-4 py-2.5 text-right text-xs font-bold uppercase tracking-wide text-navy"
+                      >
+                        Price
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {combos.map((item, index) => {
+                      const divider =
+                        index < combos.length - 1 ? 'border-b border-[#F8E1EA]' : '';
+                      return (
+                        <tr
+                          key={item.label}
+                          className={index % 2 === 0 ? 'bg-white' : 'bg-[#FFF7FA]'}
+                        >
+                          <td
+                            className={`px-4 py-3.5 text-base font-semibold text-navy ${divider}`}
+                          >
+                            <span
+                              className="mr-2 [font-family:'Apple_Color_Emoji','Segoe_UI_Emoji','Noto_Color_Emoji',sans-serif]"
+                              aria-hidden="true"
+                            >
+                              {item.emoji}
+                            </span>
+                            {item.label}
+                          </td>
+                          <td
+                            className={`w-[1%] whitespace-nowrap px-4 py-3.5 text-right text-xl font-extrabold tabular-nums text-brand ${divider}`}
+                          >
+                            {formatInr(item.price)}*
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-3 w-full max-w-md rounded-lg bg-[#FFF6E9] px-3 py-2 text-sm leading-snug text-[#5B6275]">
+                *Hair wash is not included. Price may vary depending on hair length.
+              </p>
+            </div>
           </details>
           <div className="mt-auto pt-5">
             <CallToBookExperiences />
@@ -240,14 +284,9 @@ export function ReviewsSection() {
         </p>
 
         <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-          <GoogleRatingBadge
-            rating={GOOGLE_RATING}
-            label={`${GOOGLE_REVIEW_COUNT} happy customers`}
-            starsSize="review"
-            logoClassName="h-6 w-6 shrink-0 md:h-4 md:w-4"
-            ratingClassName="font-extrabold"
-            labelClassName="whitespace-nowrap text-sm font-bold text-[#4b5563]"
-            className="max-md:px-2.5 max-md:py-1.5"
+          <HappyCustomersRating
+            starsClassName="h-4 w-4 max-[356px]:!h-3 max-[356px]:!w-3 md:h-[22px] md:w-[22px]"
+            className="max-md:px-2.5 max-md:py-1.5 max-[356px]:!gap-1.5"
           />
           <ProofBadge>Google Rated {GOOGLE_RATING}</ProofBadge>
         </div>
@@ -320,13 +359,7 @@ export function LocationSection() {
                 <p className="text-muted mt-2 font-bold">{address.floorNote}</p>
               </div>
               <div className="max-[400px]:-mx-5 max-[400px]:flex max-[400px]:justify-center">
-                <GoogleRatingBadge
-                  rating={GOOGLE_RATING}
-                  label={`${GOOGLE_REVIEW_COUNT} happy customers`}
-                  starsSize="review"
-                  logoClassName="h-6 w-6 shrink-0 md:h-4 md:w-4"
-                  ratingClassName="font-extrabold"
-                  labelClassName="whitespace-nowrap text-sm font-bold text-[#4b5563] max-[400px]:text-[13px]"
+                <HappyCustomersRating
                   starsClassName="h-4 w-4 max-[400px]:h-3 max-[400px]:w-3 md:h-[22px] md:w-[22px]"
                   className="max-md:px-2.5 max-md:py-1.5 max-[400px]:!px-1.5 max-[400px]:!py-1"
                 />
